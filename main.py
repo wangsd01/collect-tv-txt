@@ -4,6 +4,8 @@ import re #正则
 import os
 from datetime import datetime
 
+from util import convert_m3u_to_txt
+
 # 定义要访问的多个URL
 urls = [
     'https://raw.githubusercontent.com/iptv-org/iptv/master/streams/cn.m3u',
@@ -33,7 +35,7 @@ def read_blacklist_from_txt(file_path):
     BlackList = [line.split(',')[1].strip() for line in lines if ',' in line]
     return BlackList
 
-blacklist_auto=read_blacklist_from_txt('blacklist/blacklist_auto.txt') 
+blacklist_auto=read_blacklist_from_txt('blacklist/blacklist_auto.txt')
 blacklist_manual=read_blacklist_from_txt('blacklist/blacklist_manual.txt') 
 combined_blacklist = list(set(blacklist_auto + blacklist_manual))
 
@@ -123,30 +125,7 @@ def get_url_file_extension(url):
     extension = os.path.splitext(path)[1]
     return extension
 
-def convert_m3u_to_txt(m3u_content):
-    # 分行处理
-    lines = m3u_content.split('\n')
-    
-    # 用于存储结果的列表
-    txt_lines = []
-    
-    # 临时变量用于存储频道名称
-    channel_name = ""
-    
-    for line in lines:
-        # 过滤掉 #EXTM3U 开头的行
-        if line.startswith("#EXTM3U"):
-            continue
-        # 处理 #EXTINF 开头的行
-        if line.startswith("#EXTINF"):
-            # 获取频道名称（假设频道名称在引号后）
-            channel_name = line.split(',')[-1].strip()
-        # 处理 URL 行
-        elif line.startswith("http"):
-            txt_lines.append(f"{channel_name},{line.strip()}")
-    
-    # 将结果合并成一个字符串，以换行符分隔
-    return '\n'.join(txt_lines)
+
 
 # 在list是否已经存在url 2024-07-22 11:18
 def check_url_existence(data_list, url):
@@ -254,6 +233,8 @@ def process_url(url):
             # 逐行处理内容
             lines = text.split('\n')
             for line in lines:
+                if '$' in line:
+                    line = line.split('$')[0]
                 process_channel_line(line) # 每行按照规则进行分发
 
     except Exception as e:
