@@ -6,18 +6,20 @@ from collections import defaultdict
 from tqdm import tqdm
 
 from my_tv_collect.utils import get_url_file_extension, convert_m3u_to_txt, filter_accessible_urls, \
-    standardize_channel_name, rank_channel_urls_by_speed, channel_key
+    standardize_channel_name, rank_channel_urls_by_speed, channel_key, rank_channel_urls_by_choppy_and_speed, \
+    sequential_rank_channel_urls_by_choppy_and_speed
 
 
 class CollectTV:
     def __init__(self, live_tv_source_urls):
         self.live_channel_source_dict = defaultdict(list)
 
-        self.result_counter = 8  # 每个频道需要的个数
+        self.result_counter = 15  # 每个频道需要的个数
         for url in tqdm(live_tv_source_urls, desc="Downloading channels from files"):
             self.download_channel_list(url)
         self.filter_accessible_channels()
         # self.rank_channel_urls_by_speed()
+        self.rank_channel_urls_by_choppy_and_speed()
         self.write_to_txt()
         self.write_to_m3u()
 
@@ -40,7 +42,7 @@ class CollectTV:
                     self.process_channel_line(line)  # 每行按照规则进行分发
 
         except Exception as e:
-            print(f"处理URL时发生错误：{e}")
+            print(f"处理URL时发生错误：{e}, {url}")
 
     def process_channel_line(self, line):
         if '$' in line:
@@ -85,6 +87,13 @@ class CollectTV:
     def rank_channel_urls_by_speed(self):
         for channel_name, channel_urls in tqdm(self.live_channel_source_dict.items(), desc="ranking channels"):
             ranked_channel_urls = rank_channel_urls_by_speed(channel_urls)
+            self.live_channel_source_dict[channel_name] = ranked_channel_urls
+
+    def rank_channel_urls_by_choppy_and_speed(self):
+        for channel_name, channel_urls in tqdm(self.live_channel_source_dict.items(), desc="ranking channels"):
+            print(channel_name)
+            ranked_channel_urls = rank_channel_urls_by_choppy_and_speed(channel_urls)
+            # ranked_channel_urls = sequential_rank_channel_urls_by_choppy_and_speed(channel_urls)
             self.live_channel_source_dict[channel_name] = ranked_channel_urls
 
     def write_to_txt(self):
@@ -187,6 +196,10 @@ if __name__ == "__main__":
         'https://raw.githubusercontent.com/zwc456baby/iptv_alive/master/live.txt',  # 每天自动更新1次 2024-06-24 16:37
         'https://gitlab.com/p2v5/wangtv/-/raw/main/lunbo.txt',
         'https://raw.githubusercontent.com/PizazzGY/TVBox/main/live.txt'  # ADD 2024-07-22 13:50
+        'https://raw.githubusercontent.com/kimwang1978/tvbox/main/%E5%A4%A9%E5%A4%A9%E5%BC%80%E5%BF%83/lives/%E2%91%AD%E5%BC%80%E5%BF%83%E7%BA%BF%E8%B7%AF.txt',
+        'https://raw.githubusercontent.com/YanG-1989/m3u/main/Gather.m3u',
+        'https://gitlab.com/p2v5/wangtv/-/raw/main/wang-tvlive.txt',
+        'https://raw.githubusercontent.com/hujingguang/ChinaIPTV/main/cnTV_AutoUpdate.m3u8'
     ]
     ctv = CollectTV(urls)
 

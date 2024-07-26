@@ -13,6 +13,9 @@ import concurrent.futures
 
 from tqdm import tqdm
 
+from my_tv_collect.m3u8_stream_choopy_test import is_m3u8_stream_choppy
+from my_tv_collect.udp_stream_choppy_test import is_udp_stream_choppy
+
 
 def get_url_file_extension(url):
     # 解析URL
@@ -120,6 +123,7 @@ def filter_accessible_urls_sequential(urls):
             valid_urls.append(url)
     return valid_urls
 
+
 def filter_accessible_urls(urls):
     urls = set(urls)
     valid_urls = []
@@ -146,6 +150,7 @@ def filter_accessible_urls(urls):
     valid_urls = sorted(valid_urls)
     valid_urls = [url for _, url in valid_urls]
     return valid_urls
+
 
 def standardize_channel_name(name):
     name = name.replace("cctv", "CCTV")
@@ -307,3 +312,60 @@ def channel_key(channel_name):
         return int(match.group())
     else:
         return float('inf')  # 返回一个无穷大的数字作为关键字
+
+
+def measure_segment_size(segment_url):
+    try:
+        response = requests.get(segment_url, stream=True)
+        response.raise_for_status()
+        size = 0
+        for chunk in response.iter_content(chunk_size=1024):
+            size += len(chunk)
+        return size
+    except requests.RequestException as e:
+        print(f"Failed "
+              f"to download segment {segment_url}: {e}")
+        return 0
+
+
+def check_url_by_choppy_and_speed(url):
+    # if 'udp' in url or 'rtp' in url:
+    #     is_choppy, speed = analyze_udp_stream(url)
+    if 'm3u8' in url:
+        is_choppy, speed = is_m3u8_stream_choppy(url)
+    else:
+        is_choppy, speed = is_udp_stream_choppy(url)
+    return is_choppy, speed, url
+
+
+def rank_channel_urls_by_choppy_and_speed(channel_urls):
+    urls = set(channel_urls)
+    valid_urls = []
+    if len(channel_urls) == 0:
+        return valid_urls
+    max_works = min(len(urls), 100)
+    with concurrent.futures.ThreadPoolExecutor(max_workers=max_works) as executor:
+        urls = [url.strip() for url in urls]
+        results = executor.map(check_url_by_choppy_and_speed, urls)
+
+        results = sorted(results, key=lambda x: (x[0], -x[1]))
+        print(results)
+        for is_choppy, speed, url in results:
+            if not is_choppy and speed > 100:
+                valid_urls.append(url)
+    return valid_urls
+
+
+def sequential_rank_channel_urls_by_choppy_and_speed(channel_urls):
+    urls = set(channel_urls)
+    valid_urls = []
+    results = []
+    for url in tqdm(urls, desc="sequential ranking urls:"):
+        result = check_url_by_choppy_and_speed(url)
+        results.append(result)
+    results = sorted(results, key=lambda x: (x[0], -x[1]))
+    print(results)
+    for is_choppy, speed, url in results:
+        if not is_choppy and speed > 100:
+            valid_urls.append(url)
+    return valid_urls
