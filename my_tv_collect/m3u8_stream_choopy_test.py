@@ -43,6 +43,8 @@ def is_m3u8_stream_choppy(m3u8_url, threshold=0.5):
             total_download_time += download_time
             total_segment_size += segment_size
             segment_size_list.append(segment_size)
+            if segment_size < 100:
+                packet_loss += 1
             print(
                 f"Segment {total_segments}: Duration={segment_duration}s, Download Time={download_time:.4f}s, Size={segment_size:.4f}Kb, Chunk Count={n_chunk}")
         except requests.RequestException as e:
@@ -57,7 +59,8 @@ def is_m3u8_stream_choppy(m3u8_url, threshold=0.5):
     packet_loss_ratio = packet_loss / len(playlist.segments)
 
     seg_size_var_ratio = np.std(segment_size_list) / np.mean(segment_size_list)
-    is_choppy = choppy_ratio > 0.5 or seg_size_var_ratio > 0.1 or packet_loss_ratio > 0.1
+    # is_choppy = choppy_ratio > 0.5 or seg_size_var_ratio > 0.1 or packet_loss_ratio > 0.2
+    is_choppy = packet_loss_ratio > 0.2
     # is_choppy = choppy_ratio > 0.1 or packet_loss_ratio > 0.1
     speed = total_segment_size / total_download_time
     # print(segment_size_list)

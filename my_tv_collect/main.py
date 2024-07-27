@@ -63,8 +63,8 @@ class CollectTV:
         if not channel_name.startswith('CCTV'):
             # only get source for cctv
             return
-        if 'IPV6' in channel_name:
-            return
+        # if 'IPV6' in channel_name:
+        #     return
         if '4K' in channel_name:
             return
         if '8K' in channel_name:
@@ -80,8 +80,8 @@ class CollectTV:
         print(list(self.live_channel_source_dict.keys()))
         for channel_name, channel_urls in tqdm(self.live_channel_source_dict.items(), desc="filtering accessible channel"):
             channel_urls = set(channel_urls)
-            print("filtering ", channel_name, f", {len(channel_urls)} urls.")
             valid_urls = filter_accessible_urls(channel_urls)
+            print("filtering ", channel_name, f", {len(channel_urls)} urls, {len(valid_urls)} accessible.")
             self.live_channel_source_dict[channel_name] = valid_urls
 
     def rank_channel_urls_by_speed(self):
@@ -92,8 +92,8 @@ class CollectTV:
     def rank_channel_urls_by_choppy_and_speed(self):
         for channel_name, channel_urls in tqdm(self.live_channel_source_dict.items(), desc="ranking channels"):
             print(channel_name)
-            # ranked_channel_urls = rank_channel_urls_by_choppy_and_speed(channel_urls)
-            ranked_channel_urls = sequential_rank_channel_urls_by_choppy_and_speed(channel_urls)
+            ranked_channel_urls = rank_channel_urls_by_choppy_and_speed(channel_urls)
+            # ranked_channel_urls = sequential_rank_channel_urls_by_choppy_and_speed(channel_urls)
             self.live_channel_source_dict[channel_name] = ranked_channel_urls
 
     def write_to_txt(self):

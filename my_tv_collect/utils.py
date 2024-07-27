@@ -127,7 +127,7 @@ def filter_accessible_urls_sequential(urls):
 def filter_accessible_urls(urls):
     urls = set(urls)
     valid_urls = []
-    max_works = min(len(urls), 100)
+    max_works = min(len(urls), 10)
     #   多线程获取可用url
     # with concurrent.futures.ThreadPoolExecutor(max_workers=max_works) as executor:
     #     futures = []
@@ -171,6 +171,7 @@ def standardize_channel_name(name):
     name = name.replace("(", "")
     name = name.replace(")", "")
     name = re.sub(r"CCTV(\d+)台", r"CCTV\1", name)
+    name = name.replace("「IPV6」", "")
     name = name.replace("CCTV1综合", "CCTV1")
     name = name.replace("CCTV1B", "CCTV1")
     name = name.replace("CCTV2财经", "CCTV2")
@@ -322,7 +323,7 @@ def rank_channel_urls_by_choppy_and_speed(channel_urls):
     valid_urls = []
     if len(channel_urls) == 0:
         return valid_urls
-    max_works = min(len(urls), 100)
+    max_works = min(len(urls), 10)
     with concurrent.futures.ThreadPoolExecutor(max_workers=max_works) as executor:
         urls = [url.strip() for url in urls]
         results = executor.map(check_url_by_choppy_and_speed, urls)
