@@ -60,7 +60,7 @@ def is_m3u8_stream_choppy(m3u8_url, threshold=0.5):
 
     seg_size_var_ratio = np.std(segment_size_list) / np.mean(segment_size_list)
     # is_choppy = choppy_ratio > 0.5 or seg_size_var_ratio > 0.1 or packet_loss_ratio > 0.2
-    is_choppy = packet_loss_ratio > 0.2
+    is_choppy = packet_loss_ratio > 0.5
     # is_choppy = choppy_ratio > 0.1 or packet_loss_ratio > 0.1
     speed = total_segment_size / total_download_time
     # print(segment_size_list)
@@ -79,7 +79,8 @@ if __name__ == "__main__":
     # m3u8_url = "http://111.197.224.161:4022/rtp/239.3.1.129:8008"
     # m3u8_url = "http://119.39.97.2:9002/tsfile/live/0005_1.m3u8?key=txiptv&playlive=1&authid=0"
     # m3u8_url = "http://36.32.174.67:60080/newlive/live/hls/1/live.m3u8"
-    m3u8_url = 'http://119.39.97.2:9002/tsfile/live/0005_1.m3u8?key=txiptv&playlive=1&authid=0'
+    # m3u8_url = 'http://119.39.97.2:9002/tsfile/live/0005_1.m3u8?key=txiptv&playlive=1&authid=0'
+    m3u8_url = "http://175.8.213.198:8081/tsfile/live/0005_1.m3u8?key=txiptv&playlive=1&authid=0"
     is_choppy, speed = is_m3u8_stream_choppy(m3u8_url)
     if is_choppy:
         print("The stream is choppy. speed is ", speed)

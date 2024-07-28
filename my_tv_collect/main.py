@@ -1,4 +1,5 @@
 import collections
+import datetime
 import re
 import urllib
 from collections import defaultdict
@@ -11,7 +12,7 @@ from my_tv_collect.utils import get_url_file_extension, convert_m3u_to_txt, filt
 
 
 class CollectTV:
-    def __init__(self, live_tv_source_urls):
+    def __init__(self, live_tv_source_urls=[]):
         self.live_channel_source_dict = defaultdict(list)
 
         self.result_counter = 15  # 每个频道需要的个数
@@ -96,9 +97,10 @@ class CollectTV:
             # ranked_channel_urls = sequential_rank_channel_urls_by_choppy_and_speed(channel_urls)
             self.live_channel_source_dict[channel_name] = ranked_channel_urls
 
-    def write_to_txt(self):
-
-        with open("my_itvlist.txt", 'w', encoding='utf-8') as file:
+    def write_to_txt(self, file_name="my_itvlist"):
+        file_name = file_name + "_" + datetime.datetime.now().strftime("%m-%d-%Y")
+        file_name += ".txt"
+        with open(file_name, 'w', encoding='utf-8') as file:
             channel_counters = {}
             file.write('央视频道,#genre#\n')
             for channel_name, channel_urls in self.live_channel_source_dict.items():
@@ -134,8 +136,10 @@ class CollectTV:
             #         else:
             #             file.write(f"{channel_name},{channel_url}\n")
             #             channel_counters[channel_name] = 1
-    def write_to_m3u(self):
-        with open("my_itvlist.m3u", 'w', encoding='utf-8') as file:
+    def write_to_m3u(self, file_name="my_itvlist"):
+        file_name = file_name + "_" + datetime.datetime.now().strftime("%m-%d-%Y")
+        file_name += ".m3u"
+        with open(file_name, 'w', encoding='utf-8') as file:
             file.write('#EXTM3U\n')
             for channel_name, channel_urls in self.live_channel_source_dict.items():
                 if 'CCTV' in channel_name:
@@ -199,7 +203,9 @@ if __name__ == "__main__":
         'https://raw.githubusercontent.com/kimwang1978/tvbox/main/%E5%A4%A9%E5%A4%A9%E5%BC%80%E5%BF%83/lives/%E2%91%AD%E5%BC%80%E5%BF%83%E7%BA%BF%E8%B7%AF.txt',
         'https://raw.githubusercontent.com/YanG-1989/m3u/main/Gather.m3u',
         'https://gitlab.com/p2v5/wangtv/-/raw/main/wang-tvlive.txt',
-        'https://raw.githubusercontent.com/hujingguang/ChinaIPTV/main/cnTV_AutoUpdate.m3u8'
+        'https://raw.githubusercontent.com/hujingguang/ChinaIPTV/main/cnTV_AutoUpdate.m3u8',
+        "https://raw.githubusercontent.com/wangsd01/collect-tv-txt/main/my_tv_collect/my_itvlist.m3u",
+        "https://raw.githubusercontent.com/wangsd01/collect-tv-txt/aa468c35f2e10b682f64d185533af6da8bf3d831/my_tv_collect/my_itvlist.m3u"
     ]
     ctv = CollectTV(urls)
 

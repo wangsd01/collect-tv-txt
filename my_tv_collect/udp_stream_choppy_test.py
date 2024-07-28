@@ -33,7 +33,6 @@ def is_udp_stream_choppy(uri, duration=20):
                 packet_loss += 1
 
             if response.status_code == 200:
-                total_segments += 1
                 packet_intervals.append(segment_download_time)
                 print(
                     f"Segment {total_segments}: Download Time={segment_download_time:.4f}s, Segment size: {segment_size}")
@@ -41,10 +40,13 @@ def is_udp_stream_choppy(uri, duration=20):
                 packet_loss += 1
                 print(f"Segment {total_segments}: Failed to download (status code: {response.status_code})")
 
+
+
         except requests.RequestException as e:
             packet_loss += 1
             print(f"Segment {total_segments}: Failed to download (exception: {e})")
             continue
+        total_segments += 1
 
     if not packet_intervals:
         print("No segments received.")
@@ -52,13 +54,13 @@ def is_udp_stream_choppy(uri, duration=20):
 
     average_interval = np.mean(packet_intervals)
     jitter = np.std(packet_intervals) / np.mean(packet_intervals)
-    packet_loss_ratio = packet_loss / (packet_loss + len(packet_intervals))
+    packet_loss_ratio = packet_loss / total_segments
 
     # Determine if the stream is choppy
     jitter_threshold = 0.2
     packet_loss_ratio_threshold = 0.1
     # is_choppy = jitter > jitter_threshold or packet_loss_ratio > packet_loss_ratio_threshold
-    packet_loss_ratio_threshold = 0.2
+    packet_loss_ratio_threshold = 0.5
     is_choppy = packet_loss_ratio > packet_loss_ratio_threshold
     speed = total_segment_size / total_download_time
 
