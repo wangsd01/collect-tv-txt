@@ -36,23 +36,7 @@ http://112.46.85.60:8009/hls/14/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV15
 http://112.46.85.60:8009/hls/15/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV16
-http://112.46.85.60:8009/hls/16/index.m3u8
-#EXTINF:-1 group-title="央视频道",CCTV16
 http://112.46.85.60:8009/hls/86/index.m3u8
-#EXTINF:-1 group-title="卫视频道",陕西
-http://112.46.85.60:8009/hls/17/index.m3u8
-#EXTINF:-1 group-title="卫视频道",东方
-http://112.46.85.60:8009/hls/31/index.m3u8
-#EXTINF:-1 group-title="卫视频道",湖南
-http://112.46.85.60:8009/hls/32/index.m3u8
-#EXTINF:-1 group-title="卫视频道",江苏
-http://112.46.85.60:8009/hls/33/index.m3u8
-#EXTINF:-1 group-title="卫视频道",浙江
-http://112.46.85.60:8009/hls/34/index.m3u8
-#EXTINF:-1 group-title="卫视频道",北京
-http://112.46.85.60:8009/hls/35/index.m3u8
-#EXTINF:-1 group-title="卫视频道",海南
-http://112.46.85.60:8009/hls/57/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV电视指南
 http://60.10.225.157:555/rtp/239.253.93.249:6427
 #EXTINF:-1 group-title="央视频道",CCTV风云剧场
@@ -65,3 +49,15 @@ http://60.10.225.157:555/rtp/239.253.93.252:6430
 http://60.10.225.157:555/rtp/239.253.92.131:6113
 #EXTINF:-1 group-title="央视频道",CCTV文化精品
 http://60.10.225.157:555/rtp/239.253.93.175:6439
+#EXTINF:-1 group-title="卫视频道",东方
+http://112.46.85.60:8009/hls/31/index.m3u8
+#EXTINF:-1 group-title="卫视频道",湖南
+http://112.46.85.60:8009/hls/32/index.m3u8
+#EXTINF:-1 group-title="卫视频道",江苏
+http://112.46.85.60:8009/hls/33/index.m3u8
+#EXTINF:-1 group-title="卫视频道",浙江
+http://112.46.85.60:8009/hls/34/index.m3u8
+#EXTINF:-1 group-title="卫视频道",北京
+http://112.46.85.60:8009/hls/35/index.m3u8
+#EXTINF:-1 group-title="卫视频道",海南
+http://112.46.85.60:8009/hls/57/index.m3u8
