@@ -1,6 +1,8 @@
 #EXTM3U
 #EXTINF:-1 group-title="央视频道",CCTV1
 http://112.46.85.60:8009/hls/501/index.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV1
+http://222.241.154.37:9901/tsfile/live/23001_1.m3u8?key=txiptv&playlive=1&authid=0
 #EXTINF:-1 group-title="央视频道",CCTV2
 http://112.46.85.60:8009/hls/502/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV3
@@ -13,6 +15,8 @@ http://112.46.85.60:8009/hls/503/index.m3u8
 http://112.46.85.60:8009/hls/81/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV6
 http://112.46.85.60:8009/hls/6/index.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV6
+http://mobilelive-timeshift.ysp.cctv.cn/timeshift/ysp/2013693901/timeshift.m3u8?delay=0
 #EXTINF:-1 group-title="央视频道",CCTV7
 http://112.46.85.60:8009/hls/504/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV8
