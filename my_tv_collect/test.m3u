@@ -11,8 +11,14 @@ http://112.46.85.60:8009/hls/3/index.m3u8
 http://112.46.85.60:8009/hls/4/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV5
 http://112.46.85.60:8009/hls/503/index.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV5
+http://111.196.186.191:5555/rtp/239.3.1.173:8001
+#EXTINF:-1 group-title="央视频道",CCTV5
+https://cdn.nlivetv.com/live/cctv5.m3u8?token=KtKjIFra4lA8LVVETteZBg&expires=1722585903
 #EXTINF:-1 group-title="央视频道",CCTV5+
 http://112.46.85.60:8009/hls/81/index.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV5+
+http://dns.art2kn.win:7000/rtp/239.3.1.130:8004
 #EXTINF:-1 group-title="央视频道",CCTV6
 http://112.46.85.60:8009/hls/6/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV6
