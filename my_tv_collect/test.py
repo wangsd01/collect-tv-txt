@@ -13,11 +13,12 @@ from my_tv_collect.utils import check_url, is_url_accessible
 # print(is_url_accessible(url))
 
 ctv = CollectTV()
-url = "http://112.46.85.60:8009/hls/503/index.m3u8"
-
+# url = "http://112.46.85.60:8009/hls/503/index.m3u8"
+url = "http://1.30.18.218:20080/hls/5/index.m3u8"
 channel_dict = defaultdict(list)
 for i in tqdm(range(0, 1000)):
-    test_url = "http://112.46.85.60:8009/hls/" + str(i) + "/index.m3u8"
+    # test_url = "http://112.46.85.60:8009/hls/" + str(i) + "/index.m3u8"
+    test_url = "http://1.30.18.218:20080/hls/" + str(i) + "/index.m3u8"
     if check_url(test_url)[2]:
         print(test_url)
         channel_dict['CCTV'+str(i)].append(test_url)
