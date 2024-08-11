@@ -14,6 +14,12 @@ http://112.13.84.36/5gtvtbv52.live.bestvcdn.com.cn/live/program/live/cctv5hd8m/8
 #EXTINF:-1 group-title="央视频道",CCTV5
 http://121.24.98.224:8090/hls/13/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV5
+http://bktlivecloud-cdn.ysp.cctv.cn/ysp/2024078403.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV5
+http://106.63.21.209/bkbktlivecloud-cdn.ysp.cctv.cn/ysp/2024078403.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV5
+http://183.61.247.138/hlslive-tx-cdn.ysp.cctv.cn/ysp/2024078403.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV5
 http://219.145.43.206:9901/tsfile/live/0005_1.m3u8?key=txiptv&playlive=1&authid=0
 #EXTINF:-1 group-title="央视频道",CCTV5
 http://112.46.85.60:8009/hls/503/index.m3u8
@@ -21,6 +27,10 @@ http://112.46.85.60:8009/hls/503/index.m3u8
 http://111.196.186.191:5555/rtp/239.3.1.173:8001
 #EXTINF:-1 group-title="央视频道",CCTV5+
 http://112.46.85.60:8009/hls/81/index.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV5+
+http://106.63.21.209/bkbktlivecloud-cdn.ysp.cctv.cn/ysp/2024078003.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV5+
+http://183.61.247.138/hlslive-tx-cdn.ysp.cctv.cn/ysp/2024078003.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV5+
 http://dns.art2kn.win:7000/rtp/239.3.1.130:8004
 #EXTINF:-1 group-title="央视频道",CCTV6
@@ -55,6 +65,10 @@ http://112.46.85.60:8009/hls/15/index.m3u8
 http://112.46.85.60:8009/hls/86/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV16
 http://1.30.18.218:20080/hls/16/index.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV16
+http://106.63.21.209/bkbktlivecloud-cdn.ysp.cctv.cn/ysp/2024083703.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV16
+http://183.61.247.138/hlslive-tx-cdn.ysp.cctv.cn/ysp/2024083703.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV电视指南
 http://60.10.225.157:555/rtp/239.253.93.249:6427
 #EXTINF:-1 group-title="央视频道",CCTV风云剧场
