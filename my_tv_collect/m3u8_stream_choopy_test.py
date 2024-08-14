@@ -80,7 +80,8 @@ if __name__ == "__main__":
     # m3u8_url = "http://119.39.97.2:9002/tsfile/live/0005_1.m3u8?key=txiptv&playlive=1&authid=0"
     # m3u8_url = "http://36.32.174.67:60080/newlive/live/hls/1/live.m3u8"
     # m3u8_url = 'http://119.39.97.2:9002/tsfile/live/0005_1.m3u8?key=txiptv&playlive=1&authid=0'
-    m3u8_url = "http://175.8.213.198:8081/tsfile/live/0005_1.m3u8?key=txiptv&playlive=1&authid=0"
+    # m3u8_url = "http://175.8.213.198:8081/tsfile/live/0005_1.m3u8?key=txiptv&playlive=1&authid=0"
+    m3u8_url = "http://1.30.18.218:20080/hls/16/index.m3u8"
     is_choppy, speed = is_m3u8_stream_choppy(m3u8_url)
     if is_choppy:
         print("The stream is choppy. speed is ", speed)
