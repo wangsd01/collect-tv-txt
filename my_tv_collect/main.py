@@ -213,6 +213,7 @@ if __name__ == "__main__":
         # 'https://raw.githubusercontent.com/YanG-1989/m3u/main/Gather.m3u',
         # 'https://gitlab.com/p2v5/wangtv/-/raw/main/wang-tvlive.txt',
         # 'https://raw.githubusercontent.com/hujingguang/ChinaIPTV/main/cnTV_AutoUpdate.m3u8',
+        'https://raw.githubusercontent.com/pxiptv/TV/main/test.txt',
         "https://raw.githubusercontent.com/wangsd01/collect-tv-txt/main/my_tv_collect/test.m3u"
     ]
     ctv = CollectTV(urls)
