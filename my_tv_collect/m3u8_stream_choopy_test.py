@@ -7,50 +7,54 @@ from urllib.parse import urljoin
 
 def is_m3u8_stream_choppy(m3u8_url, threshold=0.5):
     print(m3u8_url)
-    try:
-        response = requests.get(m3u8_url, timeout=1)
-    except:
-        print(m3u8_url, "time out")
-        return True, 0
-    base_uri = response.url  # This will be used as the base URI
-    playlist = m3u8.loads(response.text, uri=base_uri)
-    # print(playlist.segments)
+
     choppy_segments = 0
     total_segments = 0
     total_download_time = 0
     total_segment_size = 0
     segment_size_list = []
     packet_loss = 0
-    for segment in playlist.segments:
-        segment_url = urljoin(base_uri, segment.uri)  # Resolve the absolute URI
-        segment_duration = segment.duration
+    for i in range(4):
         try:
-            start_time = time.time()
-            segment_response = requests.get(segment_url, timeout=1.)
-            download_time = time.time() - start_time
+            response = requests.get(m3u8_url, timeout=1)
+        except:
+            print(m3u8_url, "time out")
+            return True, 0
 
-            if download_time > segment_duration * (1 + threshold):
-                choppy_segments += 1
+        base_uri = response.url  # This will be used as the base URI
+        playlist = m3u8.loads(response.text, uri=base_uri)
+        # print(playlist.segments)
 
-            segment_size = 0.0
-            n_chunk = 0
-            for chunk in segment_response.iter_content(chunk_size=1024):
-                segment_size += len(chunk)
-                n_chunk += 1
-            # bytes to Kb
-            segment_size = segment_size / 1024.
-            total_segments += 1
-            total_download_time += download_time
-            total_segment_size += segment_size
-            segment_size_list.append(segment_size)
-            if segment_size < 100:
+        for segment in playlist.segments:
+            segment_url = urljoin(base_uri, segment.uri)  # Resolve the absolute URI
+            segment_duration = segment.duration
+            try:
+                start_time = time.time()
+                segment_response = requests.get(segment_url, timeout=1.)
+                download_time = time.time() - start_time
+
+                if download_time > segment_duration * (1 + threshold):
+                    choppy_segments += 1
+
+                segment_size = 0.0
+                n_chunk = 0
+                for chunk in segment_response.iter_content(chunk_size=1024):
+                    segment_size += len(chunk)
+                    n_chunk += 1
+                # bytes to Kb
+                segment_size = segment_size / 1024.
+                total_segments += 1
+                total_download_time += download_time
+                total_segment_size += segment_size
+                segment_size_list.append(segment_size)
+                if segment_size < 100:
+                    packet_loss += 1
+                print(
+                    f"Segment {total_segments}: Duration={segment_duration}s, Download Time={download_time:.4f}s, Size={segment_size:.4f}Kb, Chunk Count={n_chunk}")
+            except requests.RequestException as e:
                 packet_loss += 1
-            print(
-                f"Segment {total_segments}: Duration={segment_duration}s, Download Time={download_time:.4f}s, Size={segment_size:.4f}Kb, Chunk Count={n_chunk}")
-        except requests.RequestException as e:
-            packet_loss += 1
-            print(f"Segment {total_segments}: Failed to download (exception: {e})")
-            continue
+                print(f"Segment {total_segments}: Failed to download (exception: {e})")
+                continue
 
     if total_segments == 0:
         return True, 0
@@ -81,7 +85,8 @@ if __name__ == "__main__":
     # m3u8_url = "http://36.32.174.67:60080/newlive/live/hls/1/live.m3u8"
     # m3u8_url = 'http://119.39.97.2:9002/tsfile/live/0005_1.m3u8?key=txiptv&playlive=1&authid=0'
     # m3u8_url = "http://175.8.213.198:8081/tsfile/live/0005_1.m3u8?key=txiptv&playlive=1&authid=0"
-    m3u8_url = "http://1.30.18.218:20080/hls/16/index.m3u8"
+    # m3u8_url = "http://1.30.18.218:20080/hls/16/index.m3u8"
+    m3u8_url = "http://59.44.102.18:8888/newlive/live/hls/18/live.m3u8"
     is_choppy, speed = is_m3u8_stream_choppy(m3u8_url)
     if is_choppy:
         print("The stream is choppy. speed is ", speed)

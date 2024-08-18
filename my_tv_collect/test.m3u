@@ -1,6 +1,83 @@
 #EXTM3U
 
 #EXTINF:-1 group-title="央视频道",CCTV1
+http://124.205.11.242:91/live/CCTV1hd-8M/live.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV2
+http://124.205.11.242:91/live/CCTV2hd-8M/live.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV3
+http://124.205.11.242:91/live/CCTV3hd-8M/live.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV4
+http://124.205.11.242:91/live/CCTV4hd-8M/live.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV5
+http://124.205.11.242:91/live/CCTV5hd-8M/live.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV5+
+http://124.205.11.242:91/live/CCTV5+hd-8M/live.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV6
+http://124.205.11.242:91/live/CCTV6hd-8M/live.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV7
+http://124.205.11.242:91/live/CCTV7hd-8M/live.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV8
+http://124.205.11.242:91/live/CCTV8hd-8M/live.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV9
+http://124.205.11.242:91/live/CCTV9hd-8M/live.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV10
+http://124.205.11.242:91/live/CCTV10hd-8M/live.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV11
+http://124.205.11.242:91/live/CCTV11hd-8M/live.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV12
+http://124.205.11.242:91/live/CCTV12hd-8M/live.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV13
+http://124.205.11.242:91/live/CCTV13hd-8M/live.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV14
+http://124.205.11.242:91/live/CCTV14hd-8M/live.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV15
+http://124.205.11.242:91/live/CCTV15hd-8M/live.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV16
+http://124.205.11.242:91/live/CCTV16hd-8M/live.m3u8
+
+#EXTINF:-1 group-title="央视频道",CCTV1
+http://59.44.102.18:8888/newlive/live/hls/2/live.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV2
+http://59.44.102.18:8888/newlive/live/hls/3/live.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV3
+http://59.44.102.18:8888/newlive/live/hls/4/live.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV4
+http://59.44.102.18:8888/newlive/live/hls/5/live.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV5
+http://59.44.102.18:8888/newlive/live/hls/6/live.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV5+
+http://59.44.102.18:8888/newlive/live/hls/7/live.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV6
+http://59.44.102.18:8888/newlive/live/hls/8/live.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV7
+http://59.44.102.18:8888/newlive/live/hls/9/live.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV8
+http://59.44.102.18:8888/newlive/live/hls/10/live.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV9
+http://59.44.102.18:8888/newlive/live/hls/11/live.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV10
+http://59.44.102.18:8888/newlive/live/hls/12/live.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV11
+http://59.44.102.18:8888/newlive/live/hls/13/live.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV12
+http://59.44.102.18:8888/newlive/live/hls/14/live.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV13
+http://59.44.102.18:8888/newlive/live/hls/15/live.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV14
+http://59.44.102.18:8888/newlive/live/hls/16/live.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV15
+http://59.44.102.18:8888/newlive/live/hls/17/live.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV16
+http://59.44.102.18:8888/newlive/live/hls/18/live.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV17
+#EXTINF:-1 group-title="央视频道",CHC动作电影
+http://59.44.102.18:8888/newlive/live/hls/57/live.m3u8
+#EXTINF:-1 group-title="央视频道",CHC影迷电影
+http://59.44.102.18:8888/newlive/live/hls/58/live.m3u8
+#EXTINF:-1 group-title="央视频道",CHC家庭影院
+http://59.44.102.18:8888/newlive/live/hls/59/live.m3u8
+
+#EXTINF:-1 group-title="央视频道",CCTV1
 http://123.184.28.33/hlslive-tx-cdn.ysp.cctv.cn/523/2024078203.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV2
 http://123.184.28.33/hlslive-tx-cdn.ysp.cctv.cn/002/2024075403.m3u8

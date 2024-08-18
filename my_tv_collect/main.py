@@ -21,8 +21,6 @@ class CollectTV:
         self.filter_accessible_channels()
         # self.rank_channel_urls_by_speed()
         self.rank_channel_urls_by_choppy_and_speed()
-        self.write_to_txt()
-        self.write_to_m3u()
 
     def download_channel_list(self, url):
         try:
@@ -61,7 +59,7 @@ class CollectTV:
         channel_name = line.split(',')[0].strip()
         channel_url = line.split(',')[1].strip()
         channel_name = standardize_channel_name(channel_name)
-        if not channel_name.startswith('CCTV'):
+        if (not channel_name.startswith('CCTV')) and (not channel_name.startswith('CHC')):
             # only get source for cctv
             return
         # if 'IPV6' in channel_name:
@@ -106,7 +104,7 @@ class CollectTV:
             channel_counters = {}
             file.write('央视频道,#genre#\n')
             for channel_name, channel_urls in self.live_channel_source_dict.items():
-                if 'CCTV' in channel_name:
+                if 'CCTV' in channel_name or 'CHC' in channel_name:
                     channel_urls = channel_urls[:self.result_counter]
                     for channel_url in channel_urls:
                         file.write(f"{channel_name},{channel_url}\n")
@@ -145,7 +143,7 @@ class CollectTV:
         with open(file_name, 'w', encoding='utf-8') as file:
             file.write('#EXTM3U\n')
             for channel_name, channel_urls in self.live_channel_source_dict.items():
-                if 'CCTV' in channel_name:
+                if 'CCTV' in channel_name or "CHC" in channel_name:
                     channel_urls = channel_urls[:self.result_counter]
                     for channel_url in channel_urls:
                         file.write(f"#EXTINF:-1 group-title=\"央视频道\",{channel_name}\n")
@@ -214,6 +212,10 @@ if __name__ == "__main__":
         # 'https://gitlab.com/p2v5/wangtv/-/raw/main/wang-tvlive.txt',
         # 'https://raw.githubusercontent.com/hujingguang/ChinaIPTV/main/cnTV_AutoUpdate.m3u8',
         'https://raw.githubusercontent.com/pxiptv/TV/main/test.txt',
-        "https://raw.githubusercontent.com/wangsd01/collect-tv-txt/main/my_tv_collect/test.m3u"
+        'https://raw.githubusercontent.com/pxiptv/TV/main/test.m3u',
+        'https://raw.githubusercontent.com/pxiptv/TV/main/tv.txt',
+        # "https://raw.githubusercontent.com/wangsd01/collect-tv-txt/main/my_tv_collect/test.m3u"
     ]
     ctv = CollectTV(urls)
+    ctv.write_to_txt()
+    ctv.write_to_m3u()
