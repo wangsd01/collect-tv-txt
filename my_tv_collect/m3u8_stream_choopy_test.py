@@ -9,9 +9,10 @@ def is_m3u8_stream_choppy(m3u8_url, threshold=0.5):
     print(m3u8_url)
 
     choppy_segments = 0
+    received_segments = 0
     total_segments = 0
     total_download_time = 0
-    total_segment_size = 0
+    received_segment_size = 0
     segment_size_list = []
     packet_loss = 0
     for i in range(4):
@@ -28,6 +29,7 @@ def is_m3u8_stream_choppy(m3u8_url, threshold=0.5):
         for segment in playlist.segments:
             segment_url = urljoin(base_uri, segment.uri)  # Resolve the absolute URI
             segment_duration = segment.duration
+            total_segments += 1
             try:
                 start_time = time.time()
                 segment_response = requests.get(segment_url, timeout=1.)
@@ -43,30 +45,32 @@ def is_m3u8_stream_choppy(m3u8_url, threshold=0.5):
                     n_chunk += 1
                 # bytes to Kb
                 segment_size = segment_size / 1024.
-                total_segments += 1
+                received_segments += 1
                 total_download_time += download_time
-                total_segment_size += segment_size
+                received_segment_size += segment_size
                 segment_size_list.append(segment_size)
                 if segment_size < 100:
                     packet_loss += 1
                 print(
-                    f"Segment {total_segments}: Duration={segment_duration}s, Download Time={download_time:.4f}s, Size={segment_size:.4f}Kb, Chunk Count={n_chunk}")
+                    f"Segment {received_segments}: Duration={segment_duration}s, Download Time={download_time:.4f}s, Size={segment_size:.4f}Kb, Chunk Count={n_chunk}")
             except requests.RequestException as e:
                 packet_loss += 1
                 print(f"Segment {total_segments}: Failed to download (exception: {e})")
                 continue
 
-    if total_segments == 0:
-        return True, 0
+        if received_segments == 0:
+            return True, 0
 
-    choppy_ratio = choppy_segments / total_segments
-    packet_loss_ratio = packet_loss / len(playlist.segments)
+        choppy_ratio = choppy_segments / total_segments
+        packet_loss_ratio = packet_loss / total_segments
 
-    seg_size_var_ratio = np.std(segment_size_list) / np.mean(segment_size_list)
-    # is_choppy = choppy_ratio > 0.5 or seg_size_var_ratio > 0.1 or packet_loss_ratio > 0.2
-    is_choppy = packet_loss_ratio > 0.5
-    # is_choppy = choppy_ratio > 0.1 or packet_loss_ratio > 0.1
-    speed = total_segment_size / total_download_time
+        seg_size_var_ratio = np.std(segment_size_list) / np.mean(segment_size_list)
+        # is_choppy = choppy_ratio > 0.5 or seg_size_var_ratio > 0.1 or packet_loss_ratio > 0.2
+        is_choppy = packet_loss_ratio > 0.5
+        # is_choppy = choppy_ratio > 0.1 or packet_loss_ratio > 0.1
+        speed = received_segment_size / total_download_time
+        if not is_choppy:
+            return is_choppy, speed
     # print(segment_size_list)
     print(
         f"Choppy Ratio: {choppy_ratio:.2f}, seg size var ratio : {seg_size_var_ratio:.2f}, package loss ratio: {packet_loss_ratio:.2f}, is choppy: {is_choppy}, speed :{speed:.2f}kb/s")
@@ -85,8 +89,8 @@ if __name__ == "__main__":
     # m3u8_url = "http://36.32.174.67:60080/newlive/live/hls/1/live.m3u8"
     # m3u8_url = 'http://119.39.97.2:9002/tsfile/live/0005_1.m3u8?key=txiptv&playlive=1&authid=0'
     # m3u8_url = "http://175.8.213.198:8081/tsfile/live/0005_1.m3u8?key=txiptv&playlive=1&authid=0"
-    # m3u8_url = "http://1.30.18.218:20080/hls/16/index.m3u8"
-    m3u8_url = "http://59.44.102.18:8888/newlive/live/hls/18/live.m3u8"
+    m3u8_url = "http://1.30.18.218:20080/hls/16/index.m3u8"
+    # m3u8_url = "http://59.44.102.18:8888/newlive/live/hls/2/live.m3u8"
     is_choppy, speed = is_m3u8_stream_choppy(m3u8_url)
     if is_choppy:
         print("The stream is choppy. speed is ", speed)

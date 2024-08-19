@@ -64,6 +64,16 @@ class CollectTV:
             return
         # if 'IPV6' in channel_name:
         #     return
+        if "法语" in channel_name:
+            return
+        if "电视塔" in channel_name:
+            return
+        if "购物" in channel_name:
+            return
+        if "NEWS" in channel_name:
+            return
+        if 'CCTV+' in channel_name:
+            return
         if '4K' in channel_name:
             return
         if '8K' in channel_name:
@@ -184,37 +194,37 @@ class CollectTV:
 
 if __name__ == "__main__":
     urls = [
-        # 'https://raw.githubusercontent.com/iptv-org/iptv/master/streams/cn.m3u',
-        # 'https://raw.githubusercontent.com/joevess/IPTV/main/iptv.m3u8',
-        # 'https://raw.githubusercontent.com/Supprise0901/TVBox_live/main/live.txt',
-        # 'https://raw.githubusercontent.com/Guovin/TV/gd/result.txt',  # 每天自动更新1次
-        # 'https://raw.githubusercontent.com/ssili126/tv/main/itvlist.txt',  # 每天自动更新1次
-        # 'https://m3u.ibert.me/txt/fmml_ipv6.txt',
-        # 'https://m3u.ibert.me/txt/ycl_iptv.txt',
-        # 'https://m3u.ibert.me/txt/y_g.txt',
-        # 'https://m3u.ibert.me/txt/j_home.txt',
-        # 'https://raw.githubusercontent.com/gaotianliuyun/gao/master/list.txt',
-        # 'https://gitee.com/xxy002/zhiboyuan/raw/master/zby.txt',
-        # 'https://raw.githubusercontent.com/mlvjfchen/TV/main/iptv_list.txt',  # 每天早晚各自动更新1次 2024-06-03 17:50
-        # 'https://raw.githubusercontent.com/fenxp/iptv/main/live/ipv6.txt',  # 1小时自动更新1次11:11 2024/05/13
-        # 'https://raw.githubusercontent.com/fenxp/iptv/main/live/tvlive.txt',  # 1小时自动更新1次11:11 2024/05/13
-        # 'https://raw.githubusercontent.com/zwc456baby/iptv_alive/master/live.txt',  # 每天自动更新1次 2024-06-24 16:37
-        # 'https://gitlab.com/p2v5/wangtv/-/raw/main/lunbo.txt',
-        # 'https://raw.githubusercontent.com/PizazzGY/TVBox/main/live.txt',  # ADD 2024-07-22 13:50
-        # 'https://raw.githubusercontent.com/wwb521/live/main/tv.m3u',  # ADD 2024-08-05 每10天更新一次
-        # 'https://gitcode.net/MZ011/BHJK/-/raw/master/BHZB1.txt',  # ADD 2024-08-05
-        # 'http://47.99.102.252/live.txt',  # ADD 2024-08-05
-        # 'http://ttkx.live:55/lib/kx2024.txt',  # ADD 2024-08-11 每天更新3次
-        # 'https://raw.githubusercontent.com/vbskycn/iptv/master/tv/iptv4.txt',  # ADD 2024-08-12 每天更新3次
-        # 'https://gitlab.com/tvtg/vip/-/raw/main/log.txt'  # ADD 2024-08-10
-        # 'https://raw.githubusercontent.com/kimwang1978/tvbox/main/%E5%A4%A9%E5%A4%A9%E5%BC%80%E5%BF%83/lives/%E2%91%AD%E5%BC%80%E5%BF%83%E7%BA%BF%E8%B7%AF.txt',
-        # 'https://raw.githubusercontent.com/YanG-1989/m3u/main/Gather.m3u',
-        # 'https://gitlab.com/p2v5/wangtv/-/raw/main/wang-tvlive.txt',
-        # 'https://raw.githubusercontent.com/hujingguang/ChinaIPTV/main/cnTV_AutoUpdate.m3u8',
+        'https://raw.githubusercontent.com/iptv-org/iptv/master/streams/cn.m3u',
+        'https://raw.githubusercontent.com/joevess/IPTV/main/iptv.m3u8',
+        'https://raw.githubusercontent.com/Supprise0901/TVBox_live/main/live.txt',
+        'https://raw.githubusercontent.com/Guovin/TV/gd/result.txt',  # 每天自动更新1次
+        'https://raw.githubusercontent.com/ssili126/tv/main/itvlist.txt',  # 每天自动更新1次
+        'https://m3u.ibert.me/txt/fmml_ipv6.txt',
+        'https://m3u.ibert.me/txt/ycl_iptv.txt',
+        'https://m3u.ibert.me/txt/y_g.txt',
+        'https://m3u.ibert.me/txt/j_home.txt',
+        'https://raw.githubusercontent.com/gaotianliuyun/gao/master/list.txt',
+        'https://gitee.com/xxy002/zhiboyuan/raw/master/zby.txt',
+        'https://raw.githubusercontent.com/mlvjfchen/TV/main/iptv_list.txt',  # 每天早晚各自动更新1次 2024-06-03 17:50
+        'https://raw.githubusercontent.com/fenxp/iptv/main/live/ipv6.txt',  # 1小时自动更新1次11:11 2024/05/13
+        'https://raw.githubusercontent.com/fenxp/iptv/main/live/tvlive.txt',  # 1小时自动更新1次11:11 2024/05/13
+        'https://raw.githubusercontent.com/zwc456baby/iptv_alive/master/live.txt',  # 每天自动更新1次 2024-06-24 16:37
+        'https://gitlab.com/p2v5/wangtv/-/raw/main/lunbo.txt',
+        'https://raw.githubusercontent.com/PizazzGY/TVBox/main/live.txt',  # ADD 2024-07-22 13:50
+        'https://raw.githubusercontent.com/wwb521/live/main/tv.m3u',  # ADD 2024-08-05 每10天更新一次
+        'https://gitcode.net/MZ011/BHJK/-/raw/master/BHZB1.txt',  # ADD 2024-08-05
+        'http://47.99.102.252/live.txt',  # ADD 2024-08-05
+        'http://ttkx.live:55/lib/kx2024.txt',  # ADD 2024-08-11 每天更新3次
+        'https://raw.githubusercontent.com/vbskycn/iptv/master/tv/iptv4.txt',  # ADD 2024-08-12 每天更新3次
+        'https://gitlab.com/tvtg/vip/-/raw/main/log.txt',  # ADD 2024-08-10
+        'https://raw.githubusercontent.com/kimwang1978/tvbox/main/%E5%A4%A9%E5%A4%A9%E5%BC%80%E5%BF%83/lives/%E2%91%AD%E5%BC%80%E5%BF%83%E7%BA%BF%E8%B7%AF.txt',
+        'https://raw.githubusercontent.com/YanG-1989/m3u/main/Gather.m3u',
+        'https://gitlab.com/p2v5/wangtv/-/raw/main/wang-tvlive.txt',
+        'https://raw.githubusercontent.com/hujingguang/ChinaIPTV/main/cnTV_AutoUpdate.m3u8',
         'https://raw.githubusercontent.com/pxiptv/TV/main/test.txt',
         'https://raw.githubusercontent.com/pxiptv/TV/main/test.m3u',
         'https://raw.githubusercontent.com/pxiptv/TV/main/tv.txt',
-        # "https://raw.githubusercontent.com/wangsd01/collect-tv-txt/main/my_tv_collect/test.m3u"
+        "https://raw.githubusercontent.com/wangsd01/collect-tv-txt/main/my_tv_collect/test.m3u"
     ]
     ctv = CollectTV(urls)
     ctv.write_to_txt()
