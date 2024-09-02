@@ -15,7 +15,7 @@ def is_m3u8_stream_choppy(m3u8_url, threshold=0.5):
     received_segment_size = 0
     segment_size_list = []
     packet_loss = 0
-    for i in range(4):
+    for i in range(2):
         try:
             response = requests.get(m3u8_url, timeout=1)
         except:
@@ -27,6 +27,9 @@ def is_m3u8_stream_choppy(m3u8_url, threshold=0.5):
         # print(playlist.segments)
 
         for segment in playlist.segments:
+            packet_loss_ratio = packet_loss / total_segments
+            if packet_loss_ratio > 0.8:
+                break
             segment_url = urljoin(base_uri, segment.uri)  # Resolve the absolute URI
             segment_duration = segment.duration
             total_segments += 1
@@ -89,8 +92,10 @@ if __name__ == "__main__":
     # m3u8_url = "http://36.32.174.67:60080/newlive/live/hls/1/live.m3u8"
     # m3u8_url = 'http://119.39.97.2:9002/tsfile/live/0005_1.m3u8?key=txiptv&playlive=1&authid=0'
     # m3u8_url = "http://175.8.213.198:8081/tsfile/live/0005_1.m3u8?key=txiptv&playlive=1&authid=0"
-    m3u8_url = "http://1.30.18.218:20080/hls/16/index.m3u8"
-    # m3u8_url = "http://59.44.102.18:8888/newlive/live/hls/2/live.m3u8"
+    # m3u8_url = "http://1.30.18.218:20080/hls/16/index.m3u8"
+    # m3u8_url = "http://59.44.102.18:8888/newlive/live/hls/58/live.m3u8"
+    # m3u8_url = "http://58.19.38.162:9901/tsfile/live/1038_1.m3u8?key=txiptv&playlive=1&authid=0"
+    m3u8_url = "http://fxgm.fxjf.work:19901/tsfile/live/1015_1.m3u8"
     is_choppy, speed = is_m3u8_stream_choppy(m3u8_url)
     if is_choppy:
         print("The stream is choppy. speed is ", speed)
