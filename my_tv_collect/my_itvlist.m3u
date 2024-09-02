@@ -114,6 +114,8 @@ http://60.208.104.234:352/tsfile/live/0004_1.m3u8?key=txiptv&playlive=0&authid=0
 #EXTINF:-1 group-title="央视频道",CCTV4
 http://nas.hssvm.com:8888/rtp/225.1.1.150:5002
 #EXTINF:-1 group-title="央视频道",CCTV5
+https://ushls.ballbar.net/cctv5/playlist-15.m3u8a?t=1725242826&token=a435549cdccc0510b8f3faca05cd550e
+#EXTINF:-1 group-title="央视频道",CCTV5
 http://gslbservzqhsw.itv.cmvideo.cn/0000000000001000/1000000005000025222/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000005000025222
 #EXTINF:-1 group-title="央视频道",CCTV5
 http://116.162.6.192/zycfcdn.gdwlcloud.com/PLTV/88888888/224/3221225489/index.m3u8
