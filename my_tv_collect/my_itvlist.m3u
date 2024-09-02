@@ -1,5 +1,7 @@
 #EXTM3U
 #EXTINF:-1 group-title="央视频道",CCTV1
+https://bstvcdn.ballbar.net/cctv1/playlist-15.m3u8a?t=1725243244&token=ca5fb77baa8d96e0f046a57b9d696dc2
+#EXTINF:-1 group-title="央视频道",CCTV1
 http://gslbservzqhsw.itv.cmvideo.cn/0000000000001000/1000000001000018602/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000001000018602
 #EXTINF:-1 group-title="央视频道",CCTV1
 http://116.162.6.192/zycfcdn.gdwlcloud.com/PLTV/88888888/224/3221225490/index.m3u8
