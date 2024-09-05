@@ -224,7 +224,8 @@ if __name__ == "__main__":
         'https://raw.githubusercontent.com/pxiptv/TV/main/test.txt',
         'https://raw.githubusercontent.com/pxiptv/TV/main/test.m3u',
         'https://raw.githubusercontent.com/pxiptv/TV/main/tv.txt',
-        "https://raw.githubusercontent.com/wangsd01/collect-tv-txt/main/my_tv_collect/test.m3u"
+        "https://raw.githubusercontent.com/wangsd01/collect-tv-txt/main/my_tv_collect/test.m3u",
+        "https://raw.githubusercontent.com/wangsd01/collect-tv-txt/main/my_tv_collect/my_itvlist.m3u"
     ]
     ctv = CollectTV(urls)
     ctv.write_to_txt()
