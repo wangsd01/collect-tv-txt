@@ -15,9 +15,6 @@ def is_udp_stream_choppy(uri, duration=20):
 
     print(uri)
     while time.time() - start_time < duration:
-        packet_loss_ratio = packet_loss / total_segments
-        if packet_loss_ratio > 0.8:
-            break
         try:
             segment_start_time = time.time()
             response = requests.get(uri, stream=True, timeout=1.)
@@ -36,8 +33,7 @@ def is_udp_stream_choppy(uri, duration=20):
 
             if segment_size < 100:
                 packet_loss += 1
-
-            if response.status_code == 200:
+            elif response.status_code == 200:
                 packet_intervals.append(segment_download_time)
                 print(
                     f"Segment {total_segments}: Download Time={segment_download_time:.4f}s, Segment size: {segment_size}")
@@ -48,8 +44,11 @@ def is_udp_stream_choppy(uri, duration=20):
         except requests.RequestException as e:
             packet_loss += 1
             print(f"Segment {total_segments}: Failed to download (exception: {e})")
-            continue
         total_segments += 1
+
+        packet_loss_ratio = packet_loss / total_segments
+        if total_segments > 5 and packet_loss_ratio > 0.8:
+            break
 
     if not packet_intervals:
         print("No segments received.")

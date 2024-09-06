@@ -154,10 +154,16 @@ def filter_accessible_urls(urls):
 
 def standardize_channel_name(name):
     name = name.upper()
+    name = name.replace("1920", "")
+    name = name.replace("1920", "")
+    name = name.replace("1920", "")
+    name = name.replace("CAVS", "")
     name = name.replace("cctv", "CCTV")
     name = name.replace("中央", "CCTV")
     name = name.replace("央视", "CCTV")
     name = name.replace("1080P", "")
+    name = name.replace("576P", "")
+    name = name.replace("576", "")
     name = name.replace("高清", "")
     name = name.replace("高请", "")
     name = name.replace("超清", "")
@@ -188,6 +194,7 @@ def standardize_channel_name(name):
     name = name.replace("CCTV综合", "CCTV1")
     name = name.replace("CCTV1B", "CCTV1")
     name = name.replace("CCTV2财经", "CCTV2")
+    name = name.replace("CCTV2经济", "CCTV2")
     name = name.replace("CCTV财经", "CCTV2")
     name = name.replace("CCTV3综艺", "CCTV3")
     name = name.replace("CCTV综艺", "CCTV3")
@@ -225,6 +232,7 @@ def standardize_channel_name(name):
     name = name.replace("CCTV12社会与法", "CCTV12")
     name = name.replace("CCTV社会与法", "CCTV12")
     name = name.replace("CCTV12社会", "CCTV12")
+    name = name.replace("CCTV12法制", "CCTV12")
     name = name.replace("CCTV13新闻", "CCTV13")
     name = name.replace("CCTV新闻", "CCTV13")
     name = name.replace("CCTV14少儿", "CCTV14")
@@ -250,12 +258,14 @@ def standardize_channel_name(name):
     name = name.replace("CCTV5赛事", "CCTV5+")
     name = name.replace("CCTV4K超", "CCTV4K")
     name = name.replace("CCTVCCTV", "CCTV")
+    name = name.replace("CCTV高尔夫.网球", "CCTV高尔夫网球")
     name = name.replace("CCTV高尔夫·网球", "CCTV高尔夫网球")
     name = name.replace("CCTV高网", "CCTV高尔夫网球")
     name = name.replace("CCTV高尔网球", "CCTV高尔夫网球")
     name = name.replace("CCTV网球", "CCTV高尔夫网球")
     if name == "CCTV高尔夫":
         name = "CCTV高尔夫网球"
+    name = name.replace("TVGUIDE", "电视指南")
     name = name.replace("CHC电影B", "CHC电影")
     name = name.replace("CHC电影", "CHC影迷电影")
     name = name.replace("CHC家庭影院B", "CHC家庭")
@@ -263,6 +273,9 @@ def standardize_channel_name(name):
     name = name.replace("CHC家庭影院", "CHC家庭")
     name = name.replace("CHC动作电影", "CHC动作")
     name = name.replace("CHC影迷电影", "CHC影迷")
+    l = len(name)
+    if l%2 == 0 and name[0:l//2] == name[l//2:]:
+        name = name[0:l//2]
     return name
 
 

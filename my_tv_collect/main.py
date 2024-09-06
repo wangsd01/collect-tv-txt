@@ -59,7 +59,7 @@ class CollectTV:
         channel_name = line.split(',')[0].strip()
         channel_url = line.split(',')[1].strip()
         channel_name = standardize_channel_name(channel_name)
-        if (not channel_name.startswith('CCTV5')) and (not channel_name.startswith('CHC')):
+        if (not channel_name.startswith('CCTV')) and (not channel_name.startswith('CHC')):
             # only get source for cctv
             return
         # if 'IPV6' in channel_name:
@@ -224,6 +224,7 @@ if __name__ == "__main__":
         'https://raw.githubusercontent.com/pxiptv/TV/main/test.txt',
         'https://raw.githubusercontent.com/pxiptv/TV/main/test.m3u',
         'https://raw.githubusercontent.com/pxiptv/TV/main/tv.txt',
+        "https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.m3u",
         "https://raw.githubusercontent.com/wangsd01/collect-tv-txt/main/my_tv_collect/test.m3u",
         "https://raw.githubusercontent.com/wangsd01/collect-tv-txt/main/my_tv_collect/my_itvlist.m3u"
     ]

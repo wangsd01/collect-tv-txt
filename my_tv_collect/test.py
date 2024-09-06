@@ -21,7 +21,8 @@ for i in tqdm(range(0, 100)):
     # test_url = "http://116.162.6.192/zycfcdn.gdwlcloud.com/PLTV/88888888/224/3221225" + f"{i:03d}"+"/index.m3u8"
     # test_url = f"http://59.44.102.18:8888/newlive/live/hls/{i}/live.m3u8"
     # test_url = f"http://124.205.11.242:91/live/CCTV{i}hd-8M/live.m3u8"
-    test_url = f"http://111.61.236.247:9081/hls/{i}/index.m3u8"
+    # test_url = f"http://111.61.236.247:9081/hls/{i}/index.m3u8"
+    test_url = f"http://110.52.8.141:808/hls/{i}/index.m3u8"
     if check_url(test_url)[2]:
         print(test_url)
         channel_dict['CCTV'+str(i)].append(test_url)
@@ -29,5 +30,5 @@ for i in tqdm(range(0, 100)):
 
 ctv = CollectTV()
 ctv.live_channel_source_dict = channel_dict
-ctv.write_to_m3u('new')
+ctv.write_to_m3u('new_iptv')
 

@@ -15,6 +15,7 @@ def is_m3u8_stream_choppy(m3u8_url, threshold=0.5):
     received_segment_size = 0
     segment_size_list = []
     packet_loss = 0
+    packet_loss_ratio = 0
     for i in range(2):
         try:
             response = requests.get(m3u8_url, timeout=1)
@@ -27,12 +28,10 @@ def is_m3u8_stream_choppy(m3u8_url, threshold=0.5):
         # print(playlist.segments)
 
         for segment in playlist.segments:
-            packet_loss_ratio = packet_loss / total_segments
-            if packet_loss_ratio > 0.8:
-                break
             segment_url = urljoin(base_uri, segment.uri)  # Resolve the absolute URI
             segment_duration = segment.duration
             total_segments += 1
+
             try:
                 start_time = time.time()
                 segment_response = requests.get(segment_url, timeout=1.)
@@ -59,10 +58,16 @@ def is_m3u8_stream_choppy(m3u8_url, threshold=0.5):
             except requests.RequestException as e:
                 packet_loss += 1
                 print(f"Segment {total_segments}: Failed to download (exception: {e})")
-                continue
+
+            packet_loss_ratio = packet_loss / total_segments
+            if total_segments > 5 and packet_loss_ratio > 0.8:
+                break
 
         if received_segments == 0:
             return True, 0
+
+        if total_segments > 5 and packet_loss_ratio > 0.8:
+            break
 
         choppy_ratio = choppy_segments / total_segments
         packet_loss_ratio = packet_loss / total_segments
