@@ -16,6 +16,7 @@ def is_m3u8_stream_choppy(m3u8_url, threshold=0.5):
     segment_size_list = []
     packet_loss = 0
     packet_loss_ratio = 0
+    choppy_ratio = 1
     for i in range(2):
         try:
             response = requests.get(m3u8_url, timeout=1)
@@ -66,11 +67,11 @@ def is_m3u8_stream_choppy(m3u8_url, threshold=0.5):
         if received_segments == 0:
             return True, 0
 
-        if total_segments > 5 and packet_loss_ratio > 0.8:
-            break
-
         choppy_ratio = choppy_segments / total_segments
         packet_loss_ratio = packet_loss / total_segments
+
+        if total_segments > 5 and packet_loss_ratio > 0.8:
+            return True, 0
 
         seg_size_var_ratio = np.std(segment_size_list) / np.mean(segment_size_list)
         # is_choppy = choppy_ratio > 0.5 or seg_size_var_ratio > 0.1 or packet_loss_ratio > 0.2
