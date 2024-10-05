@@ -1,12 +1,45 @@
 #EXTM3U
 #EXTINF:-1 group-title="央视频道",CCTV1
+http://123.52.87.69:52200/hls/1/index.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV2
+http://123.52.87.69:52200/hls/2/index.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV3
+http://123.52.87.69:52200/hls/3/index.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV4
+http://123.52.87.69:52200/hls/4/index.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV5
+http://123.52.87.69:52200/hls/5/index.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV6
+http://123.52.87.69:52200/hls/6/index.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV7
+http://123.52.87.69:52200/hls/7/index.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV8
+http://123.52.87.69:52200/hls/8/index.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV9
+http://123.52.87.69:52200/hls/9/index.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV10
+http://123.52.87.69:52200/hls/10/index.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV11
+http://123.52.87.69:52200/hls/11/index.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV12
+http://123.52.87.69:52200/hls/12/index.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV13
+http://123.52.87.69:52200/hls/13/index.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV14
+http://123.52.87.69:52200/hls/14/index.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV15
+http://123.52.87.69:52200/hls/15/index.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV17
+http://123.52.87.69:52200/hls/16/index.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV5+
+http://123.52.87.69:52200/hls/17/index.m3u8
+
+#EXTINF:-1 group-title="央视频道",CCTV1
 http://gslbservzqhsw.itv.cmvideo.cn/0000000000001000/1000000001000018602/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000001000018602
 #EXTINF:-1 group-title="央视频道",CCTV1
 http://123.52.87.69:52200/hls/1/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV1
 http://gslbservzqhsw.itv.cmvideo.cn/index.m3u8?Contentid=reallive-hdcctv1&channel-id=ystenlive&livemode=1&stbId=3
-#EXTINF:-1 group-title="央视频道",CCTV1
-http://l.cztvcloud.com/channels/lantian/SXshangyu1/720p.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV1
 http://120.76.248.139/live/bfgd/4200000489.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV1
