@@ -59,6 +59,8 @@ class CollectTV:
         channel_name = line.split(',')[0].strip()
         channel_url = line.split(',')[1].strip()
         channel_name = standardize_channel_name(channel_name)
+        # if "CCTV5" != channel_name:
+        #     return
         if (not channel_name.startswith('CCTV')) and (not channel_name.startswith('CHC')):
             # only get source for cctv
             return

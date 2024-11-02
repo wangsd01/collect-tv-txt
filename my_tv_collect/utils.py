@@ -154,6 +154,7 @@ def filter_accessible_urls(urls):
 
 def standardize_channel_name(name):
     name = name.upper()
+    name = name.replace("咪咕", "")
     name = name.replace("1920", "")
     name = name.replace("1920", "")
     name = name.replace("1920", "")
