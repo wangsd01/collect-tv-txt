@@ -1,5 +1,9 @@
 #EXTM3U
 #EXTINF:-1 group-title="央视频道",CCTV1
+http://39.134.136.161:6610/000000001000/1000000001000018602/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000001000018602
+#EXTINF:-1 group-title="央视频道",CCTV1
+http://39.134.136.161:6610/000000001000/6000000001000029752/index.m3u8?livemode=1&stbId=10&channel-id=wasusyt&Contentid=6000000001000029752
+#EXTINF:-1 group-title="央视频道",CCTV1
 http://27.41.246.172:9003//hls/4/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV1
 http://58.19.38.162:9901/tsfile/live/1000_1.m3u8?key=txiptv&playlive=1&authid=0
@@ -9,10 +13,6 @@ http://1.24.190.98:10089/hls/2/index.m3u8
 http://1.24.190.98:10080/hls/1/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV1
 http://1.24.190.98:10089/hls/1/index.m3u8
-#EXTINF:-1 group-title="央视频道",CCTV1
-http://39.134.136.161:6610/000000001000/1000000001000018602/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000001000018602
-#EXTINF:-1 group-title="央视频道",CCTV1
-http://39.134.136.161:6610/000000001000/6000000001000029752/index.m3u8?livemode=1&stbId=10&channel-id=wasusyt&Contentid=6000000001000029752
 #EXTINF:-1 group-title="央视频道",CCTV1
 http://115.48.61.172:9901/tsfile/live/0001_1.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV1
@@ -29,16 +29,6 @@ http://42.48.50.232:9002/tsfile/live/0001_1.m3u8
 http://39.134.136.161:6610/000000001000/5000000010000030810/index.m3u8?livemode=1&stbId=10&channel-id=bestzb&Contentid=5000000010000030810
 #EXTINF:-1 group-title="央视频道",CCTV1
 http://39.134.136.161:6610/000000001000/1000000005000265001/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000005000265001
-#EXTINF:-1 group-title="央视频道",CCTV第1剧场
-http://122.152.202.33/s/81a8a44f/index.m3u8?id=bak1_90
-#EXTINF:-1 group-title="央视频道",CCTV第1剧场
-http://58.19.38.162:9901/tsfile/live/1035_1.m3u8?key=txiptv&playlive=1&authid=0
-#EXTINF:-1 group-title="央视频道",CCTV第1剧场
-http://119.135.1.234:6699/live/1081/index.m3u8
-#EXTINF:-1 group-title="央视频道",CCTV第1剧场
-http://www.akw323.com:9527/rtp/238.255.2.25:5999
-#EXTINF:-1 group-title="央视频道",CCTV第1剧场
-http://60.7.56.33:4000/rtp/239.253.92.18:6079
 #EXTINF:-1 group-title="央视频道",CCTV2
 http://39.134.136.161:6610/000000001000/5000000005000031113/index.m3u8?livemode=1&stbId=10&channel-id=bestzb&Contentid=5000000005000031113
 #EXTINF:-1 group-title="央视频道",CCTV2
@@ -439,7 +429,7 @@ http://59.48.75.130:3052/tsfile/live/0013_1.m3u8
 http://39.134.136.161:6610/000000001000/5000000005000001827/index.m3u8?livemode=1&stbId=10&channel-id=bestzb&Contentid=5000000005000001827
 #EXTINF:-1 group-title="央视频道",CCTV13
 http://39.134.136.161:6610/000000001000/6918130250570453526/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=6918130250570453526
-#EXTINF:-1 group-title="央视频道",CCTV13听电视
+#EXTINF:-1 group-title="央视频道",CCTV13
 http://piccpndali.v.myalicdn.com/audio/cctv13_2.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV14
 http://27.41.246.172:9003//hls/17/index.m3u8
@@ -561,6 +551,15 @@ http://113.65.253.11:7777/udp/239.77.1.121:5146
 http://115.171.80.38:8888/udp/225.1.8.17:8144
 #EXTINF:-1 group-title="央视频道",CCTV17
 http://222.241.154.37:9901/tsfile/live/23017_1.m3u8?key=txiptv
+
+#EXTINF:-1 group-title="央视频道",CCTV第1剧场
+http://58.19.38.162:9901/tsfile/live/1035_1.m3u8?key=txiptv&playlive=1&authid=0
+#EXTINF:-1 group-title="央视频道",CCTV第1剧场
+http://119.135.1.234:6699/live/1081/index.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV第1剧场
+http://www.akw323.com:9527/rtp/238.255.2.25:5999
+#EXTINF:-1 group-title="央视频道",CCTV第1剧场
+http://60.7.56.33:4000/rtp/239.253.92.18:6079
 #EXTINF:-1 group-title="央视频道",CCTV台球
 http://60.7.56.33:4000/rtp/239.253.93.231:6409
 #EXTINF:-1 group-title="央视频道",CCTV台球
