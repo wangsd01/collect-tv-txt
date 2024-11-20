@@ -25,13 +25,18 @@ def is_m3u8_stream_choppy(m3u8_url, threshold=0.5):
             return True, 0
 
         base_uri = response.url  # This will be used as the base URI
-        playlist = m3u8.loads(response.text, uri=base_uri)
+        try:
+            playlist = m3u8.loads(response.text, uri=base_uri)
+        except Exception as e:
+            return True, 0
         # print(playlist.segments)
 
         for segment in playlist.segments:
             segment_url = urljoin(base_uri, segment.uri)  # Resolve the absolute URI
             segment_duration = segment.duration
             total_segments += 1
+            if total_segments > 20:
+                break
 
             try:
                 start_time = time.time()

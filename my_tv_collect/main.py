@@ -1,8 +1,10 @@
 import collections
 import datetime
+import glob
 import re
 import urllib
 from collections import defaultdict
+from pathlib import Path
 
 from tqdm import tqdm
 
@@ -14,7 +16,7 @@ from my_tv_collect.utils import get_url_file_extension, convert_m3u_to_txt, filt
 class CollectTV:
     def __init__(self, live_tv_source_urls=[]):
         self.live_channel_source_dict = defaultdict(list)
-
+        self.load_from_folder()
         self.result_counter = 15  # 每个频道需要的个数
         for url in tqdm(live_tv_source_urls, desc="Downloading channels from files"):
             self.download_channel_list(url)
@@ -42,6 +44,26 @@ class CollectTV:
 
         except Exception as e:
             print(f"处理URL时发生错误：{e}, {url}")
+
+    def load_from_folder(self):
+        folder = Path("/home/wang/github/collect-tv-txt/tuc-mywl")
+        # get all txt file in the folder
+        for txt_file in folder.glob("*.txt"):
+            try:
+                with open(txt_file, 'r', errors='ignore') as f:
+                    lines = f.readlines()
+                    for line in lines:
+                        self.process_channel_line(line)  # 每行按照规则进行分发
+            except Exception as e:
+                try:
+                    with open(txt_file, 'r', encoding='gb18030', errors='ignore') as f:
+                        lines = f.readlines()
+                        for line in lines:
+                            self.process_channel_line(line)  # 每行按照规则进行分发
+                except Exception as e:
+                    print(txt_file, e)
+
+
 
     def process_channel_line(self, line):
         if '$' in line:
@@ -82,7 +104,8 @@ class CollectTV:
             return
         if 'CCTV.COM' in channel_name:
             return
-
+        if 'IPV6' in channel_name:
+            return
         self.live_channel_source_dict[channel_name].append(channel_url)
 
     def filter_accessible_channels(self):
@@ -229,6 +252,10 @@ if __name__ == "__main__":
         "https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.m3u",
         "https://raw.githubusercontent.com/wangsd01/collect-tv-txt/main/my_tv_collect/test.m3u",
         "https://raw.githubusercontent.com/wangsd01/collect-tv-txt/main/my_tv_collect/my_itvlist.m3u"
+        "https://github.com/zuomy2021/tv/blob/main/iptv.txt",
+        "https://raw.githubusercontent.com/zuomy2021/tv/refs/heads/main/iptv.txt",
+        "https://raw.githubusercontent.com/ALIT8569/tuc-mywl/refs/heads/main/%E5%92%AA%E5%92%95%E5%A4%AE%E8%A7%86.txt",
+        "https://github.com/ALIT8569/tuc-mywl/blob/26d561e52cb4a6057917213faaf1583df66512c1/%E4%B8%AD%E5%9B%BD%E7%A7%BB%E5%8A%A8(ip%E7%89%88%E7%A7%BB%E5%8A%A8%E9%80%9A%E7%94%A8).txt"
     ]
     ctv = CollectTV(urls)
     ctv.write_to_txt()
