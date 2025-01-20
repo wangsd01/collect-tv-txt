@@ -86,8 +86,8 @@ class CollectTV:
         if (not channel_name.startswith('CCTV')) and (not channel_name.startswith('CHC')):
             # only get source for cctv
             return
-        # if 'IPV6' in channel_name:
-        #     return
+        if 'IPV6' in channel_name:
+            return
         if "法语" in channel_name:
             return
         if "电视塔" in channel_name:

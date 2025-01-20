@@ -1,672 +1,557 @@
 #EXTM3U
 #EXTINF:-1 group-title="央视频道",CCTV1
-http://39.134.136.161:6610/000000001000/1000000001000018602/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000001000018602
+http://124.93.18.238:9003//hls/1/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV1
-http://39.134.136.161:6610/000000001000/6000000001000029752/index.m3u8?livemode=1&stbId=10&channel-id=wasusyt&Contentid=6000000001000029752
+http://120.76.248.139/live/bfgd/4200000489.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV1
-http://27.41.246.172:9003//hls/4/index.m3u8
+http://120.76.248.139/live/bfgd/4200000484.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV1
-http://58.19.38.162:9901/tsfile/live/1000_1.m3u8?key=txiptv&playlive=1&authid=0
+http://113.57.111.4:1111/tsfile/live/1000_1.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV1
-http://1.24.190.98:10089/hls/2/index.m3u8
+http://120.76.248.139/live/bfgd/4200000201.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV1
-http://1.24.190.98:10080/hls/1/index.m3u8
+http://60.210.100.54:352/tsfile/live/0001_1.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV1
-http://1.24.190.98:10089/hls/1/index.m3u8
+http://101.66.198.22:9901/tsfile/live/0001_1.m3u8?key=txiptv&playlive=0&authid=0
 #EXTINF:-1 group-title="央视频道",CCTV1
-http://115.48.61.172:9901/tsfile/live/0001_1.m3u8
+http://221.222.162.206:8888/udp/239.3.1.129:8008
 #EXTINF:-1 group-title="央视频道",CCTV1
-http://39.134.136.161:6610/000000001000/5000000008000023253/index.m3u8?livemode=1&stbId=10&channel-id=bestzb&Contentid=5000000008000023253
+http://112.123.206.32:808/hls/1/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV1
-http://115.48.60.37:9901/tsfile/live/0001_1.m3u8
+http://218.241.192.50:8808/rtp/239.3.1.129:8008
 #EXTINF:-1 group-title="央视频道",CCTV1
-http://39.134.136.161:6610/000000001000/5000000004000002226/index.m3u8?livemode=1&stbId=10&channel-id=bestzb&Contentid=5000000004000002226
+http://218.241.192.50:8808/udp/239.3.1.129:8008
 #EXTINF:-1 group-title="央视频道",CCTV1
-http://42.48.50.232:9002/tsfile/live/0001_1.m3u8?key=txiptv&playlive=1&authid=0
+http://123.113.187.204:8000/udp/239.3.1.129:8008
 #EXTINF:-1 group-title="央视频道",CCTV1
-http://42.48.50.232:9002/tsfile/live/0001_1.m3u8
+http://60.11.200.120:35455/gaoma/cctv1.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV1
-http://39.134.136.161:6610/000000001000/5000000010000030810/index.m3u8?livemode=1&stbId=10&channel-id=bestzb&Contentid=5000000010000030810
+http://221.219.79.161:4000/rtp/239.3.1.129:8008
 #EXTINF:-1 group-title="央视频道",CCTV1
-http://39.134.136.161:6610/000000001000/1000000005000265001/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000005000265001
+http://114.252.236.205:8000/rtp/239.3.1.129:8008
+#EXTINF:-1 group-title="央视频道",CCTV第1剧场
+http://xuys.top:8888/udp/225.1.2.175:5002
+#EXTINF:-1 group-title="央视频道",CCTV第1剧场
+http://61.190.129.195:8686/rtp/238.1.79.63:4640
+#EXTINF:-1 group-title="央视频道",CCTV第1剧场
+http://122.152.202.33/s/81a8a44f/index.m3u8?id=bak1_90
 #EXTINF:-1 group-title="央视频道",CCTV2
-http://39.134.136.161:6610/000000001000/5000000005000031113/index.m3u8?livemode=1&stbId=10&channel-id=bestzb&Contentid=5000000005000031113
+http://tv.kmhlzxs.top:35455/gaoma/cctv2.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV2
-http://27.41.246.172:9003//hls/5/index.m3u8
+http://124.93.18.238:9003//hls/2/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV2
-http://27.41.245.129:9003//hls/5/index.m3u8
+http://117.144.58.42:35455/gaoma/cctv2.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV2
-http://58.19.38.162:9901/tsfile/live/1001_1.m3u8?key=txiptv&playlive=1&authid=0
+http://tawangxunyuan.vicp.cc:35455/gaoma/cctv2.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV2
-http://1.24.190.98:10080/hls/2/index.m3u8
+http://112.123.206.32:808/hls/2/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV2
-http://39.134.136.161:6610/000000001000/1000000001000023315/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000001000023315
+http://60.210.100.54:352/tsfile/live/0002_1.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV2
-http://39.134.136.161:6610/000000001000/5000000011000031101/index.m3u8?livemode=1&stbId=10&channel-id=bestzb&Contentid=5000000011000031101
+http://113.57.111.4:1111/tsfile/live/1001_1.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV2
-http://fangke.blueswords.com:9901/tsfile/live/0002_1.m3u8?key=txiptv&playlive=1&authid=0
+http://221.219.79.161:4000/udp/239.3.1.60:8084
 #EXTINF:-1 group-title="央视频道",CCTV2
-http://39.134.136.161:6610/000000001000/6000000001000014161/index.m3u8?livemode=1&stbId=10&channel-id=wasusyt&Contentid=6000000001000014161
+http://101.66.198.22:9901/tsfile/live/0002_1.m3u8?key=txiptv&playlive=0&authid=0
 #EXTINF:-1 group-title="央视频道",CCTV2
-http://183.66.15.146:60901/tsfile/live/0002_1.m3u8?key=txiptv
+http://114.252.236.205:8000/rtp/239.3.1.60:8084
 #EXTINF:-1 group-title="央视频道",CCTV2
-http://115.48.60.37:9901/tsfile/live/0002_1.m3u8
+http://123.113.187.204:8000/rtp/239.3.1.60:8084
 #EXTINF:-1 group-title="央视频道",CCTV2
-http://119.36.148.115:59901/tsfile/live/0002_1.m3u8
+http://123.113.187.204:8000/udp/239.3.1.60:8084
 #EXTINF:-1 group-title="央视频道",CCTV2
-http://61.136.67.238:50085/tsfile/live/0002_1.m3u8?key=txiptv&playlive=1&authid=0
+http://111.9.163.109:9901/tsfile/live/0002_1.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV2
-http://39.134.136.161:6610/000000001000/5353323539453949720/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=5353323539453949720
+http://218.241.192.50:8808/rtp/239.3.1.60:8084
 #EXTINF:-1 group-title="央视频道",CCTV2
-http://115.48.61.219:9901/tsfile/live/0002_1.m3u8
-#EXTINF:-1 group-title="央视频道",CCTV2
-http://39.134.136.161:6610/000000001000/1000000005000265002/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000005000265002
+http://120.76.248.139/live/bfgd/4200000061.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV3
-http://39.134.136.161:6610/000000001000/6000000001000022313/index.m3u8?livemode=1&stbId=10&channel-id=wasusyt&Contentid=6000000001000022313
+http://124.93.18.238:9003//hls/3/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV3
-http://39.134.136.161:6610/000000001000/1000000001000013682/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000001000013682
+http://58.19.38.162:9901/tsfile/live/0003_1.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV3
-http://39.134.136.161:6610/000000001000/1000000005000265003/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000005000265003
+http://221.219.79.161:4000/udp/239.3.1.172:8001
 #EXTINF:-1 group-title="央视频道",CCTV3
-http://27.41.246.172:9003//hls/6/index.m3u8
+http://111.9.163.109:9901/tsfile/live/0003_1.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV3
-http://27.41.245.129:9003//hls/6/index.m3u8
+http://218.241.192.50:8808/udp/239.3.1.172:8001
 #EXTINF:-1 group-title="央视频道",CCTV3
-http://39.134.136.161:6610/000000001000/1000000001000011218/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000001000011218
+http://123.113.187.204:8000/rtp/239.3.1.172:8001
 #EXTINF:-1 group-title="央视频道",CCTV3
-http://39.134.136.161:6610/000000001000/5000000002000020548/index.m3u8?livemode=1&stbId=10&channel-id=bestzb&Contentid=5000000002000020548
+http://114.252.236.205:8000/rtp/239.3.1.172:8001
 #EXTINF:-1 group-title="央视频道",CCTV3
-http://58.19.38.162:9901/tsfile/live/1002_1.m3u8?key=txiptv&playlive=1&authid=0
+http://123.113.187.204:8000/udp/239.3.1.172:8001
 #EXTINF:-1 group-title="央视频道",CCTV3
-http://115.48.61.172:9901/tsfile/live/0003_1.m3u8
+http://111.196.135.75:8686/udp/239.3.1.172:8001
 #EXTINF:-1 group-title="央视频道",CCTV3
-http://115.48.61.219:9901/tsfile/live/0003_1.m3u8
+http://218.241.192.50:8808/rtp/239.3.1.172:8001
 #EXTINF:-1 group-title="央视频道",CCTV3
-http://115.48.60.37:9901/tsfile/live/0003_1.m3u8
+http://111.9.163.109:9901/tsfile/live/0003_1.m3u8?key=txiptv&playlive=1&authid=0
 #EXTINF:-1 group-title="央视频道",CCTV3
-http://183.66.15.146:60901/tsfile/live/0003_1.m3u8?key=txiptv
+http://ikuai.zlsip.top:4022/rtp/239.3.1.172:8001
 #EXTINF:-1 group-title="央视频道",CCTV3
-http://39.134.136.161:6610/000000001000/8378175926191110263/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=8378175926191110263
-#EXTINF:-1 group-title="央视频道",CCTV3
-http://61.145.208.64:9003//hls/3/index.m3u8
-#EXTINF:-1 group-title="央视频道",CCTV3
-http://fangke.blueswords.com:9901/tsfile/live/0003_1.m3u8?key=txiptv&playlive=1&authid=0
+http://112.101.78.50:9901/tsfile/live/0003_1.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV4
-https://hc73k3dhwo5gfkt.wcetv.com/hls/wcetv318.m3u8
+http://tv.kmhlzxs.top:35455/gaoma/cctv4k.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV4
-http://27.41.246.172:9003//hls/7/index.m3u8
-#EXTINF:-1 group-title="央视频道",CCTV4
-http://39.134.136.161:6610/000000001000/5000000011000031102/index.m3u8?livemode=1&stbId=10&channel-id=bestzb&Contentid=5000000011000031102
-#EXTINF:-1 group-title="央视频道",CCTV4
-http://1.24.190.98:10080/hls/4/index.m3u8
-#EXTINF:-1 group-title="央视频道",CCTV4
-http://39.134.136.161:6610/000000001000/1000000002000031664/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000002000031664
-#EXTINF:-1 group-title="央视频道",CCTV4
-http://58.19.38.162:9901/tsfile/live/1003_1.m3u8?key=tvbox6_com&playlive=1&authid=0
+http://117.144.58.42:35455/gaoma/cctv4k.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV4
 https://www.youtube.com/watch?v=twhG7_jvA8g
 #EXTINF:-1 group-title="央视频道",CCTV4
-http://39.134.136.161:6610/000000001000/1000000005000265004/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000005000265004
+http://124.93.18.238:9003//hls/4/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV4
-http://58.19.38.162:9901/tsfile/live/1003_1.m3u8?key=txiptv&playlive=1&authid=0
+http://tawangxunyuan.vicp.cc:35455/gaoma/cctv4.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV4
-http://39.134.136.161:6610/000000001000/8830950643842119430/index.m3u8?livemode=1&stbId=test&channel-id=hnbblive&Contentid=8830950643842119430
+https://tvpull.careryun.com/tv/cctv4.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV4
-http://fangke.blueswords.com:9901/tsfile/live/0004_1.m3u8?key=txiptv&playlive=1&authid=0
+http://111.9.163.109:9901/tsfile/live/0004_1.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV4
-http://39.134.136.161:6610/000000001000/8183388942203045169/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=8183388942203045169
+http://112.123.206.32:808/hls/4/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV4
-http://115.48.60.37:9901/tsfile/live/0004_1.m3u8
+http://221.219.79.161:4000/udp/239.3.1.214:4220
 #EXTINF:-1 group-title="央视频道",CCTV4
-http://39.134.136.161:6610/000000001000/4719673858948437836/index.m3u8?livemode=1&stbId=10&channel-id=wasusyt&Contentid=4719673858948437836
+http://221.219.79.161:4000/udp/239.3.1.105:8092
 #EXTINF:-1 group-title="央视频道",CCTV4
-http://39.134.136.161:6610/000000001000/5000000005000030093/index.m3u8?livemode=1&stbId=10&channel-id=bestzb&Contentid=5000000005000030093
+http://218.241.192.50:8808/udp/239.3.1.214:4220
+#EXTINF:-1 group-title="央视频道",CCTV4
+http://221.219.79.161:4000/udp/239.3.1.213:4220
+#EXTINF:-1 group-title="央视频道",CCTV4
+http://218.241.192.50:8808/rtp/239.3.1.105:8092
+#EXTINF:-1 group-title="央视频道",CCTV4
+http://123.113.187.204:8000/udp/239.3.1.105:8092
+#EXTINF:-1 group-title="央视频道",CCTV4
+http://221.226.4.10:9901/tsfile/live/0004_1.m3u8?key=txiptv&playlive=1&authid=0
 #EXTINF:-1 group-title="央视频道",CCTV5
-http://39.134.136.161:6610/000000001000/6000000001000016431/index.m3u8?livemode=1&stbId=10&channel-id=wasusyt&Contentid=6000000001000016431
+http://tv.kmhlzxs.top:35455/gaoma/cctv5.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV5
-http://27.41.246.172:9003//hls/8/index.m3u8
+http://124.93.18.238:9003//hls/5/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV5
-http://39.134.136.161:6610/000000001000/1000000005000025222/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000005000025222
+http://221.226.4.10:9901/tsfile/live/0005_1.m3u8?key=txiptv&playlive=1&authid=0
 #EXTINF:-1 group-title="央视频道",CCTV5
-http://27.41.245.129:9003//hls/8/index.m3u8
+http://221.219.79.161:4000/udp/239.3.1.173:8001
 #EXTINF:-1 group-title="央视频道",CCTV5
-http://39.134.136.161:6610/000000001000/1000000003000030177/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000003000030177
+http://218.241.192.50:8808/udp/239.3.1.173:8001
 #EXTINF:-1 group-title="央视频道",CCTV5
-http://39.134.136.161:6610/000000001000/1000000001000004794/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000001000004794
+http://218.241.192.50:8808/rtp/239.3.1.173:8001
 #EXTINF:-1 group-title="央视频道",CCTV5
-http://39.134.136.161:6610/000000001000/5000000004000008885/index.m3u8?livemode=1&stbId=10&channel-id=bestzb&Contentid=5000000004000008885
+http://101.66.198.193:9901/tsfile/live/0005_1.m3u8?key=txiptv&playlive=0&authid=0
 #EXTINF:-1 group-title="央视频道",CCTV5
-http://39.134.136.161:6610/000000001000/1000000005000265005/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000005000265005
+http://123.113.187.204:8000/udp/239.3.1.173:8001
 #EXTINF:-1 group-title="央视频道",CCTV5
-http://115.48.61.172:9901/tsfile/live/0005_1.m3u8
+http://101.66.198.142:9901/tsfile/live/0005_1.m3u8?key=txiptv&playlive=0&authid=0
 #EXTINF:-1 group-title="央视频道",CCTV5
-http://39.134.136.161:6610/000000001000/1000000005000265002/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000005000265002
+http://111.9.163.109:9901/tsfile/live/0005_1.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV5
-http://61.145.208.64:9003//hls/5/index.m3u8
+http://114.252.236.205:8000/rtp/239.3.1.173:8001
 #EXTINF:-1 group-title="央视频道",CCTV5
-http://1.24.190.98:10080/hls/5/index.m3u8
+https://tvpull.careryun.com/tv/cctv5.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV5
-http://39.134.136.161:6610/000000001000/1000000005000265007/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000005000265007
+http://ikuai.zlsip.top:4022/rtp/239.3.1.173:8001
 #EXTINF:-1 group-title="央视频道",CCTV5
-http://222.218.158.4:8181/tsfile/live/0005_1.m3u8
+http://111.196.135.75:8686/udp/239.3.1.173:8001
 #EXTINF:-1 group-title="央视频道",CCTV5
-http://58.19.38.162:9901/tsfile/live/1004_1.m3u8?key=txiptv&playlive=1&authid=0
+http://221.222.162.206:8888/udp/239.3.1.173:8001
 #EXTINF:-1 group-title="央视频道",CCTV5+
-http://39.134.136.161:6610/000000001000/1000000001000018504/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000001000018504
+http://124.93.18.238:9003//hls/18/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV5+
-http://39.134.136.161:6610/000000001000/5000000011000031127/index.m3u8?livemode=1&stbId=10&channel-id=bestzb&Contentid=5000000011000031127
+http://117.144.58.42:35455/gaoma/cctv5p.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV5+
-http://39.134.136.161:6610/000000001000/1000000001000020505/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000001000020505
+http://kkk.jjjj.jiduo.me/api.php?n=tttt&id=6815&tk=2894ccdba8fc
 #EXTINF:-1 group-title="央视频道",CCTV5+
-http://39.134.136.161:6610/000000001000/1000000005000265016/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000005000265016
-#EXTINF:-1 group-title="央视频道",CCTV5+
-http://58.19.38.162:9901/tsfile/live/1014_1.m3u8?key=txiptv&playlive=1&authid=0
-#EXTINF:-1 group-title="央视频道",CCTV5+
-http://58.19.38.162:9901/tsfile/live/1014_1.m3u8?key=tvbox6_com&playlive=1&authid=0
-#EXTINF:-1 group-title="央视频道",CCTV5+
-http://1.24.190.98:10080/hls/16/index.m3u8
-#EXTINF:-1 group-title="央视频道",CCTV5+
-http://39.134.136.161:6610/000000001000/reallive-cctv5plus/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=reallive-cctv5plus
-#EXTINF:-1 group-title="央视频道",CCTV5+
-http://219.159.194.163:8181/tsfile/live/0016_1.m3u8
-#EXTINF:-1 group-title="央视频道",CCTV5+
-http://222.218.158.4:8181/tsfile/live/0016_1.m3u8
-#EXTINF:-1 group-title="央视频道",CCTV5+
-http://112.102.217.173:9003//hls/18/index.m3u8
-#EXTINF:-1 group-title="央视频道",CCTV5+
-http://fangke.blueswords.com:9901/tsfile/live/0016_1.m3u8?key=txiptv&playlive=1&authid=0
-#EXTINF:-1 group-title="央视频道",CCTV5+
-http://119.36.148.115:59901/tsfile/live/1003_1.m3u8
+http://146.235.213.45:35455/gaoma/cctv5p.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV5+
 http://112.123.206.32:808/hls/6/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV5+
-http://home.yulei.online:9999/rtp/226.0.2.168:9256
-#EXTINF:-1 group-title="央视频道",CCTV5+4
-http://39.134.136.161:6610/000000001000/1000000001000020505/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000001000020505
-#EXTINF:-1 group-title="央视频道",CCTV5+8
-http://39.134.136.161:6610/000000001000/6000000001000015875/index.m3u8?livemode=1&stbId=10&channel-id=wasusyt&Contentid=6000000001000015875
-#EXTINF:-1 group-title="央视频道",CCTV5+8
-http://39.134.136.161:6610/000000001000/1000000001000018504/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000001000018504
-#EXTINF:-1 group-title="央视频道",CCTV5+8
-http://39.134.136.161:6610/000000001000/5000000011000031127/index.m3u8?livemode=1&stbId=10&channel-id=bestzb&Contentid=5000000011000031127
+http://218.241.192.50:8808/rtp/239.3.1.130:8004
+#EXTINF:-1 group-title="央视频道",CCTV5+
+http://123.113.187.204:8000/rtp/239.3.1.130:8004
+#EXTINF:-1 group-title="央视频道",CCTV5+
+http://123.113.187.204:8000/udp/239.3.1.130:8004
+#EXTINF:-1 group-title="央视频道",CCTV5+
+http://114.252.236.205:8000/rtp/239.3.1.130:8004
+#EXTINF:-1 group-title="央视频道",CCTV5+
+http://ikuai.zlsip.top:4022/rtp/239.3.1.130:8004
+#EXTINF:-1 group-title="央视频道",CCTV5+
+http://111.196.135.75:8686/udp/239.3.1.130:8004
+#EXTINF:-1 group-title="央视频道",CCTV5+
+http://iptv.yjxfz.com:80/tv/play/4/04A4JA6325N55071/N9E90D28495IN71E
+#EXTINF:-1 group-title="央视频道",CCTV5+
+http://125.89.163.44:8888/udp/239.77.0.87:5146
+#EXTINF:-1 group-title="央视频道",CCTV5+
+http://60.2.190.206:4000/udp/239.253.92.82:8013
+#EXTINF:-1 group-title="央视频道",CCTV5+
+http://iptv.yjxfz.com:80/tv/play/4/4DA6150115DIE1E3/N9E90D28495IN71E
 #EXTINF:-1 group-title="央视频道",CCTV6
-http://39.134.136.161:6610/000000001000/1000000001000001737/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000001000001737
+http://124.93.18.238:9003//hls/6/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV6
-http://27.41.246.172:9003//hls/9/index.m3u8
+http://tawangxunyuan.vicp.cc:35455/gaoma/cctv6.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV6
-http://39.134.136.161:6610/000000001000/1000000005000265006/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000005000265006
+http://221.219.79.161:4000/rtp/239.3.1.174:8001
 #EXTINF:-1 group-title="央视频道",CCTV6
-http://27.41.245.129:9003//hls/9/index.m3u8
+http://218.241.192.50:8808/rtp/239.3.1.174:8001
 #EXTINF:-1 group-title="央视频道",CCTV6
-http://39.134.136.161:6610/000000001000/6000000001000004574/index.m3u8?livemode=1&stbId=10&channel-id=wasusyt&Contentid=6000000001000004574
+http://123.113.187.204:8000/udp/239.3.1.174:8001
 #EXTINF:-1 group-title="央视频道",CCTV6
-http://39.134.136.161:6610/000000001000/5000000004000008886/index.m3u8?livemode=1&stbId=10&channel-id=bestzb&Contentid=5000000004000008886
+http://218.241.192.50:8808/udp/239.3.1.174:8001
 #EXTINF:-1 group-title="央视频道",CCTV6
-http://39.134.136.161:6610/000000001000/1000000001000016466/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000001000016466
+http://114.252.236.205:8000/rtp/239.3.1.174:8001
 #EXTINF:-1 group-title="央视频道",CCTV6
-http://1.24.190.98:10080/hls/6/index.m3u8
+http://101.66.198.142:9901/tsfile/live/0006_1.m3u8?key=txiptv&playlive=0&authid=0
 #EXTINF:-1 group-title="央视频道",CCTV6
-http://112.123.206.32:808/hls/7/index.m3u8
+http://ikuai.zlsip.top:4022/rtp/239.3.1.174:8001
 #EXTINF:-1 group-title="央视频道",CCTV6
-http://58.19.38.162:9901/tsfile/live/1005_1.m3u8?key=txiptv&playlive=1&authid=0
+http://58.17.116.69:9904/tsfile/live/0001_1.m3u8?key=txiptv&playlive=0&authid=0
 #EXTINF:-1 group-title="央视频道",CCTV6
-http://58.19.38.162:9901/tsfile/live/1005_1.m3u8?key=tvbox6_com&playlive=1&authid=0
+http://221.219.79.161:4000/udp/239.3.1.174:8001
 #EXTINF:-1 group-title="央视频道",CCTV6
-http://mobilelive-timeshift.ysp.cctv.cn/timeshift/ysp/2013693901/timeshift.m3u8?delay=0
+http://60.2.190.206:4000/rtp/239.253.92.193:6058
 #EXTINF:-1 group-title="央视频道",CCTV6
-http://mobilelive-timeshift.ysp.cctv.cn/timeshift/ysp/2013693901/timeshift.m3u8?delay=0&cdn=5202
+http://58.17.48.228:808/hls/6/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV6
-http://39.134.136.161:6610/000000001000/5000000010000018433/index.m3u8?livemode=1&stbId=10&channel-id=bestzb&Contentid=5000000010000018433
-#EXTINF:-1 group-title="央视频道",CCTV6
-http://39.134.136.161:6610/000000001000/6117099895556651277/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=6117099895556651277
-#EXTINF:-1 group-title="央视频道",CCTV7
-http://27.41.246.172:9003//hls/10/index.m3u8
-#EXTINF:-1 group-title="央视频道",CCTV7
-http://39.134.136.161:6610/000000001000/1000000001000024341/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000001000024341
-#EXTINF:-1 group-title="央视频道",CCTV7
-http://39.134.136.161:6610/000000001000/6000000001000009055/index.m3u8?livemode=1&stbId=10&channel-id=wasusyt&Contentid=6000000001000009055
-#EXTINF:-1 group-title="央视频道",CCTV7
-http://27.41.245.129:9003//hls/10/index.m3u8
-#EXTINF:-1 group-title="央视频道",CCTV7
-http://39.134.136.161:6610/000000001000/5000000011000031104/index.m3u8?livemode=1&stbId=10&channel-id=bestzb&Contentid=5000000011000031104
-#EXTINF:-1 group-title="央视频道",CCTV7
-http://58.19.38.162:9901/tsfile/live/1006_1.m3u8?key=txiptv&playlive=1&authid=0
-#EXTINF:-1 group-title="央视频道",CCTV7
-http://58.19.38.162:9901/tsfile/live/1006_1.m3u8?key=tvbox6_com&playlive=1&authid=0
-#EXTINF:-1 group-title="央视频道",CCTV7
-http://39.134.136.161:6610/000000001000/7823098201377312515/index.m3u8?livemode=1&stbId=10&channel-id=wasusyt&Contentid=7823098201377312515
+http://14.112.86.85:4022/udp/239.77.0.171:5146
 #EXTINF:-1 group-title="央视频道",CCTV7
 http://112.123.206.32:808/hls/8/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV7
-http://39.134.136.161:6610/000000001000/7787764357983924496/index.m3u8?livemode=1&stbId=test&channel-id=hnbblive&Contentid=7787764357983924496
+http://218.241.192.50:8808/udp/239.3.1.61:8104
+#EXTINF:-1 group-title="央视频道",CCTV7
+http://221.219.79.161:4000/rtp/239.3.1.61:8104
+#EXTINF:-1 group-title="央视频道",CCTV7
+http://114.252.236.205:8000/rtp/239.3.1.61:8104
+#EXTINF:-1 group-title="央视频道",CCTV7
+http://123.113.187.204:8000/udp/239.3.1.61:8104
+#EXTINF:-1 group-title="央视频道",CCTV7
+http://221.219.79.161:4000/udp/239.3.1.61:8104
+#EXTINF:-1 group-title="央视频道",CCTV7
+http://ikuai.zlsip.top:4022/rtp/239.3.1.61:8104
+#EXTINF:-1 group-title="央视频道",CCTV7
+http://111.196.135.75:8686/udp/239.3.1.61:8104
+#EXTINF:-1 group-title="央视频道",CCTV7
+http://218.241.192.50:8808/rtp/239.3.1.61:8104
 #EXTINF:-1 group-title="央视频道",CCTV7
 http://112.123.206.32:808/hls/7/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV7
-http://183.66.15.146:60901/tsfile/live/0007_1.m3u8?key=txiptv
+http://125.89.163.44:8888/udp/239.77.0.138:5146
 #EXTINF:-1 group-title="央视频道",CCTV7
-http://60.12.183.46:9901/tsfile/live/0007_1.m3u8?key=txiptv&playlive=0&authid=0
+http://iptv.yjxfz.com:80/tv/play/4/219ENAA8I1D15998/N9E90D28495IN71E
 #EXTINF:-1 group-title="央视频道",CCTV7
-http://119.36.148.115:59901/tsfile/live/0007_1.m3u8
+http://iptv.yjxfz.com:80/tv/play/4/41J4EED17E48J1NI/N9E90D28495IN71E
 #EXTINF:-1 group-title="央视频道",CCTV7
-http://59.48.75.130:3052/tsfile/live/0007_1.m3u8?key=txiptv
+http://iptv.yjxfz.com:80/tv/play/4/275D6ENA3934N0IN/N9E90D28495IN71E
+#EXTINF:-1 group-title="央视频道",CCTV7
+http://61.190.129.195:8686/rtp/238.1.78.239:7784
 #EXTINF:-1 group-title="央视频道",CCTV8
-http://27.41.246.172:9003//hls/11/index.m3u8
+http://124.93.18.238:9003//hls/8/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV8
-http://27.41.245.129:9003//hls/11/index.m3u8
+http://tawangxunyuan.vicp.cc:35455/gaoma/cctv8.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV8
-http://39.134.136.161:6610/000000001000/5000000004000008888/index.m3u8?livemode=1&stbId=10&channel-id=bestzb&Contentid=5000000004000008888
+http://117.144.58.42:35455/gaoma/cctv8k_36m.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV8
-http://1.24.190.98:10089/hls/16/index.m3u8
+http://221.226.4.10:9901/tsfile/live/0008_1.m3u8?key=txiptv&playlive=1&authid=0
 #EXTINF:-1 group-title="央视频道",CCTV8
-http://1.24.190.98:10089/hls/15/index.m3u8
+http://221.219.79.161:4000/rtp/239.3.1.175:8001
 #EXTINF:-1 group-title="央视频道",CCTV8
-http://39.134.136.161:6610/000000001000/6000000001000001070/index.m3u8?livemode=1&stbId=10&channel-id=wasusyt&Contentid=6000000001000001070
+http://218.241.192.50:8808/udp/239.3.1.175:8001
 #EXTINF:-1 group-title="央视频道",CCTV8
-http://39.134.136.161:6610/000000001000/1000000001000031433/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000001000031433
+http://218.241.192.50:8808/rtp/239.3.1.175:8001
 #EXTINF:-1 group-title="央视频道",CCTV8
-http://39.134.136.161:6610/000000001000/1000000005000265008/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000005000265008
+http://114.252.236.205:8000/rtp/239.3.1.175:8001
 #EXTINF:-1 group-title="央视频道",CCTV8
-http://115.48.61.219:9901/tsfile/live/0008_1.m3u8
+http://123.113.187.204:8000/udp/239.3.1.175:8001
 #EXTINF:-1 group-title="央视频道",CCTV8
-http://39.134.136.161:6610/000000001000/8967744667154419073/index.m3u8?livemode=1&stbId=10&channel-id=wasusyt&Contentid=8967744667154419073
+http://101.66.198.22:9901/tsfile/live/0008_1.m3u8?key=txiptv&playlive=0&authid=0
 #EXTINF:-1 group-title="央视频道",CCTV8
-http://1.24.190.98:10080/hls/8/index.m3u8
+http://ikuai.zlsip.top:4022/rtp/239.3.1.175:8001
 #EXTINF:-1 group-title="央视频道",CCTV8
-http://39.134.136.161:6610/000000001000/5000000010000018377/index.m3u8?livemode=1&stbId=10&channel-id=bestzb&Contentid=5000000010000018377
+http://111.196.135.75:8686/udp/239.3.1.175:8001
 #EXTINF:-1 group-title="央视频道",CCTV8
-http://60.12.183.46:9901/tsfile/live/0008_1.m3u8?key=txiptv&playlive=0&authid=0
+http://111.9.163.109:9901/tsfile/live/0008_1.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV8
-http://39.134.136.161:6610/000000001000/1000000001000003736/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000001000003736
+http://221.219.79.161:4000/udp/239.3.1.175:8001
 #EXTINF:-1 group-title="央视频道",CCTV8
-http://183.66.15.146:60901/tsfile/live/0008_1.m3u8?key=txiptv
+http://123.113.187.204:8000/rtp/239.3.1.175:8001
 #EXTINF:-1 group-title="央视频道",CCTV9
-http://39.134.136.161:6610/000000001000/1000000001000014583/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000001000014583
+http://tv.kmhlzxs.top:35455/gaoma/cctv9.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV9
-http://39.134.136.161:6610/000000001000/6000000001000032162/index.m3u8?livemode=1&stbId=10&channel-id=wasusyt&Contentid=6000000001000032162
+http://124.93.18.238:9003//hls/9/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV9
-http://27.41.246.172:9003//hls/12/index.m3u8
+http://117.144.58.42:35455/gaoma/cctv9.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV9
-http://39.134.136.161:6610/000000001000/1000000001000028286/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000001000028286
+http://221.226.4.10:9901/tsfile/live/0009_1.m3u8?key=txiptv&playlive=1&authid=0
 #EXTINF:-1 group-title="央视频道",CCTV9
-http://39.134.136.161:6610/000000001000/6350727550077620987/index.m3u8?livemode=1&stbId=10&channel-id=wasusyt&Contentid=6350727550077620987
+http://146.235.213.45:35455/gaoma/cctv9.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV9
-http://39.134.136.161:6610/000000001000/5000000010000018384/index.m3u8?livemode=1&stbId=10&channel-id=bestzb&Contentid=5000000010000018384
+http://183.3.134.56:9901/tsfile/live/0009_1.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV9
-http://39.134.136.161:6610/000000001000/1000000005000265009/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000005000265009
+http://112.101.78.50:9901/tsfile/live/0009_1.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV9
-http://39.134.136.161:6610/000000001000/5117943747640013023/index.m3u8?livemode=1&stbId=test&channel-id=hnbblive&Contentid=5117943747640013023
+http://221.219.79.161:4000/rtp/239.3.1.62:8112
 #EXTINF:-1 group-title="央视频道",CCTV9
-http://fangke.blueswords.com:9901/tsfile/live/0009_1.m3u8?key=txiptv&playlive=1&authid=0
+http://218.241.192.50:8808/udp/239.3.1.62:8112
 #EXTINF:-1 group-title="央视频道",CCTV9
-http://39.134.136.161:6610/000000001000/6275371742726901431/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=6275371742726901431
+http://111.196.135.75:8686/udp/239.3.1.62:8112
 #EXTINF:-1 group-title="央视频道",CCTV9
-http://115.48.61.219:9901/tsfile/live/1005_1.m3u8
+http://221.219.79.161:4000/udp/239.3.1.62:8112
 #EXTINF:-1 group-title="央视频道",CCTV9
-http://222.218.158.4:8181/tsfile/live/0009_1.m3u8
+http://123.113.187.204:8000/udp/239.3.1.62:8112
 #EXTINF:-1 group-title="央视频道",CCTV9
-http://27.10.76.34:8002/udp/225.0.4.131:7980
+http://ikuai.zlsip.top:4022/rtp/239.3.1.62:8112
 #EXTINF:-1 group-title="央视频道",CCTV9
-http://27.10.76.34:8001/rtp/225.0.4.131:7980
+http://114.252.236.205:8000/rtp/239.3.1.62:8112
 #EXTINF:-1 group-title="央视频道",CCTV9
-http://27.10.76.34:8006/rtp/225.0.4.131:7980
+http://112.123.206.32:808/hls/10/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV10
-http://27.41.246.172:9003//hls/13/index.m3u8
+http://117.144.58.42:35455/gaoma/cctv10.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV10
-http://39.134.136.161:6610/000000001000/1000000001000023734/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000001000023734
+http://124.93.18.238:9003//hls/10/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV10
-http://27.41.245.129:9003//hls/13/index.m3u8
+http://tawangxunyuan.vicp.cc:35455/gaoma/cctv10.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV10
-http://39.134.136.161:6610/000000001000/1000000005000265010/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000005000265010
+http://221.226.4.10:9901/tsfile/live/0010_1.m3u8?key=txiptv&playlive=1&authid=0
 #EXTINF:-1 group-title="央视频道",CCTV10
-http://39.134.136.161:6610/000000001000/5000000004000012827/index.m3u8?livemode=1&stbId=10&channel-id=bestzb&Contentid=5000000004000012827
+http://221.219.79.161:4000/udp/239.3.1.63:8116
 #EXTINF:-1 group-title="央视频道",CCTV10
-http://219.139.42.24:8001/hls/10/index.m3u8
+http://101.66.199.24:9901/tsfile/live/0010_1.m3u8?key=txiptv&playlive=0&authid=0
 #EXTINF:-1 group-title="央视频道",CCTV10
-http://39.134.136.161:6610/000000001000/6000000001000031506/index.m3u8?livemode=1&stbId=10&channel-id=wasusyt&Contentid=6000000001000031506
+http://218.241.192.50:8808/rtp/239.3.1.63:8116
 #EXTINF:-1 group-title="央视频道",CCTV10
-http://58.19.38.162:9901/tsfile/live/1009_1.m3u8?key=txiptv&playlive=1&authid=0
+http://123.113.187.204:8000/rtp/239.3.1.63:8116
 #EXTINF:-1 group-title="央视频道",CCTV10
-http://112.102.217.173:9003//hls/23/index.m3u8
+http://218.241.192.50:8808/udp/239.3.1.63:8116
 #EXTINF:-1 group-title="央视频道",CCTV10
-http://219.159.194.163:8181/tsfile/live/0010_1.m3u8
+http://114.252.236.205:8000/rtp/239.3.1.63:8116
 #EXTINF:-1 group-title="央视频道",CCTV10
-http://222.218.158.4:8181/tsfile/live/0010_1.m3u8
+http://123.113.187.204:8000/udp/239.3.1.63:8116
 #EXTINF:-1 group-title="央视频道",CCTV10
-http://119.36.148.115:59901/tsfile/live/0010_1.m3u8
+http://111.196.135.75:8686/udp/239.3.1.63:8116
 #EXTINF:-1 group-title="央视频道",CCTV10
-http://61.136.67.238:50085/tsfile/live/0011_1.m3u8?key=txiptv&playlive=1&authid=0
+http://60.2.190.206:4000/rtp/239.253.92.196:6061
 #EXTINF:-1 group-title="央视频道",CCTV10
-http://39.134.136.161:6610/000000001000/7019587760656900133/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=7019587760656900133
+http://iptv.yjxfz.com:80/tv/play/4/29J67J474N0AJ288/N9E90D28495IN71E
 #EXTINF:-1 group-title="央视频道",CCTV10
-http://183.66.15.146:60901/tsfile/live/0010_1.m3u8?key=txiptv
+http://125.89.163.44:8888/udp/239.77.1.113:5146
 #EXTINF:-1 group-title="央视频道",CCTV11
-http://39.134.136.161:6610/000000001000/1000000005000265011/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000005000265011
+http://tv.kmhlzxs.top:35455/gaoma/cctv11.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV11
-http://39.134.136.161:6610/000000001000/1000000002000019789/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000002000019789
+http://124.93.18.238:9003//hls/11/index.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV11
+http://117.144.58.42:35455/gaoma/cctv11.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV11
+http://tawangxunyuan.vicp.cc:35455/gaoma/cctv11.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV11
 http://112.123.206.32:808/hls/12/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV11
-http://39.134.136.161:6610/000000001000/5000000011000031106/index.m3u8?livemode=1&stbId=10&channel-id=bestzb&Contentid=5000000011000031106
+http://123.113.187.204:8000/udp/239.3.1.152:8120
 #EXTINF:-1 group-title="央视频道",CCTV11
-http://39.134.136.161:6610/000000001000/5028333576671744004/index.m3u8?livemode=1&stbId=test&channel-id=hnbblive&Contentid=5028333576671744004
+http://123.113.187.204:8000/rtp/239.3.1.152:8120
 #EXTINF:-1 group-title="央视频道",CCTV11
-http://39.134.136.161:6610/000000001000/5000000006000040011/index.m3u8?livemode=1&stbId=10&channel-id=bestzb&Contentid=5000000006000040011
+http://218.241.192.50:8808/rtp/239.3.1.152:8120
 #EXTINF:-1 group-title="央视频道",CCTV11
-http://27.41.246.172:9003//hls/14/index.m3u8
+http://221.219.79.161:4000/udp/239.3.1.152:8120
 #EXTINF:-1 group-title="央视频道",CCTV11
-http://222.134.245.16:9901/tsfile/live/0011_1.m3u8?key=txiptv&playlive=1&authid=0
+http://114.252.236.205:8000/rtp/239.3.1.152:8120
 #EXTINF:-1 group-title="央视频道",CCTV11
-http://27.41.245.129:9003//hls/14/index.m3u8
+http://ikuai.zlsip.top:4022/rtp/239.3.1.152:8120
 #EXTINF:-1 group-title="央视频道",CCTV11
-http://39.134.136.161:6610/000000001000/8983629816140945539/index.m3u8?livemode=1&stbId=10&channel-id=wasusyt&Contentid=8983629816140945539
+http://iptv.yjxfz.com:80/tv/play/4/JA17I871IJI68DE7/A1I5458A9N6J0388
 #EXTINF:-1 group-title="央视频道",CCTV11
-http://39.134.136.161:6610/000000001000/6351457414282570521/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=6351457414282570521
+http://125.89.163.44:8888/udp/239.77.1.238:5146
 #EXTINF:-1 group-title="央视频道",CCTV11
-http://58.19.38.162:9901/tsfile/live/1010_1.m3u8?key=tvbox6_com&playlive=1&authid=0
+http://www.lebaobei.top:6868/udp/239.255.30.62:8231
 #EXTINF:-1 group-title="央视频道",CCTV11
-http://222.218.158.4:8181/tsfile/live/0011_1.m3u8
-#EXTINF:-1 group-title="央视频道",CCTV11
-http://fangke.blueswords.com:9901/tsfile/live/0011_1.m3u8?key=txiptv&playlive=1&authid=0
-#EXTINF:-1 group-title="央视频道",CCTV11
-http://61.145.208.64:9003//hls/12/index.m3u8
+http://iptv.yjxfz.com:80/tv/play/4/6AI4473EE37DDN39/N9E90D28495IN71E
 #EXTINF:-1 group-title="央视频道",CCTV12
-http://39.134.136.161:6610/000000001000/6000000001000022586/index.m3u8?livemode=1&stbId=10&channel-id=wasusyt&Contentid=6000000001000022586
+http://124.93.18.238:9003//hls/12/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV12
-http://39.134.136.161:6610/000000001000/1000000001000032494/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000001000032494
+http://221.226.4.10:9901/tsfile/live/0012_1.m3u8?key=txiptv&playlive=1&authid=0
 #EXTINF:-1 group-title="央视频道",CCTV12
-http://27.41.246.172:9003//hls/15/index.m3u8
+http://113.57.111.4:1111/tsfile/live/1011_1.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV12
-http://39.134.136.161:6610/000000001000/1000000005000265012/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000005000265012
+http://183.3.134.56:9901/tsfile/live/0012_1.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV12
-http://39.134.136.161:6610/000000001000/6865782700657580918/index.m3u8?livemode=1&stbId=10&channel-id=wasusyt&Contentid=6865782700657580918
+http://221.219.79.161:4000/rtp/239.3.1.64:8124
 #EXTINF:-1 group-title="央视频道",CCTV12
-http://39.134.136.161:6610/000000001000/5000000006000040012/index.m3u8?livemode=1&stbId=10&channel-id=bestzb&Contentid=5000000006000040012
+http://114.252.236.205:8000/rtp/239.3.1.64:8124
 #EXTINF:-1 group-title="央视频道",CCTV12
-http://112.123.206.32:808/hls/13/index.m3u8
+http://218.241.192.50:8808/rtp/239.3.1.64:8124
 #EXTINF:-1 group-title="央视频道",CCTV12
-http://39.134.136.161:6610/000000001000/5000000011000031107/index.m3u8?livemode=1&stbId=10&channel-id=bestzb&Contentid=5000000011000031107
+http://221.219.79.161:4000/udp/239.3.1.64:8124
 #EXTINF:-1 group-title="央视频道",CCTV12
-http://61.145.208.64:9003//hls/13/index.m3u8
+http://123.113.187.204:8000/rtp/239.3.1.64:8124
 #EXTINF:-1 group-title="央视频道",CCTV12
-http://39.134.136.161:6610/000000001000/1000000001000001640/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000001000001640
+http://li0580.top:35455/gaoma/cctv12.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV12
-http://39.134.136.161:6610/000000001000/5325631075193490169/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=5325631075193490169
+http://ikuai.zlsip.top:4022/rtp/239.3.1.64:8124
 #EXTINF:-1 group-title="央视频道",CCTV12
-http://119.36.148.115:59901/tsfile/live/0012_1.m3u8
+http://123.113.187.204:8000/udp/239.3.1.64:8124
 #EXTINF:-1 group-title="央视频道",CCTV12
-http://222.134.245.16:9901/tsfile/live/0012_1.m3u8?key=txiptv&playlive=1&authid=0
+http://111.196.135.75:8686/udp/239.3.1.64:8124
 #EXTINF:-1 group-title="央视频道",CCTV12
-http://222.218.158.4:8181/tsfile/live/0012_1.m3u8
+http://60.2.190.206:4000/udp/239.253.92.197:6062
 #EXTINF:-1 group-title="央视频道",CCTV12
-http://39.134.136.161:6610/000000001000/5789397805573190782/index.m3u8?livemode=1&stbId=test&channel-id=hnbblive&Contentid=5789397805573190782
+http://125.89.163.44:8888/udp/239.77.0.136:5146
 #EXTINF:-1 group-title="央视频道",CCTV13
-http://piccpndali.v.myalicdn.com/audio/cctv13_2.m3u8
+http://tv.kmhlzxs.top:35455/gaoma/cctv13.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV13
+http://124.93.18.238:9003//hls/13/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV13
 http://cd-live-stream.news.cctvplus.com/live/smil:CHANNEL2.smil/chunklist_w1018196661_b1000000.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV13
-http://39.134.136.161:6610/000000001000/5000000011000031108/index.m3u8?livemode=1&stbId=10&channel-id=bestzb&Contentid=5000000011000031108
-#EXTINF:-1 group-title="央视频道",CCTV13
-http://27.41.246.172:9003//hls/16/index.m3u8
+http://mg.20191209.xyz:58888/gaoma/cctv13.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV13
 https://event.pull.hebtv.com/jishi/cp1.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV13
-http://39.134.136.161:6610/000000001000/1000000002000021303/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000002000021303
+http://60.11.200.120:35455/gaoma/cctv13.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV13
-http://27.41.245.129:9003//hls/16/index.m3u8
+http://112.123.206.32:808/hls/13/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV13
-http://120.224.178.16:9901/tsfile/live/0013_1.m3u8
+http://joyznm.i234.me:20000/udp/239.3.1.124:8128
 #EXTINF:-1 group-title="央视频道",CCTV13
-http://42.48.50.232:9002/tsfile/live/0013_1.m3u8
+http://qnap.zmychn.cn:4001/udp/239.3.1.124:8128
 #EXTINF:-1 group-title="央视频道",CCTV13
-http://39.134.136.161:6610/000000001000/8144735820797832112/index.m3u8?livemode=1&stbId=test&channel-id=hnbblive&Contentid=8144735820797832112
+http://mingjd.cn:7077/udp/239.3.1.124:8128
 #EXTINF:-1 group-title="央视频道",CCTV13
-http://58.19.38.162:9901/tsfile/live/1012_1.m3u8?key=txiptv&playlive=1&authid=0
+http://qnap.yjnhome.com:4001/udp/239.3.1.124:8128
 #EXTINF:-1 group-title="央视频道",CCTV13
-http://59.48.75.130:3052/tsfile/live/0013_1.m3u8?key=txiptv&playlive=1&authid=0
+http://221.219.79.161:4000/udp/239.3.1.124:8128
 #EXTINF:-1 group-title="央视频道",CCTV13
-http://59.48.75.130:3052/tsfile/live/0013_1.m3u8
+http://114.252.236.205:8000/rtp/239.3.1.124:8128
 #EXTINF:-1 group-title="央视频道",CCTV13
-http://39.134.136.161:6610/000000001000/5000000005000001827/index.m3u8?livemode=1&stbId=10&channel-id=bestzb&Contentid=5000000005000001827
+http://123.113.187.204:8000/udp/239.3.1.124:8128
 #EXTINF:-1 group-title="央视频道",CCTV13
-http://39.134.136.161:6610/000000001000/6918130250570453526/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=6918130250570453526
-#EXTINF:-1 group-title="央视频道",CCTV13
-http://piccpndali.v.myalicdn.com/audio/cctv13_2.m3u8
+http://www.lishaoping.com:8012/udp/239.3.1.124:8128
 #EXTINF:-1 group-title="央视频道",CCTV14
-http://27.41.246.172:9003//hls/17/index.m3u8
+http://124.93.18.238:9003//hls/14/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV14
-http://39.134.136.161:6610/000000001000/5000000004000006673/index.m3u8?livemode=1&stbId=10&channel-id=bestzb&Contentid=5000000004000006673
-#EXTINF:-1 group-title="央视频道",CCTV14
-http://39.134.136.161:6610/000000001000/1000000001000008170/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000001000008170
-#EXTINF:-1 group-title="央视频道",CCTV14
-http://39.134.136.161:6610/000000001000/6000000001000013647/index.m3u8?livemode=1&stbId=10&channel-id=wasusyt&Contentid=6000000001000013647
-#EXTINF:-1 group-title="央视频道",CCTV14
-http://39.134.136.161:6610/000000001000/1000000001000021349/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000001000021349
+http://tawangxunyuan.vicp.cc:35455/gaoma/cctv14.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV14
 https://event.pull.hebtv.com/jishi/cp2.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV14
-http://39.134.136.161:6610/000000001000/1000000005000265013/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000005000265013
+http://221.226.4.10:9901/tsfile/live/0014_1.m3u8?key=txiptv&playlive=1&authid=0
 #EXTINF:-1 group-title="央视频道",CCTV14
-http://58.19.38.162:9901/tsfile/live/1013_1.m3u8?key=txiptv&playlive=1&authid=0
+http://60.210.100.54:352/tsfile/live/0014_1.m3u8?key=txiptv&playlive=1&authid=0
 #EXTINF:-1 group-title="央视频道",CCTV14
-http://39.134.136.161:6610/000000001000/5000000010000023358/index.m3u8?livemode=1&stbId=10&channel-id=bestzb&Contentid=5000000010000023358
+http://123.113.187.204:8000/rtp/239.3.1.65:8132
 #EXTINF:-1 group-title="央视频道",CCTV14
-http://59.48.75.130:3052/tsfile/live/0014_1.m3u8
+http://123.182.60.29:9002/hls/14/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV14
-http://39.134.136.161:6610/000000001000/1000000001000021973/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000001000021973
+http://123.113.187.204:8000/udp/239.3.1.65:8132
 #EXTINF:-1 group-title="央视频道",CCTV14
-http://59.48.75.130:3052/tsfile/live/0014_1.m3u8?key=txiptv
+http://221.219.79.161:4000/udp/239.3.1.65:8132
 #EXTINF:-1 group-title="央视频道",CCTV14
-http://219.139.42.24:8001/hls/14/index.m3u8
+http://218.241.192.50:8808/rtp/239.3.1.65:8132
 #EXTINF:-1 group-title="央视频道",CCTV14
-http://59.48.75.130:3052/tsfile/live/0014_1.m3u8?key=txiptv&playlive=1&authid=0
+http://60.210.100.54:352/tsfile/live/0014_1.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV14
-http://119.36.148.115:59901/tsfile/live/0014_1.m3u8
+http://114.252.236.205:8000/rtp/239.3.1.65:8132
+#EXTINF:-1 group-title="央视频道",CCTV14
+http://ikuai.zlsip.top:4022/rtp/239.3.1.65:8132
+#EXTINF:-1 group-title="央视频道",CCTV14
+http://101.66.199.191:9901/tsfile/live/0014_1.m3u8?key=txiptv&playlive=0&authid=0
+#EXTINF:-1 group-title="央视频道",CCTV14
+http://111.196.135.75:8686/udp/239.3.1.65:8132
 #EXTINF:-1 group-title="央视频道",CCTV15
-http://39.134.136.161:6610/000000001000/1000000002000008163/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000002000008163
+http://124.93.18.238:9003//hls/15/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV15
-http://39.134.136.161:6610/000000001000/5000000011000031109/index.m3u8?livemode=1&stbId=10&channel-id=bestzb&Contentid=5000000011000031109
+http://117.144.58.42:35455/gaoma/cctv15.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV15
-http://39.134.136.161:6610/000000001000/1000000005000265014/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000005000265014
+http://mg.20191209.xyz:58888/gaoma/cctv15.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV15
-http://39.134.136.161:6610/000000001000/1000000005000265012/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000005000265012
+http://123.182.60.29:9002/hls/15/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV15
-http://39.134.136.161:6610/000000001000/1000000005000265015/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000005000265015
+http://61.136.67.238:50085/tsfile/live/0015_1.m3u8?key=txiptv&playlive=1&authid=0
 #EXTINF:-1 group-title="央视频道",CCTV15
-http://39.134.136.161:6610/000000001000/5565738654152032083/index.m3u8?livemode=1&stbId=10&channel-id=wasusyt&Contentid=5565738654152032083
+http://221.219.79.161:4000/udp/239.3.1.153:8136
 #EXTINF:-1 group-title="央视频道",CCTV15
-http://219.139.42.24:8001/hls/15/index.m3u8
+http://221.219.79.161:4000/rtp/239.3.1.153:8136
 #EXTINF:-1 group-title="央视频道",CCTV15
-http://27.41.246.172:9003//hls/18/index.m3u8
+http://218.241.192.50:8808/udp/239.3.1.153:8136
 #EXTINF:-1 group-title="央视频道",CCTV15
-http://219.159.194.163:8181/tsfile/live/0015_1.m3u8
+http://114.252.236.205:8000/rtp/239.3.1.153:8136
 #EXTINF:-1 group-title="央视频道",CCTV15
-http://39.134.136.161:6610/000000001000/5000000005000018417/index.m3u8?livemode=1&stbId=10&channel-id=bestzb&Contentid=5000000005000018417
+http://123.113.187.204:8000/rtp/239.3.1.153:8136
 #EXTINF:-1 group-title="央视频道",CCTV15
-http://222.218.158.4:8181/tsfile/live/0015_1.m3u8
+http://123.113.187.204:8000/udp/239.3.1.153:8136
 #EXTINF:-1 group-title="央视频道",CCTV15
-http://59.48.75.130:3052/tsfile/live/0015_1.m3u8?key=txiptv
+http://218.241.192.50:8808/rtp/239.3.1.153:8136
 #EXTINF:-1 group-title="央视频道",CCTV15
-http://59.48.75.130:3052/tsfile/live/0015_1.m3u8?key=txiptv&playlive=1&authid=0
+http://112.123.206.32:808/hls/16/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV15
-http://59.48.75.130:3052/tsfile/live/0015_1.m3u8
+http://ikuai.zlsip.top:4022/rtp/239.3.1.153:8136
 #EXTINF:-1 group-title="央视频道",CCTV15
-http://115.48.60.37:9901/tsfile/live/0015_1.m3u8
+http://111.196.135.75:8686/udp/239.3.1.153:8136
+#EXTINF:-1 group-title="央视频道",CCTV16奥运
+http://nas.tuyuannet.cn:8800/udp/239.37.1.22:5540
+#EXTINF:-1 group-title="央视频道",CCTV16奥运
+http://nas.tuyuannet.cn:8800/udp/239.37.1.21:5540
 #EXTINF:-1 group-title="央视频道",CCTV16
-http://39.134.136.161:6610/000000001000/5000000008000023253/index.m3u8?livemode=1&stbId=10&channel-id=bestzb&Contentid=5000000008000023253
+http://tv.kmhlzxs.top:35455/gaoma/cctv16.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV16
-http://39.134.136.161:6610/000000001000/1000000006000233002/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000006000233002
+http://124.93.18.238:9003//hls/16/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV16
-http://39.134.136.161:6610/000000001000/1000000006000233001/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000006000233001
+http://mg.20191209.xyz:58888/gaoma/cctv16.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV16
-http://61.145.208.64:9003//hls/17/index.m3u8
+http://218.241.192.50:8808/udp/239.3.1.184:8001
 #EXTINF:-1 group-title="央视频道",CCTV16
-http://222.218.158.4:8181/tsfile/live/1021_1.m3u8
+http://114.252.236.205:8000/rtp/239.3.1.184:8001
 #EXTINF:-1 group-title="央视频道",CCTV16
-http://219.159.194.163:8181/tsfile/live/1021_1.m3u8
+http://123.113.187.204:8000/udp/239.3.1.184:8001
 #EXTINF:-1 group-title="央视频道",CCTV16
-http://112.102.217.173:9003//hls/29/index.m3u8
+http://218.241.192.50:8808/rtp/239.3.1.184:8001
 #EXTINF:-1 group-title="央视频道",CCTV16
-http://219.139.42.24:8001/hls/16/index.m3u8
+http://111.196.135.75:8686/udp/239.3.1.184:8001
+#EXTINF:-1 group-title="央视频道",CCTV16
+http://221.219.79.161:4000/rtp/239.3.1.184:8001
+#EXTINF:-1 group-title="央视频道",CCTV16
+http://ikuai.zlsip.top:4022/rtp/239.3.1.184:8001
+#EXTINF:-1 group-title="央视频道",CCTV16
+http://221.219.79.161:4000/udp/239.3.1.184:8001
+#EXTINF:-1 group-title="央视频道",CCTV16
+http://home.yulei.online:9999/rtp/226.0.2.169:9264
+#EXTINF:-1 group-title="央视频道",CCTV16
+http://14.112.86.85:4022/udp/239.77.0.165:5146
+#EXTINF:-1 group-title="央视频道",CCTV16
+http://www.lebaobei.top:6868/udp/239.255.30.88:8231
 #EXTINF:-1 group-title="央视频道",CCTV16
 http://majian.ixiaobai.net:5540/udp/239.37.1.22:5540
-#EXTINF:-1 group-title="央视频道",CCTV16
-http://majian.ixiaobai.net:5540/udp/239.37.1.22:5540?
-#EXTINF:-1 group-title="央视频道",CCTV16
-http://118.251.60.185:8888/udp/239.76.253.98:9000
-#EXTINF:-1 group-title="央视频道",CCTV16
-http://60.164.128.167:8029/rtp/239.255.30.88:8231
-#EXTINF:-1 group-title="央视频道",CCTV16
-http://222.241.154.37:9901/tsfile/live/23016_1.m3u8?key=txiptv
-#EXTINF:-1 group-title="央视频道",CCTV16
-http://110.177.146.152:888/udp/239.1.1.122:8122
-#EXTINF:-1 group-title="央视频道",CCTV16
-http://123.122.162.7:19999/rtp/239.3.1.184:8001
 #EXTINF:-1 group-title="央视频道",CCTV17
-http://39.134.136.161:6610/000000001000/1000000005000265015/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000005000265015
+http://tv.kmhlzxs.top:35455/gaoma/cctv17.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV17
-http://39.134.136.161:6610/000000001000/1000000005000056836/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000005000056836
+http://124.93.18.238:9003//hls/17/index.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV17
-http://219.139.42.24:8001/hls/17/index.m3u8
+http://tawangxunyuan.vicp.cc:35455/gaoma/cctv17.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV17
-http://112.102.217.173:9003//hls/30/index.m3u8
+http://60.11.200.120:35455/gaoma/cctv17.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV17
-http://39.134.136.161:6610/000000001000/1000000006000268004/index.m3u8?livemode=1&stbId=10&channel-id=ystenlive&Contentid=1000000006000268004
+http://60.210.100.54:352/tsfile/live/0019_1.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV17
-http://222.169.85.8:9901/tsfile/live/0007_1.m3u8?key=txiptv&playlive=1&authid=0
+http://218.241.192.50:8808/udp/239.3.1.151:8144
 #EXTINF:-1 group-title="央视频道",CCTV17
-http://222.218.158.4:8181/tsfile/live/0019_1.m3u8
+http://221.219.79.161:4000/udp/239.3.1.151:8144
 #EXTINF:-1 group-title="央视频道",CCTV17
-http://219.159.194.163:8181/tsfile/live/0019_1.m3u8
+http://111.196.135.75:8686/udp/239.3.1.151:8144
 #EXTINF:-1 group-title="央视频道",CCTV17
-http://61.145.208.64:9003//hls/18/index.m3u8
+http://114.252.236.205:8000/rtp/239.3.1.151:8144
 #EXTINF:-1 group-title="央视频道",CCTV17
-http://119.36.148.115:59901/tsfile/live/0019_1.m3u8
+http://ikuai.zlsip.top:4022/rtp/239.3.1.151:8144
 #EXTINF:-1 group-title="央视频道",CCTV17
-http://123.132.233.194:352/tsfile/live/1018_1.m3u8?key=txiptv&playlive=1&authid=0
+http://218.241.192.50:8808/rtp/239.3.1.151:8144
 #EXTINF:-1 group-title="央视频道",CCTV17
-http://116.11.140.246:18181/tsfile/live/0019_1.m3u8
+http://123.113.187.204:8000/udp/239.3.1.151:8144
 #EXTINF:-1 group-title="央视频道",CCTV17
-http://113.65.253.11:7777/udp/239.77.1.121:5146
+http://221.219.79.161:4000/rtp/239.3.1.151:8144
 #EXTINF:-1 group-title="央视频道",CCTV17
-http://115.171.80.38:8888/udp/225.1.8.17:8144
+http://60.210.100.54:352/tsfile/live/0019_1.m3u8?key=txiptv&playlive=1&authid=0
 #EXTINF:-1 group-title="央视频道",CCTV17
-http://222.241.154.37:9901/tsfile/live/23017_1.m3u8?key=txiptv
-
-#EXTINF:-1 group-title="央视频道",CCTV第1剧场
-http://58.19.38.162:9901/tsfile/live/1035_1.m3u8?key=txiptv&playlive=1&authid=0
-#EXTINF:-1 group-title="央视频道",CCTV第1剧场
-http://119.135.1.234:6699/live/1081/index.m3u8
-#EXTINF:-1 group-title="央视频道",CCTV第1剧场
-http://www.akw323.com:9527/rtp/238.255.2.25:5999
-#EXTINF:-1 group-title="央视频道",CCTV第1剧场
-http://60.7.56.33:4000/rtp/239.253.92.18:6079
+http://iptv.yjxfz.com:80/tv/play/4/ID2291AD6ANE37AA/A1I5458A9N6J0388
 #EXTINF:-1 group-title="央视频道",CCTV台球
-http://60.7.56.33:4000/rtp/239.253.93.231:6409
+http://nas.tuyuannet.cn:8800/udp/239.37.0.163:5540
 #EXTINF:-1 group-title="央视频道",CCTV台球
-https://epg.pw/stream/fcd995b82f8bed167a7f794e79f1e159e832dd277bab3a4e8a3b537a77b954da.ctv
-#EXTINF:-1 group-title="央视频道",CCTV台球
-http://home.yulei.online:9999/rtp/226.0.2.216:9640
-#EXTINF:-1 group-title="央视频道",CCTV台球
-http://120.234.49.38:7000/udp/239.21.0.71:3624
+http://122.152.202.33/s/81a8a44f/index.m3u8?id=bak1_95
+#EXTINF:-1 group-title="央视频道",CCTV文化精品
+http://61.190.129.195:8686/rtp/238.1.79.54:4568
+#EXTINF:-1 group-title="央视频道",CCTV文化精品
+http://nas.tuyuannet.cn:8800/udp/239.37.0.83:5540
+#EXTINF:-1 group-title="央视频道",CCTV文化精品
+http://xuys.top:8888/udp/225.1.2.177:5002
 #EXTINF:-1 group-title="央视频道",CCTV文化精品
 http://122.152.202.33/s/81a8a44f/index.m3u8?id=bak1_87
-#EXTINF:-1 group-title="央视频道",CCTV文化精品
-http://60.7.56.33:4000/rtp/239.253.92.25:6104
-#EXTINF:-1 group-title="央视频道",CHC动作
-http://222.218.158.4:8181/tsfile/live/1019_1.m3u8
-#EXTINF:-1 group-title="央视频道",CHC动作
-http://219.159.194.163:8181/tsfile/live/1019_1.m3u8
-#EXTINF:-1 group-title="央视频道",CHC动作
-http://112.102.217.173:9003//hls/75/index.m3u8
-#EXTINF:-1 group-title="央视频道",CHC动作
-http://ds920.dsmynas.net:5555/rtp/226.0.2.94:8012%24%E5%B1%B1%E8%A5%BFuni2
-#EXTINF:-1 group-title="央视频道",CHC动作
-http://59.51.113.18:18888/udp/239.76.252.243:9000
-#EXTINF:-1 group-title="央视频道",CHC动作
-http://ds920.dsmynas.net:5555/rtp/226.0.2.94:8012%24%E5%B1%B1%E8%A5%BFuni2+
-#EXTINF:-1 group-title="央视频道",CHC动作
-http://116.11.140.246:18181/tsfile/live/1059_1.m3u8
-#EXTINF:-1 group-title="央视频道",CHC动作
-http://219.156.48.185:9999/rtp/225.1.4.208:1261
-#EXTINF:-1 group-title="央视频道",CHC动作
-http://www.furymax.top:85/rtp/239.69.1.242:11094
-#EXTINF:-1 group-title="央视频道",CHC动作
-http://www.dsmcloud.top:8888/udp/239.81.0.239:4056
-#EXTINF:-1 group-title="央视频道",CHC影迷
-http://annaxi.lw-home.com:11111/udp/239.253.254.154:8000
-#EXTINF:-1 group-title="央视频道",CHC影迷
-http://ds920.dsmynas.net:5555/rtp/226.0.2.93:8004%24%E5%B1%B1%E8%A5%BFuni2+
-#EXTINF:-1 group-title="央视频道",CHC影迷
-http://www.dsmcloud.top:8888/udp/239.81.0.240:4056
-#EXTINF:-1 group-title="央视频道",CHC影迷
-http://219.156.48.185:9999/rtp/225.1.4.207:1260
-#EXTINF:-1 group-title="央视频道",CHC影迷
-http://ik6.iptv8.net:8888/udp/225.1.4.207:1260
-#EXTINF:-1 group-title="央视频道",CHC影迷
-http://120.234.49.38:7000/udp/239.21.0.119:3820
-#EXTINF:-1 group-title="央视频道",CHC家庭
-http://annaxi.lw-home.com:11111/udp/239.253.254.152:8000
-#EXTINF:-1 group-title="央视频道",CHC家庭
-http://www.8700956.top:18888/rtp/239.81.0.238:4056
-#EXTINF:-1 group-title="央视频道",CHC家庭
-http://ik6.iptv8.net:8888/udp/225.1.4.209:1262
-#EXTINF:-1 group-title="央视频道",CCTV兵器科技
-http://122.152.202.33/s/81a8a44f/index.m3u8?id=bak1_86
-#EXTINF:-1 group-title="央视频道",CCTV兵器科技
-http://119.135.1.234:6699/live/1083/index.m3u8
-#EXTINF:-1 group-title="央视频道",CCTV兵器科技
-http://www.akw323.com:9527/rtp/238.255.2.34:5999
-#EXTINF:-1 group-title="央视频道",CCTV兵器科技
-http://60.7.56.33:4000/rtp/239.253.92.119:8065
-#EXTINF:-1 group-title="央视频道",CCTV兵器科技
-http://120.234.49.38:7000/udp/239.21.0.80:3660
-#EXTINF:-1 group-title="央视频道",CCTV电视指南
-http://119.135.1.234:6699/live/1084/index.m3u8
-#EXTINF:-1 group-title="央视频道",CCTV电视指南
-https://epg.pw/stream/b8e394cc5ff1448dedc3638a10994d8bb02eefca9c56e70f323df8f4a55e4aaa.ctv
-#EXTINF:-1 group-title="央视频道",CCTV电视指南
-http://60.7.56.33:4000/rtp/239.253.92.17:6078
-#EXTINF:-1 group-title="央视频道",CCTV风云足球
-http://122.152.202.33/s/81a8a44f/index.m3u8?id=bak1_94
-#EXTINF:-1 group-title="央视频道",CCTV风云足球
-http://119.135.1.234:6699/live/1080/index.m3u8
-#EXTINF:-1 group-title="央视频道",CCTV风云足球
-http://59.51.113.18:18888/udp/239.76.254.52:9000
-#EXTINF:-1 group-title="央视频道",CCTV风云足球
-http://60.7.56.33:4000/rtp/239.253.92.110:8061
-#EXTINF:-1 group-title="央视频道",CCTV高尔夫网球
-http://60.7.56.33:4000/rtp/239.253.92.117:8062
-#EXTINF:-1 group-title="央视频道",CCTV女性时尚
-http://122.152.202.33/s/81a8a44f/index.m3u8?id=bak1_88
-#EXTINF:-1 group-title="央视频道",CCTV世界地理
-http://xuys.top:8888/udp/225.1.2.171:5002
-#EXTINF:-1 group-title="央视频道",CCTV世界地理
-http://59.51.113.18:18888/udp/239.76.254.57:9000
-#EXTINF:-1 group-title="央视频道",CCTV世界地理
-http://60.7.56.33:4000/rtp/239.253.92.113:8066
-#EXTINF:-1 group-title="央视频道",CCTV怀旧剧场
-http://122.152.202.33/s/81a8a44f/index.m3u8?id=bak1_89
-#EXTINF:-1 group-title="央视频道",CCTV怀旧剧场
-http://www.akw323.com:9527/rtp/238.255.2.33:5999
-#EXTINF:-1 group-title="央视频道",CCTV怀旧剧场
-https://epg.pw/stream/58ae31cf740793564420e363abcd7e3f6ae3ae75be7c4eaf3676c103471ba907.ctv
-#EXTINF:-1 group-title="央视频道",CCTV怀旧剧场
-http://60.7.56.33:4000/rtp/239.253.92.98:6120
-#EXTINF:-1 group-title="央视频道",CCTV风云剧场
-http://122.152.202.33/s/81a8a44f/index.m3u8?id=bak1_91
-#EXTINF:-1 group-title="央视频道",CCTV风云剧场
-http://www.akw323.com:9527/rtp/238.255.2.28:5999
-#EXTINF:-1 group-title="央视频道",CCTV风云剧场
-http://61.190.129.195:8686/rtp/238.1.79.62:4632
-#EXTINF:-1 group-title="央视频道",CCTV风云剧场
-https://epg.pw/stream/8c5ede6ea5578a0a7f3971a31ff8043098e43268eeb2af377ed3c17b2ad7377d.ctv
-#EXTINF:-1 group-title="央视频道",CCTV风云剧场
-http://60.7.56.33:4000/rtp/239.253.92.22:6073
-#EXTINF:-1 group-title="央视频道",CCTV风云音乐
-http://122.152.202.33/s/81a8a44f/index.m3u8?id=bak1_92
-#EXTINF:-1 group-title="央视频道",CCTV风云音乐
-http://www.akw323.com:9527/rtp/238.255.2.24:5999
-#EXTINF:-1 group-title="央视频道",CCTV风云音乐
-http://xuys.top:8888/udp/225.1.2.176:5002
-#EXTINF:-1 group-title="央视频道",CCTV移动
-http://newcntv.qcloudcdn.com/asp/hls/1200/0303000a/3/default/649e19038fa74514ab3f00febbcd6de0/1200.m3u8
