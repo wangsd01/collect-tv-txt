@@ -16,7 +16,7 @@ from my_tv_collect.utils import get_url_file_extension, convert_m3u_to_txt, filt
 class CollectTV:
     def __init__(self, live_tv_source_urls=[]):
         self.live_channel_source_dict = defaultdict(list)
-        self.load_from_folder()
+        # self.load_from_folder()
         self.result_counter = 15  # 每个频道需要的个数
         for url in tqdm(live_tv_source_urls, desc="Downloading channels from files"):
             self.download_channel_list(url)
@@ -222,7 +222,7 @@ if __name__ == "__main__":
         'https://raw.githubusercontent.com/iptv-org/iptv/master/streams/cn.m3u',
         'https://raw.githubusercontent.com/joevess/IPTV/main/iptv.m3u8',
         'https://raw.githubusercontent.com/Supprise0901/TVBox_live/main/live.txt',
-        'https://raw.githubusercontent.com/Guovin/TV/gd/result.txt',  # 每天自动更新1次
+        'https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/ipv4/result.m3u',  # 每天自动更新1次
         'https://raw.githubusercontent.com/ssili126/tv/main/itvlist.txt',  # 每天自动更新1次
         'https://m3u.ibert.me/txt/fmml_ipv6.txt',
         'https://m3u.ibert.me/txt/ycl_iptv.txt',

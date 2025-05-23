@@ -14,8 +14,10 @@ from my_tv_collect.utils import check_url, is_url_accessible
 
 # url = "http://112.46.85.60:8009/hls/503/index.m3u8"
 # url = "http://1.30.18.218:20080/hls/5/index.m3u8"
+url = "https://yunmei.tv/cctv"
 channel_dict = defaultdict(list)
-for i in tqdm(range(0, 100)):
+# for i in tqdm(range(0, 100)):
+for i in list(range(1, 15)) + ['5+']:
     # test_url = "http://112.46.85.60:8009/hls/" + str(i) + "/index.m3u8"
     # test_url = "http://1.30.18.218:20080/hls/" + str(i) + "/index.m3u8"
     # test_url = "http://116.162.6.192/zycfcdn.gdwlcloud.com/PLTV/88888888/224/3221225" + f"{i:03d}"+"/index.m3u8"
@@ -24,7 +26,8 @@ for i in tqdm(range(0, 100)):
     # test_url = f"http://111.61.236.247:9081/hls/{i}/index.m3u8"
     # test_url = f"http://110.52.8.141:808/hls/{i}/index.m3u8"
     # test_url = f"http://123.52.87.69:52200/hls/{i}/index.m3u8"
-    test_url = f"http://175.31.21.146:4480/hls/{i}/index.m3u8"
+    # test_url = f"http://175.31.21.146:4480/hls/{i}/index.m3u8"
+    test_url = f"{url}/cctv-{i}.m3u8"
     if check_url(test_url)[2]:
         print(test_url)
         channel_dict['CCTV'+str(i)].append(test_url)
