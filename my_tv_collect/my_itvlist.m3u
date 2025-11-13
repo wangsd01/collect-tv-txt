@@ -25,4 +25,11 @@ https://yunmei.tv/cctv/cctv-12.m3u8
 https://yunmei.tv/cctv/cctv-13.m3u8
 #EXTINF:-1 group-title="央视频道",CCTV14
 https://yunmei.tv/cctv/cctv-14.m3u8
-
+#EXTINF:-1 group-title="央视频道",凤凰咨讯
+http://php.jdshipin.com/TVOD/iptv.php?id=fhzx
+#EXTINF:-1 group-title="央视频道",凤凰咨讯
+http://43.152.143.193:80/1.v.smtcdns.net/tvlive.fengshows.cn/live/0701pin72.flv
+#EXTINF:-1 group-title="央视频道",凤凰卫视
+http://php.jdshipin.com/TVOD/iptv.php?id=fhzw
+#EXTINF:-1 group-title="央视频道",凤凰卫视
+http://43.152.143.193:80/1.v.smtcdns.net/tvlive.fengshows.cn/live/0701pcc72.flv
