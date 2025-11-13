@@ -33,3 +33,15 @@ http://43.152.143.193:80/1.v.smtcdns.net/tvlive.fengshows.cn/live/0701pin72.flv
 http://php.jdshipin.com/TVOD/iptv.php?id=fhzw
 #EXTINF:-1 group-title="央视频道",凤凰卫视
 http://43.152.143.193:80/1.v.smtcdns.net/tvlive.fengshows.cn/live/0701pcc72.flv
+#EXTINF:-1 group-title="卫视频道",浙江卫视
+https://yunmei.tv/wscn/zhejiang.m3u8
+#EXTINF:-1 group-title="卫视频道",北京卫视
+https://yunmei.tv/wscn/beijing.m3u8
+#EXTINF:-1 group-title="卫视频道",江苏卫视
+https://yunmei.tv/wscn/jiangsu.m3u8
+#EXTINF:-1 group-title="卫视频道",东方卫视
+https://yunmei.tv/wscn/dongfang.m3u8
+#EXTINF:-1 group-title="卫视频道",湖南卫视
+https://yunmei.tv/wscn/hunan.m3u8
+#EXTINF:-1 group-title="卫视频道",山东卫视
+https://yunmei.tv/wscn/shandong.m3u8
