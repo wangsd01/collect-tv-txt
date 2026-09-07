@@ -7,24 +7,25 @@ from datetime import datetime
 from util import convert_m3u_to_txt
 
 # 定义要访问的多个URL
+# 2026-09-07: 校验全部源地址可访问性，剔除已失效/空内容源，补充新的活跃维护源
 urls = [
-    'https://raw.githubusercontent.com/iptv-org/iptv/master/streams/cn.m3u',
-    'https://raw.githubusercontent.com/joevess/IPTV/main/iptv.m3u8',
     'https://raw.githubusercontent.com/Supprise0901/TVBox_live/main/live.txt',
-    'https://raw.githubusercontent.com/Guovin/TV/gd/result.txt', #每天自动更新1次
+    'https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/ipv4/result.m3u', #每天自动更新1次
     'https://raw.githubusercontent.com/ssili126/tv/main/itvlist.txt', #每天自动更新1次
     'https://m3u.ibert.me/txt/fmml_ipv6.txt',
     'https://m3u.ibert.me/txt/ycl_iptv.txt',
     'https://m3u.ibert.me/txt/y_g.txt',
-    'https://m3u.ibert.me/txt/j_home.txt',
     'https://raw.githubusercontent.com/gaotianliuyun/gao/master/list.txt',
-    'https://gitee.com/xxy002/zhiboyuan/raw/master/zby.txt',
-    'https://raw.githubusercontent.com/mlvjfchen/TV/main/iptv_list.txt', #每天早晚各自动更新1次 2024-06-03 17:50
-    'https://raw.githubusercontent.com/fenxp/iptv/main/live/ipv6.txt',  #1小时自动更新1次11:11 2024/05/13
-    'https://raw.githubusercontent.com/fenxp/iptv/main/live/tvlive.txt', #1小时自动更新1次11:11 2024/05/13
     'https://raw.githubusercontent.com/zwc456baby/iptv_alive/master/live.txt',  #每天自动更新1次 2024-06-24 16:37
     'https://gitlab.com/p2v5/wangtv/-/raw/main/lunbo.txt',
-    'https://raw.githubusercontent.com/PizazzGY/TVBox/main/live.txt'  #ADD 2024-07-22 13:50
+    'https://gitlab.com/p2v5/wangtv/-/raw/main/wang-tvlive.txt',
+    'https://raw.githubusercontent.com/iptv-org/iptv/refs/heads/master/streams/cn.m3u',
+    'https://raw.githubusercontent.com/wwb521/live/main/tv.m3u',  #ADD 2026-09-07
+    'https://raw.githubusercontent.com/vbskycn/iptv/master/tv/iptv4.txt',  #ADD 2026-09-07 每天自动更新
+    'https://raw.githubusercontent.com/hujingguang/ChinaIPTV/main/cnTV_AutoUpdate.m3u8',  #ADD 2026-09-07 每15分钟自动更新
+    'https://raw.githubusercontent.com/zuomy2021/tv/refs/heads/main/iptv.txt',  #ADD 2026-09-07
+    'https://raw.githubusercontent.com/best-fan/iptv-sources/master/cn_all.m3u8',  #ADD 2026-09-07 每天自动采集更新
+    'https://raw.githubusercontent.com/frankwuzp/iptv-cn/main/tv-ipv4-cmcc.m3u',  #ADD 2026-09-07
 ]
 
 #read BlackList 2024-06-17 15:02
@@ -89,22 +90,24 @@ def process_name_string(input_str):
 
 def process_part(part_str):
     # 处理逻辑
-    if "CCTV" in part_str  and "://" not in part_str:
+    if "CCTV" in part_str.upper() and "://" not in part_str:
+        part_str = part_str.upper()  # 统一大小写，防止 cctv/Cctv 等写法被漏判
         part_str=part_str.replace("IPV6", "")  #先剔除IPV6字样
         part_str=part_str.replace("PLUS", "+")  #替换PLUS
-        part_str=part_str.replace("1080", "")  #替换1080
+        for resolution in ("2160", "1080", "720", "576", "480"):  #剔除分辨率标注，防止与频道号数字混在一起
+            part_str = part_str.replace(resolution, "")
         filtered_str = ''.join(char for char in part_str if char.isdigit() or char == 'K' or char == '+')
         if not filtered_str.strip(): #处理特殊情况，如果发现没有找到频道数字返回原名称
-            filtered_str=part_str.replace("CCTV", "")
+            filtered_str = part_str.replace("CCTV", "").lstrip("-_ ")  #去掉"CCTV"后残留的连接符
 
         if len(filtered_str) > 2 and re.search(r'4K|8K', filtered_str):   # 特殊处理CCTV中部分4K和8K名称
             # 使用正则表达式替换，删除4K或8K后面的字符，并且保留4K或8K
             filtered_str = re.sub(r'(4K|8K).*', r'\1', filtered_str)
-            if len(filtered_str) > 2: 
+            if len(filtered_str) > 2:
                 # 给4K或8K添加括号
                 filtered_str = re.sub(r'(4K|8K)', r'(\1)', filtered_str)
 
-        return "CCTV"+filtered_str 
+        return "CCTV"+filtered_str
         
     elif "卫视" in part_str:
         # 定义正则表达式模式，匹配“卫视”后面的内容
@@ -147,7 +150,7 @@ def process_channel_line(line):
         channel_address=line.split(',')[1].strip()
         if channel_address not in combined_blacklist: # 判断当前源是否在blacklist中
             # 根据行内容判断存入哪个对象，开始分发
-            if "CCTV" in channel_name and check_url_existence(ys_lines, channel_address) : #央视频道
+            if "CCTV" in channel_name.upper() and check_url_existence(ys_lines, channel_address) : #央视频道，大小写不敏感
                 ys_lines.append(process_name_string(line.strip()))
             elif channel_name in ws_dictionary and check_url_existence(ws_lines, channel_address): #卫视频道
                 ws_lines.append(process_name_string(line.strip()))
