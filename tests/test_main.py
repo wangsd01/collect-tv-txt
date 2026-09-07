@@ -12,6 +12,31 @@ class MainTests(unittest.TestCase):
                  "#EXTM3U\n#EXTINF:-1,CCTV-1\nhttp://one\n#EXTINF:-1,CCTV2财经\nhttp://two$note\n"]
         self.assertEqual(main.parse_cctv_channels(texts), {"CCTV1": ["http://one"], "CCTV2": ["http://two"]})
 
+    def test_parse_selected_satellite_channels_and_groups_them(self):
+        texts = ["浙江卫视高清,http://zj\n东方卫视,http://sh\n广东珠江频道,http://no\n"]
+        channels = main.parse_channels(texts)
+        self.assertEqual(channels, {"浙江卫视": ["http://zj"], "东方卫视": ["http://sh"]})
+
+        txt, m3u = main.render_outputs(channels)
+        self.assertIn("卫视频道,#genre#\n东方卫视,http://sh\n浙江卫视,http://zj", txt)
+        self.assertIn('group-title="卫视频道",浙江卫视', m3u)
+
+    def test_parse_shandong_and_jinan_channels_and_groups_them(self):
+        texts = [
+            "山东综艺频道,http://zy\n山东生活,http://sh\n"
+            "济南新闻综合频道,http://jn\n济南都市,http://ds\n"
+            "济南影视,http://ys\n临沂新闻综合,http://no\n"
+        ]
+        channels = main.parse_channels(texts)
+        self.assertNotIn("临沂新闻综合", channels)
+
+        txt, m3u = main.render_outputs(channels)
+        self.assertIn("山东频道,#genre#", txt)
+        self.assertIn("山东综艺,http://zy", txt)
+        self.assertIn("济南频道,#genre#", txt)
+        self.assertIn("济南新闻综合,http://jn", txt)
+        self.assertIn('group-title="济南频道",济南影视', m3u)
+
     def test_stability_filter_keeps_only_valid(self):
         values = {"good": ("good", True, 2.0), "bad": ("bad", False, 0.0)}
         with mock.patch.object(main, "validate_stream", side_effect=lambda url, *_: values[url]):
@@ -29,4 +54,3 @@ class MainTests(unittest.TestCase):
         _, m3u = main.render_outputs({"CCTV2": ["http://two"], "CCTV1": ["http://one"]})
         self.assertEqual(m3u.splitlines()[0], "#EXTM3U")
         self.assertEqual(m3u.splitlines()[1:], ['#EXTINF:-1 group-title="央视频道",CCTV1', "http://one", '#EXTINF:-1 group-title="央视频道",CCTV2', "http://two"])
-

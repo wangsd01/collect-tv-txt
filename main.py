@@ -36,12 +36,37 @@ SOURCE_URLS = [
     "https://raw.githubusercontent.com/zuomy2021/tv/refs/heads/main/iptv.txt",
     "https://raw.githubusercontent.com/best-fan/iptv-sources/master/cn_all.m3u8",
     "https://raw.githubusercontent.com/frankwuzp/iptv-cn/main/tv-ipv4-cmcc.m3u",
+    # 山东省级及济南频道专项源（最近核验更新于 2026-07）
+    "https://raw.githubusercontent.com/sggc/SDU-IPTV-PRO/main/SDM-Unicast.m3u",
     # 港澳台频道清单（公开 GitHub 源，内容为 M3U）
     "https://raw.githubusercontent.com/whherui/IPTV/main/%E5%8F%B0%E6%B9%BE%E9%A6%99%E6%B8%AF%E6%BE%B3%E9%97%A8.txt",
     "https://raw.githubusercontent.com/s14685/tv/main/iptvhk.txt",
 ]
 
 HKTW_CHANNELS = {"凤凰香港", "凤凰香港台", "凤凰中文", "凤凰资讯", "凤凰资讯台", "翡翠台", "TVB翡翠台", "无线新闻台", "TVB新闻", "TVB News"}
+
+SATELLITE_CHANNELS = {
+    "浙江卫视", "北京卫视", "东方卫视",
+    "江苏卫视", "湖南卫视", "山东卫视",
+}
+
+# Keep common current and legacy source names: public playlists are not
+# consistent about including the province/city prefix or the latest callsign.
+SHANDONG_CHANNELS = {
+    "山东齐鲁", "齐鲁", "齐鲁频道",
+    "山东新闻", "山东文旅", "山东影视",
+    "山东综艺", "山东生活", "山东体育休闲", "山东体育",
+    "山东农科", "山东少儿", "山东公共", "山东教育",
+    "山东国际", "山东读书",
+}
+JINAN_CHANNELS = {
+    "济南新闻综合", "济南综合",
+    "济南都市", "济南经济生活", "济南生活",
+    "济南影视", "济南文化娱乐", "济南娱乐",
+    "济南文旅体育", "济南体育休闲",
+    "济南公共", "济南移动", "济南科教", "济南图文",
+}
+SELECTED_LOCAL_CHANNELS = SHANDONG_CHANNELS | JINAN_CHANNELS
 
 def fetch_source(url, timeout):
     req = urllib.request.Request(url, headers={"User-Agent": "collect-tv-txt/1.0"})
@@ -53,7 +78,8 @@ def source_lines(text):
         text = convert_m3u_to_txt(text)
     return [line.strip() for line in text.splitlines() if line.strip()]
 
-def parse_cctv_channels(texts):
+def parse_channels(texts, satellite_channels=SATELLITE_CHANNELS,
+                   local_channels=SELECTED_LOCAL_CHANNELS):
     channels, seen = defaultdict(list), defaultdict(set)
     for text in texts:
         for line in source_lines(text):
@@ -61,9 +87,15 @@ def parse_cctv_channels(texts):
                 continue
             raw_name, url = (part.strip() for part in line.split(",", 1))
             name, url = standardize_channel_name(raw_name), url.split("$", 1)[0].strip()
-            if (name.startswith("CCTV") or name in HKTW_CHANNELS) and url and url not in seen[name]:
+            if (name.startswith("CCTV") or name in HKTW_CHANNELS or
+                    name in satellite_channels or name in local_channels) and url and url not in seen[name]:
                 seen[name].add(url); channels[name].append(url)
     return dict(channels)
+
+
+def parse_cctv_channels(texts):
+    """Backward-compatible name for consumers of the original parser."""
+    return parse_channels(texts, satellite_channels=set(), local_channels=set())
 
 def validate_stream(url, decode_seconds, connect_grace):
     choppy, speed, error = check_stream_quality(url, decode_seconds=decode_seconds,
@@ -96,7 +128,14 @@ def render_outputs(channels, timestamp=None):
         return (int(suffix) if suffix.isdigit() else (6 if suffix == "5+" else 10000), name)
     cctv = sorted((name for name in channels if name.startswith("CCTV")), key=key)
     hktw = sorted((name for name in channels if name in HKTW_CHANNELS), key=key)
-    for group, names in (("央视频道", cctv), ("港澳台", hktw)):
+    satellite = sorted(name for name in channels if name in SATELLITE_CHANNELS)
+    shandong = sorted(name for name in channels if name in SHANDONG_CHANNELS)
+    jinan = sorted(name for name in channels if name in JINAN_CHANNELS)
+    grouped_names = [
+        ("央视频道", cctv), ("卫视频道", satellite),
+        ("山东频道", shandong), ("济南频道", jinan), ("港澳台", hktw),
+    ]
+    for group, names in grouped_names:
         if not names:
             continue
         txt.append(""); txt.append(f"{group},#genre#")
@@ -129,11 +168,11 @@ def collect(args):
                 else: print(f"ignored empty source: {url}")
             except Exception as exc: print(f"source failed: {url}: {exc}")
     if not texts: raise RuntimeError("all source downloads failed; existing output was preserved")
-    channels = parse_cctv_channels(texts)
-    if not channels: raise RuntimeError("sources contained no CCTV streams; existing output was preserved")
+    channels = parse_channels(texts)
+    if not channels: raise RuntimeError("sources contained no selected streams; existing output was preserved")
     result = stable_channels(channels, args.max_candidates, args.max_streams, args.stream_workers,
                              args.decode_seconds, args.connect_grace)
-    if not result: raise RuntimeError("no stable CCTV streams found; existing output was preserved")
+    if not result: raise RuntimeError("no stable selected streams found; existing output was preserved")
     return result
 
 def main(argv=None):
