@@ -1,7 +1,10 @@
 import collections
+import concurrent.futures
 import datetime
 import glob
+import os
 import re
+import threading
 import urllib
 from collections import defaultdict
 from pathlib import Path
@@ -9,29 +12,45 @@ from pathlib import Path
 from tqdm import tqdm
 
 from my_tv_collect.utils import get_url_file_extension, convert_m3u_to_txt, filter_accessible_urls, \
-    standardize_channel_name, rank_channel_urls_by_speed, channel_key, rank_channel_urls_by_choppy_and_speed, \
-    sequential_rank_channel_urls_by_choppy_and_speed
+    standardize_channel_name, rank_channel_urls_by_speed, channel_key, rank_channels_by_choppy_and_speed
 
 
 class CollectTV:
-    def __init__(self, live_tv_source_urls=[]):
+    def __init__(self, live_tv_source_urls=None, source_timeout=10,
+                 max_latency_ms=2000, rank_streams=True,
+                 max_source_workers=20, max_rank_workers=None,
+                 decode_seconds=5, retries=1):
         self.live_channel_source_dict = defaultdict(list)
+        self.source_timeout = source_timeout
+        self.max_latency_ms = max_latency_ms
+        # Each rank check spawns a real ffmpeg decode process (CPU-bound, not
+        # just an idle socket), so default concurrency to the CPU count
+        # rather than a large I/O-style thread count.
+        self.max_rank_workers = max_rank_workers or (os.cpu_count() or 4) * 2
+        self.decode_seconds = decode_seconds
+        self.retries = retries
+        self._dict_lock = threading.Lock()
         # self.load_from_folder()
         self.result_counter = 15  # 每个频道需要的个数
-        for url in tqdm(live_tv_source_urls, desc="Downloading channels from files"):
-            self.download_channel_list(url)
+        live_tv_source_urls = live_tv_source_urls or []
+        max_works = min(len(live_tv_source_urls), max_source_workers) or 1
+        with concurrent.futures.ThreadPoolExecutor(max_workers=max_works) as executor:
+            futures = [executor.submit(self.download_channel_list, url) for url in live_tv_source_urls]
+            for _ in tqdm(concurrent.futures.as_completed(futures), total=len(futures),
+                          desc="Downloading channels from sources"):
+                pass
         self.filter_accessible_channels()
-        # self.rank_channel_urls_by_speed()
-        self.rank_channel_urls_by_choppy_and_speed()
+        if rank_streams:
+            self.rank_channel_urls_by_choppy_and_speed()
 
     def download_channel_list(self, url):
         try:
             # 打开URL并读取内容
-            with urllib.request.urlopen(url) as response:
+            with urllib.request.urlopen(url, timeout=self.source_timeout) as response:
                 # 以二进制方式读取数据
                 data = response.read()
                 # 将二进制数据解码为字符串
-                text = data.decode('utf-8')
+                text = data.decode('utf-8', errors='replace')
 
                 # 处理m3u和m3u8，提取channel_name和channel_address
                 if get_url_file_extension(url) == ".m3u" or get_url_file_extension(url) == ".m3u8":
@@ -78,8 +97,7 @@ class CollectTV:
         else:
             # print("Discard ", line)
             return
-        channel_name = line.split(',')[0].strip()
-        channel_url = line.split(',')[1].strip()
+        channel_name, channel_url = (part.strip() for part in line.split(',', 1))
         channel_name = standardize_channel_name(channel_name)
         # if "CCTV5" != channel_name:
         #     return
@@ -106,7 +124,8 @@ class CollectTV:
             return
         if 'IPV6' in channel_name:
             return
-        self.live_channel_source_dict[channel_name].append(channel_url)
+        with self._dict_lock:
+            self.live_channel_source_dict.setdefault(channel_name, []).append(channel_url)
 
     def filter_accessible_channels(self):
         self.live_channel_source_dict = collections.OrderedDict(
@@ -116,7 +135,11 @@ class CollectTV:
         for channel_name, channel_urls in tqdm(self.live_channel_source_dict.items(),
                                                desc="filtering accessible channel"):
             channel_urls = set(channel_urls)
-            valid_urls = filter_accessible_urls(channel_urls)
+            valid_urls = filter_accessible_urls(
+                channel_urls,
+                timeout=min(self.source_timeout, 3),
+                max_latency_ms=self.max_latency_ms,
+            )
             print("filtering ", channel_name, f", {len(channel_urls)} urls, {len(valid_urls)} accessible.")
             self.live_channel_source_dict[channel_name] = valid_urls
 
@@ -126,11 +149,13 @@ class CollectTV:
             self.live_channel_source_dict[channel_name] = ranked_channel_urls
 
     def rank_channel_urls_by_choppy_and_speed(self):
-        for channel_name, channel_urls in tqdm(self.live_channel_source_dict.items(), desc="ranking channels"):
-            print(channel_name)
-            ranked_channel_urls = rank_channel_urls_by_choppy_and_speed(channel_urls)
-            # ranked_channel_urls = sequential_rank_channel_urls_by_choppy_and_speed(channel_urls)
-            self.live_channel_source_dict[channel_name] = ranked_channel_urls
+        ranked = rank_channels_by_choppy_and_speed(
+            self.live_channel_source_dict,
+            max_workers=self.max_rank_workers,
+            decode_seconds=self.decode_seconds,
+            retries=self.retries,
+        )
+        self.live_channel_source_dict.update(ranked)
 
     def write_to_txt(self, file_name="my_itvlist"):
         file_name = file_name + "_" + datetime.datetime.now().strftime("%m-%d-%Y")
@@ -218,44 +243,30 @@ class CollectTV:
 
 
 if __name__ == "__main__":
+    # 2026-09-07: 校验全部源地址可访问性，剔除已失效/空内容源，
+    # 并将 github.com/.../blob/... 链接（返回 HTML 而非原始内容）替换为 raw.githubusercontent.com 等效地址
     urls = [
         'https://raw.githubusercontent.com/iptv-org/iptv/master/streams/cn.m3u',
-        'https://raw.githubusercontent.com/joevess/IPTV/main/iptv.m3u8',
         'https://raw.githubusercontent.com/Supprise0901/TVBox_live/main/live.txt',
         'https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/ipv4/result.m3u',  # 每天自动更新1次
         'https://raw.githubusercontent.com/ssili126/tv/main/itvlist.txt',  # 每天自动更新1次
         'https://m3u.ibert.me/txt/fmml_ipv6.txt',
         'https://m3u.ibert.me/txt/ycl_iptv.txt',
         'https://m3u.ibert.me/txt/y_g.txt',
-        'https://m3u.ibert.me/txt/j_home.txt',
         'https://raw.githubusercontent.com/gaotianliuyun/gao/master/list.txt',
-        'https://gitee.com/xxy002/zhiboyuan/raw/master/zby.txt',
-        'https://raw.githubusercontent.com/mlvjfchen/TV/main/iptv_list.txt',  # 每天早晚各自动更新1次 2024-06-03 17:50
-        'https://raw.githubusercontent.com/fenxp/iptv/main/live/ipv6.txt',  # 1小时自动更新1次11:11 2024/05/13
-        'https://raw.githubusercontent.com/fenxp/iptv/main/live/tvlive.txt',  # 1小时自动更新1次11:11 2024/05/13
         'https://raw.githubusercontent.com/zwc456baby/iptv_alive/master/live.txt',  # 每天自动更新1次 2024-06-24 16:37
         'https://gitlab.com/p2v5/wangtv/-/raw/main/lunbo.txt',
-        'https://raw.githubusercontent.com/PizazzGY/TVBox/main/live.txt',  # ADD 2024-07-22 13:50
         'https://raw.githubusercontent.com/wwb521/live/main/tv.m3u',  # ADD 2024-08-05 每10天更新一次
-        'https://gitcode.net/MZ011/BHJK/-/raw/master/BHZB1.txt',  # ADD 2024-08-05
-        'http://47.99.102.252/live.txt',  # ADD 2024-08-05
-        'http://ttkx.live:55/lib/kx2024.txt',  # ADD 2024-08-11 每天更新3次
         'https://raw.githubusercontent.com/vbskycn/iptv/master/tv/iptv4.txt',  # ADD 2024-08-12 每天更新3次
-        'https://gitlab.com/tvtg/vip/-/raw/main/log.txt',  # ADD 2024-08-10
-        'https://raw.githubusercontent.com/kimwang1978/tvbox/main/%E5%A4%A9%E5%A4%A9%E5%BC%80%E5%BF%83/lives/%E2%91%AD%E5%BC%80%E5%BF%83%E7%BA%BF%E8%B7%AF.txt',
         'https://raw.githubusercontent.com/YanG-1989/m3u/main/Gather.m3u',
         'https://gitlab.com/p2v5/wangtv/-/raw/main/wang-tvlive.txt',
         'https://raw.githubusercontent.com/hujingguang/ChinaIPTV/main/cnTV_AutoUpdate.m3u8',
-        'https://raw.githubusercontent.com/pxiptv/TV/main/test.txt',
-        'https://raw.githubusercontent.com/pxiptv/TV/main/test.m3u',
-        'https://raw.githubusercontent.com/pxiptv/TV/main/tv.txt',
         "https://raw.githubusercontent.com/kimwang1978/collect-tv-txt/main/merged_output.m3u",
         "https://raw.githubusercontent.com/wangsd01/collect-tv-txt/main/my_tv_collect/test.m3u",
-        "https://raw.githubusercontent.com/wangsd01/collect-tv-txt/main/my_tv_collect/my_itvlist.m3u"
-        "https://github.com/zuomy2021/tv/blob/main/iptv.txt",
+        "https://raw.githubusercontent.com/wangsd01/collect-tv-txt/main/my_tv_collect/my_itvlist.m3u",
         "https://raw.githubusercontent.com/zuomy2021/tv/refs/heads/main/iptv.txt",
         "https://raw.githubusercontent.com/ALIT8569/tuc-mywl/refs/heads/main/%E5%92%AA%E5%92%95%E5%A4%AE%E8%A7%86.txt",
-        "https://github.com/ALIT8569/tuc-mywl/blob/26d561e52cb4a6057917213faaf1583df66512c1/%E4%B8%AD%E5%9B%BD%E7%A7%BB%E5%8A%A8(ip%E7%89%88%E7%A7%BB%E5%8A%A8%E9%80%9A%E7%94%A8).txt"
+        "https://raw.githubusercontent.com/ALIT8569/tuc-mywl/refs/heads/main/%E4%B8%AD%E5%9B%BD%E7%A7%BB%E5%8A%A8(ip%E7%89%88%E7%A7%BB%E5%8A%A8%E9%80%9A%E7%94%A8).txt",
     ]
     ctv = CollectTV(urls)
     ctv.write_to_txt()

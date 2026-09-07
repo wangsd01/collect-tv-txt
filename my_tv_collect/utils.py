@@ -2,11 +2,10 @@ import os
 import re
 import urllib
 import time
+from collections import defaultdict
 from datetime import datetime
 from urllib.parse import urlparse
 
-import eventlet
-import zhconv
 import requests
 import threading
 from queue import Queue
@@ -14,8 +13,7 @@ import concurrent.futures
 
 from tqdm import tqdm
 
-from my_tv_collect.m3u8_stream_choopy_test import is_m3u8_stream_choppy
-from my_tv_collect.udp_stream_choppy_test import is_udp_stream_choppy
+from my_tv_collect.stream_check import check_stream_quality
 
 
 def get_url_file_extension(url):
@@ -29,32 +27,27 @@ def get_url_file_extension(url):
 
 
 def convert_m3u_to_txt(m3u_content):
-    # 分行处理
-    lines = m3u_content.split('\n')
-
-    # 用于存储结果的列表
     txt_lines = []
-
-    # 临时变量用于存储频道名称
     channel_name = ""
 
-    for line in lines:
-        # 过滤掉 #EXTM3U 开头的行
-        if line.startswith("#EXTM3U"):
+    for raw_line in m3u_content.splitlines():
+        line = raw_line.strip()
+        if not line:
             continue
-        # 处理 #EXTINF 开头的行
         if line.startswith("#EXTINF"):
-            # 获取频道名称（假设频道名称在引号后）
-            channel_name = line.split(',')[-1].strip()
-        # 处理 URL 行
-        elif line.startswith("http"):
-            if '$' in line:
-                # remove comment after $
-                line = line.split('$')[0]
-            txt_lines.append(f"{channel_name},{line.strip()}")
+            _, separator, channel_name = line.partition(",")
+            if not separator:
+                channel_name = ""
+            channel_name = channel_name.strip()
+            continue
+        if line.startswith("#") or "://" not in line:
+            continue
 
-    # 将结果合并成一个字符串，以换行符分隔
-    return '\n'.join(txt_lines)
+        stream_url = line.split("$", 1)[0].strip()
+        if channel_name and stream_url:
+            txt_lines.append(f"{channel_name},{stream_url}")
+
+    return "\n".join(txt_lines)
 
 
 # 检测URL是否可访问并记录响应时间
@@ -63,15 +56,20 @@ headers = {
 }
 
 
-def check_url(url, timeout=1):
+def check_url(url, timeout=3, max_latency_ms=2000):
     try:
-        if "://" in url:
-            start_time = time.time()
-            req = urllib.request.Request(url, headers=headers)
-            with urllib.request.urlopen(req, timeout=timeout) as response:
-                elapsed_time = (time.time() - start_time) * 1000  # 转换为毫秒
-                if response.status == 200:
-                    return elapsed_time, True, url
+        parsed_url = urlparse(url)
+        if parsed_url.scheme not in {"http", "https"} or not parsed_url.netloc:
+            return None, False, None
+
+        start_time = time.time()
+        req = urllib.request.Request(url, headers=headers)
+        with urllib.request.urlopen(req, timeout=timeout) as response:
+            response.read(1)
+            elapsed_time = (time.time() - start_time) * 1000
+            if 200 <= response.status < 400 and (
+                    max_latency_ms is None or elapsed_time <= max_latency_ms):
+                return elapsed_time, True, url
     except Exception as e:
         # print(f"Error checking {url}   : {e}")
         pass
@@ -125,10 +123,13 @@ def filter_accessible_urls_sequential(urls):
     return valid_urls
 
 
-def filter_accessible_urls(urls):
+def filter_accessible_urls(urls, timeout=3, max_latency_ms=2000, max_workers=10):
     urls = set(urls)
+    if not urls:
+        return []
+
     valid_urls = []
-    max_works = min(len(urls), 10)
+    max_works = min(len(urls), max_workers)
     #   多线程获取可用url
     # with concurrent.futures.ThreadPoolExecutor(max_workers=max_works) as executor:
     #     futures = []
@@ -143,7 +144,10 @@ def filter_accessible_urls(urls):
 
     with concurrent.futures.ThreadPoolExecutor(max_workers=max_works) as executor:
         urls = [url.strip() for url in urls]
-        results = executor.map(check_url, urls)
+        results = executor.map(
+            lambda url: check_url(url, timeout=timeout, max_latency_ms=max_latency_ms),
+            urls,
+        )
 
         for latency, valid, url in results:
             if valid:
@@ -154,7 +158,12 @@ def filter_accessible_urls(urls):
 
 
 def standardize_channel_name(name):
-    name = zhconv.convert(name, locale='zh-cn')
+    try:
+        import zhconv
+    except ImportError:
+        pass
+    else:
+        name = zhconv.convert(name, locale='zh-cn')
     # if 'CCTV' in name:
     #     print("Before", name)
     name = name.upper()
@@ -360,6 +369,8 @@ def standardize_channel_name(name):
 
 
 def rank_channel_urls_by_speed(channels):
+    import eventlet
+
     # 线程安全的队列，用于存储下载任务
     task_queue = Queue()
 
@@ -454,46 +465,51 @@ def measure_segment_size(segment_url):
         return 0
 
 
-def check_url_by_choppy_and_speed(url):
-    # if 'udp' in url or 'rtp' in url:
-    #     is_choppy, speed = analyze_udp_stream(url)
-    if 'm3u8' in url:
-        is_choppy, speed = is_m3u8_stream_choppy(url)
-    else:
-        is_choppy, speed = is_udp_stream_choppy(url)
-    return is_choppy, speed, url
+def check_url_by_choppy_and_speed(url, decode_seconds=5, retries=1):
+    try:
+        is_choppy, speed, error_code = check_stream_quality(
+            url, decode_seconds=decode_seconds, retries=retries,
+        )
+        return is_choppy, speed, url
+    except RuntimeError:
+        # Environment problem (e.g. ffmpeg missing from PATH) -- don't hide
+        # it by silently reporting every stream as choppy.
+        raise
+    except Exception:
+        return True, 0, url
 
 
-def rank_channel_urls_by_choppy_and_speed(channel_urls):
-    urls = set(channel_urls)
-    valid_urls = []
-    if len(channel_urls) == 0:
-        return valid_urls
-    max_works = min(len(urls), 10)
+def rank_channels_by_choppy_and_speed(channel_url_map, max_workers=30, decode_seconds=5, retries=1):
+    """Rank every channel's URLs for choppiness/speed with a single shared thread pool.
+
+    Checking each channel with its own pool means total wall time is the *sum* of every
+    channel's slowest URL. Flattening all (channel, url) pairs into one pool means it's
+    closer to the slowest single check overall.
+    """
+    pairs = [
+        (channel_name, url)
+        for channel_name, urls in channel_url_map.items()
+        for url in {u.strip() for u in urls}
+    ]
+
+    ranked = {channel_name: [] for channel_name in channel_url_map}
+    if not pairs:
+        return ranked
+
+    results_by_channel = defaultdict(list)
+    max_works = min(len(pairs), max_workers)
     with concurrent.futures.ThreadPoolExecutor(max_workers=max_works) as executor:
-        urls = [url.strip() for url in urls]
-        results = executor.map(check_url_by_choppy_and_speed, urls)
+        future_to_channel = {
+            executor.submit(check_url_by_choppy_and_speed, url, decode_seconds, retries): channel_name
+            for channel_name, url in pairs
+        }
+        for future in tqdm(concurrent.futures.as_completed(future_to_channel),
+                            total=len(future_to_channel), desc="ranking channel urls"):
+            channel_name = future_to_channel[future]
+            is_choppy, speed, url = future.result()
+            results_by_channel[channel_name].append((is_choppy, speed, url))
 
-        results = sorted(results, key=lambda x: (x[0], -x[1]))
-        print(results)
-        for is_choppy, speed, url in results:
-            if not is_choppy and speed > 100:
-                valid_urls.append(url)
-    return valid_urls
-
-
-def sequential_rank_channel_urls_by_choppy_and_speed(channel_urls):
-    urls = set(channel_urls)
-    valid_urls = []
-    if len(urls) == 0:
-        return valid_urls
-    results = []
-    for url in tqdm(urls, desc="sequential ranking urls:"):
-        result = check_url_by_choppy_and_speed(url)
-        results.append(result)
-    results = sorted(results, key=lambda x: (x[0], -x[1]))
-    print(results)
-    for is_choppy, speed, url in results:
-        if not is_choppy and speed > 100:
-            valid_urls.append(url)
-    return valid_urls
+    for channel_name, results in results_by_channel.items():
+        results.sort(key=lambda x: (x[0], -x[1]))
+        ranked[channel_name] = [url for is_choppy, speed, url in results if not is_choppy]
+    return ranked

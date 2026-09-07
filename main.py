@@ -7,24 +7,25 @@ from datetime import datetime
 from util import convert_m3u_to_txt
 
 # 定义要访问的多个URL
+# 2026-09-07: 校验全部源地址可访问性，剔除已失效/空内容源，补充新的活跃维护源
 urls = [
-    'https://raw.githubusercontent.com/iptv-org/iptv/master/streams/cn.m3u',
-    'https://raw.githubusercontent.com/joevess/IPTV/main/iptv.m3u8',
     'https://raw.githubusercontent.com/Supprise0901/TVBox_live/main/live.txt',
-    'https://raw.githubusercontent.com/Guovin/TV/gd/result.txt', #每天自动更新1次
+    'https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/ipv4/result.m3u', #每天自动更新1次
     'https://raw.githubusercontent.com/ssili126/tv/main/itvlist.txt', #每天自动更新1次
     'https://m3u.ibert.me/txt/fmml_ipv6.txt',
     'https://m3u.ibert.me/txt/ycl_iptv.txt',
     'https://m3u.ibert.me/txt/y_g.txt',
-    'https://m3u.ibert.me/txt/j_home.txt',
     'https://raw.githubusercontent.com/gaotianliuyun/gao/master/list.txt',
-    'https://gitee.com/xxy002/zhiboyuan/raw/master/zby.txt',
-    'https://raw.githubusercontent.com/mlvjfchen/TV/main/iptv_list.txt', #每天早晚各自动更新1次 2024-06-03 17:50
-    'https://raw.githubusercontent.com/fenxp/iptv/main/live/ipv6.txt',  #1小时自动更新1次11:11 2024/05/13
-    'https://raw.githubusercontent.com/fenxp/iptv/main/live/tvlive.txt', #1小时自动更新1次11:11 2024/05/13
     'https://raw.githubusercontent.com/zwc456baby/iptv_alive/master/live.txt',  #每天自动更新1次 2024-06-24 16:37
     'https://gitlab.com/p2v5/wangtv/-/raw/main/lunbo.txt',
-    'https://raw.githubusercontent.com/PizazzGY/TVBox/main/live.txt'  #ADD 2024-07-22 13:50
+    'https://gitlab.com/p2v5/wangtv/-/raw/main/wang-tvlive.txt',
+    'https://raw.githubusercontent.com/iptv-org/iptv/refs/heads/master/streams/cn.m3u',
+    'https://raw.githubusercontent.com/wwb521/live/main/tv.m3u',  #ADD 2026-09-07
+    'https://raw.githubusercontent.com/vbskycn/iptv/master/tv/iptv4.txt',  #ADD 2026-09-07 每天自动更新
+    'https://raw.githubusercontent.com/hujingguang/ChinaIPTV/main/cnTV_AutoUpdate.m3u8',  #ADD 2026-09-07 每15分钟自动更新
+    'https://raw.githubusercontent.com/zuomy2021/tv/refs/heads/main/iptv.txt',  #ADD 2026-09-07
+    'https://raw.githubusercontent.com/best-fan/iptv-sources/master/cn_all.m3u8',  #ADD 2026-09-07 每天自动采集更新
+    'https://raw.githubusercontent.com/frankwuzp/iptv-cn/main/tv-ipv4-cmcc.m3u',  #ADD 2026-09-07
 ]
 
 #read BlackList 2024-06-17 15:02
