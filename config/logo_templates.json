@@ -1,6 +1,18 @@
 [
   {
     "channel": "CCTV10",
+    "file": "logo_templates/CCTV10/human-70216d65d2cf.png",
+    "source": "人工框选自 audits/2026-09-07-logo-validation/frames/CCTV10-7b2a25e0cd72-round-2.jpg",
+    "verified": true
+  },
+  {
+    "channel": "CCTV10",
+    "file": "logo_templates/CCTV10/human-8d2daae13456.png",
+    "source": "人工框选自 audits/2026-09-07-logo-validation/frames/CCTV10-7b2a25e0cd72-round-1.jpg",
+    "verified": true
+  },
+  {
+    "channel": "CCTV10",
     "file": "logo_templates/CCTV10/normal-program.jpg",
     "source": "人工确认正确的 CCTV10 正常节目截图",
     "verified": true
