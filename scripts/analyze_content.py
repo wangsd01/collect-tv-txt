@@ -73,6 +73,8 @@ def analyze(source, output):
     output.mkdir(parents=True, exist_ok=False)
     import shutil
     shutil.copytree(source/'frames', output/'frames')
+    if (source / 'logo-crops').exists():
+        shutil.copytree(source / 'logo-crops', output / 'logo-crops')
     manifest = json.loads((source/'manifest.json').read_text())
     languages = available_ocr_languages()
     if not languages:
