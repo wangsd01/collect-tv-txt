@@ -26,6 +26,14 @@ python -m venv .venv
 
 调试某个频道时可加 `--channel CCTV10`，避免重新抓取整份列表。
 
+为台标参考库选择可信样本：
+
+```bash
+.venv/bin/python scripts/logo_template_review.py audits/日期-realtime
+# 在生成页面中框出台标并导出 JSON 后：
+.venv/bin/python scripts/apply_logo_review.py /path/to/logo-reference-review.json audits/日期-realtime
+```
+
 在生成的 `gallery.html` 中选择结论并导出 `stream-review.json` 后，应用结论：
 
 ```bash
