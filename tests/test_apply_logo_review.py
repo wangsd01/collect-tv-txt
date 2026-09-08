@@ -6,6 +6,7 @@ from pathlib import Path
 from PIL import Image
 
 from scripts.apply_logo_review import apply_logo_reviews, normalized_crop_box
+from scripts.logo_template_review import select_diverse_frames
 
 
 class ApplyLogoReviewTests(unittest.TestCase):
@@ -37,6 +38,21 @@ class ApplyLogoReviewTests(unittest.TestCase):
             }]}
             with self.assertRaises(ValueError):
                 apply_logo_reviews(payload, root / "capture", root / "config.json")
+
+    def test_synchronized_frames_are_reduced_to_one_representative(self):
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory); frames = root / "frames"; frames.mkdir()
+            Image.new("RGB", (100, 50), "red").save(frames / "one.jpg")
+            Image.new("RGB", (100, 50), "red").save(frames / "two.jpg")
+            Image.new("RGB", (100, 50), "blue").save(frames / "three.jpg")
+            manifest = {"items": [
+                {"channel": "CCTV1", "url": "http://one", "frames": ["one.jpg"], "captured_at": ["1"]},
+                {"channel": "CCTV1", "url": "http://two", "frames": ["two.jpg", "three.jpg"], "captured_at": ["2", "3"]},
+            ]}
+            representatives = select_diverse_frames(manifest, root)
+            self.assertEqual(len(representatives), 2)
+            self.assertEqual(representatives[0]["duplicate_count"], 2)
+            self.assertEqual(len(representatives[0]["duplicate_urls"]), 2)
 
 
 if __name__ == "__main__":

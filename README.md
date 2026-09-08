@@ -34,6 +34,8 @@ python -m venv .venv
 .venv/bin/python scripts/apply_logo_review.py /path/to/logo-reference-review.json audits/日期-realtime
 ```
 
+审核页会先对同步转播和近似画面去重；不同节目时段应分别采集、分别审核，逐步补充模板。
+
 在生成的 `gallery.html` 中选择结论并导出 `stream-review.json` 后，应用结论：
 
 ```bash

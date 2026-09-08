@@ -7,27 +7,70 @@ import html
 import json
 from pathlib import Path
 
+from PIL import Image
+
+
+def frame_signature(path: Path):
+    with Image.open(path) as image:
+        thumbnail = image.convert("RGB").resize((9, 8))
+        grey = list(thumbnail.convert("L").get_flattened_data())
+        colours = list(thumbnail.get_flattened_data())
+    return {
+        "dhash": sum((grey[y * 9 + x] > grey[y * 9 + x + 1]) << (y * 8 + x)
+                     for y in range(8) for x in range(8)),
+        "mean_rgb": [sum(pixel[index] for pixel in colours) / len(colours) for index in range(3)],
+    }
+
+
+def similar_frames(first, second, hash_distance=8, colour_distance=30):
+    return ((first["dhash"] ^ second["dhash"]).bit_count() <= hash_distance and
+            sum(abs(a - b) for a, b in zip(first["mean_rgb"], second["mean_rgb"])) <= colour_distance)
+
+
+def select_diverse_frames(manifest, capture_dir: Path):
+    """Greedily keep one representative for synchronized/near-duplicate frames per channel."""
+    representatives = []
+    for item in manifest["items"]:
+        captured = item.get("captured_at", [])
+        for index, frame in enumerate(item.get("frames", [])):
+            signature = frame_signature(capture_dir / "frames" / frame)
+            duplicate = next((record for record in representatives
+                              if record["channel"] == item["channel"] and
+                              similar_frames(record["signature"], signature)), None)
+            if duplicate:
+                duplicate["duplicate_count"] += 1
+                duplicate["duplicate_urls"].add(item["url"])
+                continue
+            representatives.append({
+                "channel": item["channel"], "url": item["url"], "frame": frame,
+                "captured_at": captured[index] if index < len(captured) else "",
+                "signature": signature, "duplicate_count": 1, "duplicate_urls": {item["url"]},
+            })
+    return representatives
+
 
 def build_page(capture_dir: Path) -> str:
     manifest = json.loads((capture_dir / "manifest.json").read_text(encoding="utf-8"))
     cards = []
-    for item in manifest["items"]:
-        for index, frame in enumerate(item.get("frames", [])):
-            captured = item.get("captured_at", [])
-            at = captured[index] if index < len(captured) else ""
-            cards.append(
-                f'<section class="card" data-channel="{html.escape(item["channel"])}" '
-                f'data-url="{html.escape(item["url"])}" data-frame="{html.escape(frame)}">'
-                f'<h2>{html.escape(item["channel"])}</h2><code>{html.escape(item["url"])}</code>'
-                f'<p><small>UTC：{html.escape(at)} · {html.escape(frame)}</small></p>'
-                f'<div class="image-wrap"><img draggable="false" src="frames/{html.escape(frame)}">'
-                '<div class="selection"></div></div><p class="coords">尚未框选台标</p>'
-                '<label>结论：<select><option value="">待确认</option>'
-                '<option value="correct_logo">台标正确，加入参考库</option>'
-                '<option value="wrong_logo">台标不对</option>'
-                '<option value="no_logo">无台标／看不清</option>'
-                '<option value="uncertain">仍不确定</option></select></label></section>'
-            )
+    representatives = select_diverse_frames(manifest, capture_dir)
+    total_frames = sum(len(item.get("frames", [])) for item in manifest["items"])
+    for record in representatives:
+        duplicate_note = (f' · 代表 {record["duplicate_count"]} 张近似截图／'
+                          f'{len(record["duplicate_urls"])} 个 URL')
+        cards.append(
+            f'<section class="card" data-channel="{html.escape(record["channel"])}" '
+            f'data-url="{html.escape(record["url"])}" data-frame="{html.escape(record["frame"])}">'
+            f'<h2>{html.escape(record["channel"])}</h2><code>{html.escape(record["url"])}</code>'
+            f'<p><small>UTC：{html.escape(record["captured_at"])} · {html.escape(record["frame"])}'
+            f'{html.escape(duplicate_note)}</small></p>'
+            f'<div class="image-wrap"><img draggable="false" src="frames/{html.escape(record["frame"])}">'
+            '<div class="selection"></div></div><p class="coords">尚未框选台标</p>'
+            '<label>结论：<select><option value="">待确认</option>'
+            '<option value="correct_logo">台标正确，加入参考库</option>'
+            '<option value="wrong_logo">台标不对</option>'
+            '<option value="no_logo">无台标／看不清</option>'
+            '<option value="uncertain">仍不确定</option></select></label></section>'
+        )
     return f'''<!doctype html><html lang="zh-CN"><meta charset="utf-8">
 <title>台标模板审核</title><style>
 body{{font:15px/1.5 system-ui,sans-serif;margin:24px;color:#222}}code{{word-break:break-all}}
@@ -38,6 +81,7 @@ body{{font:15px/1.5 system-ui,sans-serif;margin:24px;color:#222}}code{{word-brea
 select,button{{font:inherit;padding:8px}}.toolbar{{position:sticky;bottom:0;background:#fff;padding:14px;border:2px solid #267045}}
 </style><body><h1>台标模板审核</h1>
 <p>在完整画面上拖框，只圈住目标频道台标，再选择“台标正确”。不要把节目标题、字幕或背景一起圈入。</p>
+<p>已将 {total_frames} 张截图按画面相似度去重为 {len(representatives)} 张代表图；同步转播不会重复贡献模板。</p>
 {''.join(cards)}
 <div class="toolbar"><button id="export">导出台标审核 JSON</button> <span id="progress"></span>
 <br><small>这里只建立台标参考库，不修改播放列表。错台、无台标和不确定项不会成为模板。</small></div>
