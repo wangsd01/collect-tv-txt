@@ -54,6 +54,15 @@ class ContentEvidenceTests(unittest.TestCase):
         support, warning = summarize_logo_matches("CCTV12", [[{"channel": "CCTV10"}], []])
         self.assertEqual((support, warning), ("", ""))
 
+    def test_expected_logo_suppresses_other_logo_noise_in_the_same_frames(self):
+        frames = [
+            [{"channel": "CCTV1"}, {"channel": "CCTV2"}],
+            [{"channel": "CCTV1"}, {"channel": "CCTV2"}],
+        ]
+        support, warning = summarize_logo_matches("CCTV1", frames)
+        self.assertIn("目标台标候选", support)
+        self.assertEqual(warning, "")
+
     def test_expected_logo_is_supporting_evidence(self):
         support, warning = summarize_logo_matches("CCTV10", [[{"channel": "CCTV10"}]])
         self.assertIn("目标台标候选", support)
@@ -61,7 +70,7 @@ class ContentEvidenceTests(unittest.TestCase):
 
     def test_verified_template_matches_only_as_advisory_evidence(self):
         library = load_logo_library(PROJECT_ROOT / "config" / "logo_templates.json")
-        self.assertEqual({entry["channel"] for entry in library}, {"CCTV10"})
+        self.assertIn("CCTV10", {entry["channel"] for entry in library})
         with tempfile.TemporaryDirectory() as directory:
             frame = Image.new("RGB", (640, 360), "black")
             with Image.open(PROJECT_ROOT / "config" / "logo_templates" / "CCTV10" / "normal-program.jpg") as logo:
@@ -70,6 +79,11 @@ class ContentEvidenceTests(unittest.TestCase):
             frame.save(path)
             matches = match_logo_candidates(path, library)
         self.assertEqual(matches[0]["channel"], "CCTV10")
+
+    def test_cctv4_asia_accepts_a_cctv4_logo_candidate(self):
+        support, warning = summarize_logo_matches("CCTV4ASIA", [[{"channel": "CCTV4"}]])
+        self.assertIn("目标台标候选：CCTV4", support)
+        self.assertEqual(warning, "")
 
     def test_capture_entries_can_be_selected_by_channel_prefix(self):
         entries = [("CCTV1", "http://one"), ("湖南卫视", "http://two")]

@@ -5,7 +5,7 @@ from pathlib import Path
 
 from PIL import Image
 
-from scripts.apply_logo_review import apply_logo_reviews, normalized_crop_box
+from scripts.apply_logo_review import apply_logo_reviews, apply_wrong_logo_reviews, normalized_crop_box
 from scripts.logo_template_review import select_diverse_frames
 
 
@@ -53,6 +53,16 @@ class ApplyLogoReviewTests(unittest.TestCase):
             self.assertEqual(len(representatives), 2)
             self.assertEqual(representatives[0]["duplicate_count"], 2)
             self.assertEqual(len(representatives[0]["duplicate_urls"]), 2)
+
+    def test_wrong_logo_is_a_human_rejection_and_alias_is_normalized(self):
+        payload = {"reviews": [{
+            "channel": "CCTV4ASIA", "url": "http://wrong", "frame": "one.jpg",
+            "verdict": "wrong_logo", "reviewed_at": "now",
+        }]}
+        entries, applied = apply_wrong_logo_reviews(payload, [], "review.json")
+        self.assertEqual(applied, 1)
+        self.assertEqual(entries[0]["channel"], "CCTV4")
+        self.assertEqual(entries[0]["decision"], "reject")
 
 
 if __name__ == "__main__":

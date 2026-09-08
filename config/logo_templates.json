@@ -1,5 +1,11 @@
 [
   {
+    "channel": "CCTV1",
+    "file": "logo_templates/CCTV1/human-2bf35cf95175.png",
+    "source": "人工框选自 audits/2026-09-08-cctv-logo-batch-1/frames/CCTV1-7aa6b55a8561-round-1.jpg",
+    "verified": true
+  },
+  {
     "channel": "CCTV10",
     "file": "logo_templates/CCTV10/human-70216d65d2cf.png",
     "source": "人工框选自 audits/2026-09-07-logo-validation/frames/CCTV10-7b2a25e0cd72-round-2.jpg",
@@ -13,6 +19,12 @@
   },
   {
     "channel": "CCTV10",
+    "file": "logo_templates/CCTV10/human-9b92a23e993e.png",
+    "source": "人工框选自 audits/2026-09-08-cctv-logo-batch-1/frames/CCTV10-b47c32118e5d-round-1.jpg",
+    "verified": true
+  },
+  {
+    "channel": "CCTV10",
     "file": "logo_templates/CCTV10/normal-program.jpg",
     "source": "人工确认正确的 CCTV10 正常节目截图",
     "verified": true
@@ -21,6 +33,174 @@
     "channel": "CCTV10",
     "file": "logo_templates/CCTV10/off-air-card.jpg",
     "source": "人工确认正确的 CCTV10 停播测试卡截图",
+    "verified": true
+  },
+  {
+    "channel": "CCTV11",
+    "file": "logo_templates/CCTV11/human-5c8b09709af4.png",
+    "source": "人工框选自 audits/2026-09-08-cctv-logo-batch-1/frames/CCTV11-0caa602614a6-round-1.jpg",
+    "verified": true
+  },
+  {
+    "channel": "CCTV11",
+    "file": "logo_templates/CCTV11/human-bf22a611031e.png",
+    "source": "人工框选自 audits/2026-09-08-cctv-logo-batch-1/frames/CCTV11-b5344b784db6-round-1.jpg",
+    "verified": true
+  },
+  {
+    "channel": "CCTV12",
+    "file": "logo_templates/CCTV12/human-2f2a42e35bb5.png",
+    "source": "人工框选自 audits/2026-09-08-cctv-logo-batch-1/frames/CCTV12-842579161932-round-1.jpg",
+    "verified": true
+  },
+  {
+    "channel": "CCTV12",
+    "file": "logo_templates/CCTV12/human-ef6cd8b2e385.png",
+    "source": "人工框选自 audits/2026-09-08-cctv-logo-batch-1/frames/CCTV12-0f530f4c52cb-round-1.jpg",
+    "verified": true
+  },
+  {
+    "channel": "CCTV13",
+    "file": "logo_templates/CCTV13/human-e1207fedb310.png",
+    "source": "人工框选自 audits/2026-09-08-cctv-logo-batch-1/frames/CCTV13-cc0ef6a175d2-round-1.jpg",
+    "verified": true
+  },
+  {
+    "channel": "CCTV14",
+    "file": "logo_templates/CCTV14/human-63b75d057307.png",
+    "source": "人工框选自 audits/2026-09-08-cctv-logo-batch-1/frames/CCTV14-b7b0ed276dad-round-1.jpg",
+    "verified": true
+  },
+  {
+    "channel": "CCTV14",
+    "file": "logo_templates/CCTV14/human-d3985872dcc8.png",
+    "source": "人工框选自 audits/2026-09-08-cctv-logo-batch-1/frames/CCTV14-db965f75f5d6-round-1.jpg",
+    "verified": true
+  },
+  {
+    "channel": "CCTV15",
+    "file": "logo_templates/CCTV15/human-830e32a7fdfa.png",
+    "source": "人工框选自 audits/2026-09-08-cctv-logo-batch-1/frames/CCTV15-92478029bfaa-round-1.jpg",
+    "verified": true
+  },
+  {
+    "channel": "CCTV16",
+    "file": "logo_templates/CCTV16/human-65fa6dde5724.png",
+    "source": "人工框选自 audits/2026-09-08-cctv-logo-batch-1/frames/CCTV16-673e3fdcd33f-round-1.jpg",
+    "verified": true
+  },
+  {
+    "channel": "CCTV16",
+    "file": "logo_templates/CCTV16/human-fb6b55c6fa74.png",
+    "source": "人工框选自 audits/2026-09-08-cctv-logo-batch-1/frames/CCTV16-b1c8994d8190-round-1.jpg",
+    "verified": true
+  },
+  {
+    "channel": "CCTV17",
+    "file": "logo_templates/CCTV17/human-fd6531afa6f4.png",
+    "source": "人工框选自 audits/2026-09-08-cctv-logo-batch-1/frames/CCTV17-67e3be6f01f4-round-1.jpg",
+    "verified": true
+  },
+  {
+    "channel": "CCTV2",
+    "file": "logo_templates/CCTV2/human-64ab7867bd97.png",
+    "source": "人工框选自 audits/2026-09-08-cctv-logo-batch-1/frames/CCTV2-3cafede8bc56-round-1.jpg",
+    "verified": true
+  },
+  {
+    "channel": "CCTV3",
+    "file": "logo_templates/CCTV3/human-19596ce496c2.png",
+    "source": "人工框选自 audits/2026-09-08-cctv-logo-batch-1/frames/CCTV3-8ea1fc91c107-round-1.jpg",
+    "verified": true
+  },
+  {
+    "channel": "CCTV3",
+    "file": "logo_templates/CCTV3/human-25d0c0afd607.png",
+    "source": "人工框选自 audits/2026-09-08-cctv-logo-batch-1/frames/CCTV3-7e1051633b81-round-1.jpg",
+    "verified": true
+  },
+  {
+    "channel": "CCTV3",
+    "file": "logo_templates/CCTV3/human-6124c3c4c8fb.png",
+    "source": "人工框选自 audits/2026-09-08-cctv-logo-batch-1/frames/CCTV3-77ebcb4e541e-round-1.jpg",
+    "verified": true
+  },
+  {
+    "channel": "CCTV4",
+    "file": "logo_templates/CCTV4/human-13e814f0851d.png",
+    "source": "人工框选自 audits/2026-09-08-cctv-logo-batch-1/frames/CCTV4ASIA-a114a7b39dcf-round-1.jpg",
+    "verified": true
+  },
+  {
+    "channel": "CCTV4",
+    "file": "logo_templates/CCTV4/human-202859eff38c.png",
+    "source": "人工框选自 audits/2026-09-08-cctv-logo-batch-1/frames/CCTV4-670ad9b106a9-round-1.jpg",
+    "verified": true
+  },
+  {
+    "channel": "CCTV4",
+    "file": "logo_templates/CCTV4/human-8d703a36e555.png",
+    "source": "人工框选自 audits/2026-09-08-cctv-logo-batch-1/frames/CCTV4-21db68ff0b70-round-1.jpg",
+    "verified": true
+  },
+  {
+    "channel": "CCTV4",
+    "file": "logo_templates/CCTV4/human-e8b78862d3c9.png",
+    "source": "人工框选自 audits/2026-09-08-cctv-logo-batch-1/frames/CCTV4-a23ba1521400-round-1.jpg",
+    "verified": true
+  },
+  {
+    "channel": "CCTV5",
+    "file": "logo_templates/CCTV5/human-5e18625d746a.png",
+    "source": "人工框选自 audits/2026-09-08-cctv-logo-batch-1/frames/CCTV5-c1de51c95591-round-1.jpg",
+    "verified": true
+  },
+  {
+    "channel": "CCTV5",
+    "file": "logo_templates/CCTV5/human-b0fe70f32c29.png",
+    "source": "人工框选自 audits/2026-09-08-cctv-logo-batch-1/frames/CCTV5-2c6fb8a9b736-round-1.jpg",
+    "verified": true
+  },
+  {
+    "channel": "CCTV6",
+    "file": "logo_templates/CCTV6/human-9b500fa77770.png",
+    "source": "人工框选自 audits/2026-09-08-cctv-logo-batch-1/frames/CCTV6-6df3618c3881-round-1.jpg",
+    "verified": true
+  },
+  {
+    "channel": "CCTV7",
+    "file": "logo_templates/CCTV7/human-8c8ea18d99f9.png",
+    "source": "人工框选自 audits/2026-09-08-cctv-logo-batch-1/frames/CCTV7-231a0a90d008-round-1.jpg",
+    "verified": true
+  },
+  {
+    "channel": "CCTV7",
+    "file": "logo_templates/CCTV7/human-b535c24a4607.png",
+    "source": "人工框选自 audits/2026-09-08-cctv-logo-batch-1/frames/CCTV7-d01a9587a21d-round-1.jpg",
+    "verified": true
+  },
+  {
+    "channel": "CCTV8",
+    "file": "logo_templates/CCTV8/human-540814b37475.png",
+    "source": "人工框选自 audits/2026-09-08-cctv-logo-batch-1/frames/CCTV8-1ef87ae96bd5-round-1.jpg",
+    "verified": true
+  },
+  {
+    "channel": "CCTV9",
+    "file": "logo_templates/CCTV9/human-583b444c2258.png",
+    "source": "人工框选自 audits/2026-09-08-cctv-logo-batch-1/frames/CCTV9-12741c7ab40b-round-1.jpg",
+    "verified": true
+  },
+  {
+    "channel": "CCTV9",
+    "file": "logo_templates/CCTV9/human-d116bc669cdc.png",
+    "source": "人工框选自 audits/2026-09-08-cctv-logo-batch-1/frames/CCTV9-5ba4f573aebe-round-1.jpg",
+    "verified": true
+  },
+  {
+    "channel": "CCTV台球",
+    "file": "logo_templates/CCTV台球/human-d3785370e260.png",
+    "source": "人工框选自 audits/2026-09-08-cctv-logo-batch-1/frames/CCTV台球-e92ca909dd1d-round-1.jpg",
     "verified": true
   }
 ]

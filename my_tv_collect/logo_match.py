@@ -11,6 +11,8 @@ from pathlib import Path
 import cv2
 import numpy as np
 
+from my_tv_collect.utils import standardize_channel_name
+
 
 def load_logo_library(path: Path) -> list[dict]:
     if not path.exists():
@@ -42,7 +44,7 @@ def corner_images(image):
     }
 
 
-def match_logo_candidates(frame_path: Path, library: list[dict], min_inliers: int = 8) -> list[dict]:
+def match_logo_candidates(frame_path: Path, library: list[dict], min_inliers: int = 50) -> list[dict]:
     """Return geometrically verified candidates, strongest first."""
     image = cv2.imread(str(frame_path), cv2.IMREAD_GRAYSCALE)
     if image is None or not library:
@@ -81,12 +83,21 @@ def match_logo_candidates(frame_path: Path, library: list[dict], min_inliers: in
 
 def summarize_logo_matches(expected_channel: str, per_frame: list[list[dict]]) -> tuple[str, str]:
     """Return (supporting summary, review warning), never a rejection verdict."""
-    target_count = sum(any(match["channel"] == expected_channel for match in frame_matches)
+    expected_channel = standardize_channel_name(expected_channel)
+    target_count = sum(any(standardize_channel_name(match["channel"]) == expected_channel
+                           for match in frame_matches)
                        for frame_matches in per_frame)
-    channels = {match["channel"] for frame_matches in per_frame for match in frame_matches}
+    frames_without_target = [
+        frame_matches for frame_matches in per_frame
+        if not any(standardize_channel_name(match["channel"]) == expected_channel
+                   for match in frame_matches)
+    ]
+    channels = {standardize_channel_name(match["channel"])
+                for frame_matches in frames_without_target for match in frame_matches}
     other_counts = {
-        channel: sum(any(match["channel"] == channel for match in frame_matches)
-                     for frame_matches in per_frame)
+        channel: sum(any(standardize_channel_name(match["channel"]) == channel
+                         for match in frame_matches)
+                     for frame_matches in frames_without_target)
         for channel in channels if channel != expected_channel
     }
     repeated_other = sorted(channel for channel, count in other_counts.items() if count >= 2)
