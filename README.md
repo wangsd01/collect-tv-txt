@@ -24,6 +24,8 @@ python -m venv .venv
 .venv/bin/python scripts/review_stream_content.py merged_output.txt audits/$(date +%F)-realtime
 ```
 
+调试某个频道时可加 `--channel CCTV10`，避免重新抓取整份列表。
+
 在生成的 `gallery.html` 中选择结论并导出 `stream-review.json` 后，应用结论：
 
 ```bash
@@ -32,6 +34,8 @@ python main.py
 ```
 
 每张截图都附有四角台标裁剪图；有目标台标的正常节目内广告可在页面标为“频道正确／正常广告”。
+已确认台标模板保存在 `config/logo_templates.json`；图形匹配只提供候选。匹配到其他台标时，
+提示“频道标签分错或内容切换”并交人工确认，不会自动剔除。
 错台、只有声音、以及“同一 URL 会插播诈骗医疗广告”的 `mixed_content` 都会剔除；
 信号失效隔离；确认正确但停播的测试卡可发布。OCR 识别到“抢购热线”等只会提示人工
 审核，不会因为频道的正常广告自动删除。

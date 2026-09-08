@@ -6,6 +6,10 @@ from PIL import Image
 
 from scripts.analyze_content import frame_round, text_flags, visually_similar
 from scripts.review_stream_content import ReviewItem, card, extract_logo_crops, logo_crop_boxes
+from my_tv_collect.logo_match import load_logo_library, match_logo_candidates, summarize_logo_matches
+
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
 
 
 class ContentEvidenceTests(unittest.TestCase):
@@ -38,6 +42,34 @@ class ContentEvidenceTests(unittest.TestCase):
             markup = card(ReviewItem("CCTV1", "http://one", frames=["frame.jpg"], logo_crops={"frame.jpg": crops}))
             self.assertIn("台标区域（四角）", markup)
             self.assertIn("logo-crops/frame-左上.jpg", markup)
+
+    def test_other_logo_is_a_review_warning_not_a_rejection(self):
+        support, warning = summarize_logo_matches(
+            "CCTV12", [[{"channel": "CCTV10"}], [{"channel": "CCTV10"}]],
+        )
+        self.assertEqual(support, "")
+        self.assertIn("频道标签分错或内容切换", warning)
+
+    def test_one_other_logo_match_is_treated_as_uncertain(self):
+        support, warning = summarize_logo_matches("CCTV12", [[{"channel": "CCTV10"}], []])
+        self.assertEqual((support, warning), ("", ""))
+
+    def test_expected_logo_is_supporting_evidence(self):
+        support, warning = summarize_logo_matches("CCTV10", [[{"channel": "CCTV10"}]])
+        self.assertIn("目标台标候选", support)
+        self.assertEqual(warning, "")
+
+    def test_verified_template_matches_only_as_advisory_evidence(self):
+        library = load_logo_library(PROJECT_ROOT / "config" / "logo_templates.json")
+        self.assertEqual({entry["channel"] for entry in library}, {"CCTV10"})
+        with tempfile.TemporaryDirectory() as directory:
+            frame = Image.new("RGB", (640, 360), "black")
+            with Image.open(PROJECT_ROOT / "config" / "logo_templates" / "CCTV10" / "normal-program.jpg") as logo:
+                frame.paste(logo, (10, 10))
+            path = Path(directory) / "frame.jpg"
+            frame.save(path)
+            matches = match_logo_candidates(path, library)
+        self.assertEqual(matches[0]["channel"], "CCTV10")
 
 
 if __name__ == "__main__":

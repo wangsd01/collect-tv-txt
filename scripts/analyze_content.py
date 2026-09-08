@@ -3,14 +3,20 @@ import argparse
 import json
 import subprocess
 import re
+import sys
 from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
 from PIL import Image
+from my_tv_collect.logo_match import load_logo_library, match_logo_candidates, summarize_logo_matches
 try:  # Supports both `python -m scripts...` and direct script execution.
     from scripts.review_stream_content import ReviewItem, card, page, read_overrides
 except ModuleNotFoundError:
     from review_stream_content import ReviewItem, card, page, read_overrides
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
 LOCAL_TESSDATA = PROJECT_ROOT / "tools" / "tessdata"
 
 
@@ -80,20 +86,29 @@ def analyze(source, output):
     if not languages:
         raise RuntimeError('No supported Tesseract language installed')
     overrides = read_overrides(PROJECT_ROOT / 'config' / 'stream_overrides.json')
+    logo_library = load_logo_library(PROJECT_ROOT / 'config' / 'logo_templates.json')
     items, records = [], []
     for entry in manifest['items']:
         item = ReviewItem(**entry)
         override = overrides.get((item.channel,item.url),{})
         item.decision, item.reason = override.get('decision',''), override.get('reason','')
         evidence = []
+        frame_logo_matches = []
         for frame in item.frames:
             path = output/'frames'/frame
             try:
                 text, ocr_ok = ocr_image(path, languages)
                 lost, ads = text_flags(text) if ocr_ok else ([], [])
-                evidence.append(dict(frame=frame, hash=fingerprint(path), text=text, lost=lost, ads=ads, ocr_ok=ocr_ok))
+                logo_matches = match_logo_candidates(path, logo_library)
+                frame_logo_matches.append(logo_matches)
+                evidence.append(dict(frame=frame, hash=fingerprint(path), text=text, lost=lost,
+                                     ads=ads, ocr_ok=ocr_ok, logo_matches=logo_matches))
             except (OSError, subprocess.TimeoutExpired) as exc:
                 evidence.append(dict(frame=frame,error=str(exc)))
+                frame_logo_matches.append([])
+        item.logo_result, logo_warning = summarize_logo_matches(item.channel, frame_logo_matches)
+        if logo_warning:
+            item.error = '; '.join(filter(None, [item.error, logo_warning]))
         items.append(item);records.append(evidence)
         print(f'{len(items)}/{len(manifest["items"])} {item.channel}',flush=True)
     for i,item in enumerate(items):

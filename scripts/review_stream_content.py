@@ -27,6 +27,7 @@ class ReviewItem:
     error: str = ""
     decision: str = ""
     reason: str = ""
+    logo_result: str = ""
 
 
 def read_entries(path):
@@ -108,23 +109,29 @@ def card(item):
     timestamps = "<br>".join(html.escape(value) for value in item.captured_at)
     prior = f'<p class="manual">已有人工规则：<strong>{html.escape(item.decision)}</strong> — {html.escape(item.reason)}</p>' if item.decision else ""
     error = f'<p class="error">{html.escape(item.error)}</p>' if item.error else ""
-    return f'<section class="card"><h2>{html.escape(item.channel)}</h2><code>{html.escape(item.url)}</code><p><small>UTC：{timestamps}</small></p>{prior}{error}<div class="frames">{images}</div>{logo_evidence}</section>'
+    logo_result = f'<p class="logo-result">{html.escape(item.logo_result)}</p>' if item.logo_result else ""
+    return f'<section class="card"><h2>{html.escape(item.channel)}</h2><code>{html.escape(item.url)}</code><p><small>UTC：{timestamps}</small></p>{prior}{logo_result}{error}<div class="frames">{images}</div>{logo_evidence}</section>'
 
 
 def page(title, intro, items):
     ui = Path(__file__).with_name("review_ui.html").read_text(encoding="utf-8")
-    return f'''<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>{html.escape(title)}</title><style>body{{font:15px/1.5 system-ui,sans-serif;margin:24px;color:#222}}code{{word-break:break-all}}.card{{border:1px solid #ccc;border-radius:8px;padding:12px;margin:16px 0}}h2{{margin:0}}.frames,.crops{{display:flex;gap:8px;overflow:auto}}.frames img{{width:320px;height:180px;object-fit:contain;background:#111}}.logos{{margin-top:8px}}.crops img{{width:180px;height:100px;object-fit:contain;background:#111}}.manual{{color:#075b24}}.error{{color:#a11}}.missing{{color:#777}}</style><body><h1>{html.escape(title)}</h1><p>{html.escape(intro)}</p>{''.join(card(item) for item in items)}{ui}</body></html>'''
+    return f'''<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>{html.escape(title)}</title><style>body{{font:15px/1.5 system-ui,sans-serif;margin:24px;color:#222}}code{{word-break:break-all}}.card{{border:1px solid #ccc;border-radius:8px;padding:12px;margin:16px 0}}h2{{margin:0}}.frames,.crops{{display:flex;gap:8px;overflow:auto}}.frames img{{width:320px;height:180px;object-fit:contain;background:#111}}.logos{{margin-top:8px}}.crops img{{width:180px;height:100px;object-fit:contain;background:#111}}.logo-result,.manual{{color:#075b24}}.error{{color:#a11}}.missing{{color:#777}}</style><body><h1>{html.escape(title)}</h1><p>{html.escape(intro)}</p>{''.join(card(item) for item in items)}{ui}</body></html>'''
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("playlist", type=Path); parser.add_argument("output_dir", type=Path)
     parser.add_argument("--overrides", type=Path, default=Path("config/stream_overrides.json")); parser.add_argument("--workers", type=int, default=12)
+    parser.add_argument("--channel", action="append", help="capture only this exact channel; repeatable")
     parser.add_argument("--round-delays", default="0,60,180"); parser.add_argument("--timeout", type=int, default=20)
     args = parser.parse_args(); delays = [int(value) for value in args.round_delays.split(",")]
     if delays != sorted(set(delays)) or not delays or delays[0] != 0: raise ValueError("round delays must be unique, ascending, and start with 0")
     if args.output_dir.exists(): raise ValueError(f"output directory exists: {args.output_dir}")
     frames = args.output_dir / "frames"; frames.mkdir(parents=True); logo_crops = args.output_dir / "logo-crops"; entries = read_entries(args.playlist); overrides = read_overrides(args.overrides)
+    if args.channel:
+        entries = [entry for entry in entries if entry[0] in set(args.channel)]
+    if not entries:
+        raise ValueError("playlist has no matching stream entries")
     items = {entry: ReviewItem(*entry, decision=overrides.get(entry,{}).get("decision",""), reason=overrides.get(entry,{}).get("reason","")) for entry in entries}
     started = time.monotonic()
     for number, delay in enumerate(delays, 1):

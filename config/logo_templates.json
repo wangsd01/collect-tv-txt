@@ -1,0 +1,14 @@
+[
+  {
+    "channel": "CCTV10",
+    "file": "logo_templates/CCTV10/normal-program.jpg",
+    "source": "人工确认正确的 CCTV10 正常节目截图",
+    "verified": true
+  },
+  {
+    "channel": "CCTV10",
+    "file": "logo_templates/CCTV10/off-air-card.jpg",
+    "source": "人工确认正确的 CCTV10 停播测试卡截图",
+    "verified": true
+  }
+]
