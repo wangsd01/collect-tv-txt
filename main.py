@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import argparse
 import concurrent.futures
+import json
 import os
 import tempfile
 import urllib.request
@@ -15,7 +16,13 @@ from collections import defaultdict
 from datetime import datetime
 from pathlib import Path
 
-from my_tv_collect.stream_check import OK, check_stream_quality
+from my_tv_collect.stream_check import (
+    OK,
+    check_stream_content,
+    check_stream_frame,
+    check_stream_quality,
+    check_stream_tracks,
+)
 from my_tv_collect.utils import convert_m3u_to_txt, standardize_channel_name
 
 SOURCE_URLS = [
@@ -67,6 +74,14 @@ JINAN_CHANNELS = {
     "济南公共", "济南移动", "济南科教", "济南图文",
 }
 SELECTED_LOCAL_CHANNELS = SHANDONG_CHANNELS | JINAN_CHANNELS
+OVERRIDES_PATH = Path(__file__).with_name("config") / "stream_overrides.json"
+
+
+def load_stream_overrides(path=OVERRIDES_PATH):
+    if not path.exists():
+        return {}
+    entries = json.loads(path.read_text(encoding="utf-8"))
+    return {(entry["channel"], entry["url"]): entry for entry in entries}
 
 def fetch_source(url, timeout):
     req = urllib.request.Request(url, headers={"User-Agent": "collect-tv-txt/1.0"})
@@ -90,32 +105,78 @@ def parse_channels(texts, satellite_channels=SATELLITE_CHANNELS,
             if (name.startswith("CCTV") or name in HKTW_CHANNELS or
                     name in satellite_channels or name in local_channels) and url and url not in seen[name]:
                 seen[name].add(url); channels[name].append(url)
-    return dict(channels)
+    return quarantine_cross_channel_urls(channels)
+
+
+def quarantine_cross_channel_urls(channels):
+    """Remove exact URLs assigned to more than one standardized channel name."""
+    url_channels = defaultdict(set)
+    for name, urls in channels.items():
+        for url in urls:
+            url_channels[url].add(name)
+
+    conflicts = {url: names for url, names in url_channels.items() if len(names) > 1}
+    for url, names in sorted(conflicts.items()):
+        print(f"quarantined conflicting URL {url}: {', '.join(sorted(names))}")
+
+    return {
+        name: [url for url in urls if url not in conflicts]
+        for name, urls in channels.items()
+        if any(url not in conflicts for url in urls)
+    }
 
 
 def parse_cctv_channels(texts):
     """Backward-compatible name for consumers of the original parser."""
     return parse_channels(texts, satellite_channels=set(), local_channels=set())
 
-def validate_stream(url, decode_seconds, connect_grace):
+def validate_stream(channel, url, decode_seconds, connect_grace,
+                    content_check_seconds=8, overrides=None):
+    override = (overrides or {}).get((channel, url), {})
+    decision = override.get("decision")
+    if decision in {"reject", "quarantine"}:
+        return url, False, 0.0, f"MANUAL_{decision.upper()}"
+
+    has_video, _has_audio, track_error = check_stream_tracks(
+        url, connect_grace=connect_grace,
+    )
+    if not has_video:
+        return url, False, 0.0, track_error
+
     choppy, speed, error = check_stream_quality(url, decode_seconds=decode_seconds,
                                                   connect_grace=connect_grace, retries=0)
-    return url, not choppy and error == OK, speed
+    if choppy or error != OK:
+        if decision == "allow_if_frame":
+            has_frame, frame_error = check_stream_frame(url, connect_grace=connect_grace)
+            return url, has_frame, speed, "MANUAL_ALLOW" if has_frame else frame_error
+        return url, False, speed, error
+    if decision == "allow_if_frame":
+        return url, True, speed, "MANUAL_ALLOW"
+    acceptable, content_error = check_stream_content(
+        url, sample_seconds=content_check_seconds, connect_grace=connect_grace,
+    )
+    return url, acceptable, speed, content_error
 
 def stable_channels(channels, max_candidates=30, max_streams=10, workers=24,
-                    decode_seconds=3, connect_grace=3):
+                    decode_seconds=3, connect_grace=3, content_check_seconds=8,
+                    overrides=None):
+    overrides = load_stream_overrides() if overrides is None else overrides
     candidates = [(name, url) for name, urls in channels.items()
                   for url in urls[:max_candidates]]
     stable = defaultdict(list)
     with concurrent.futures.ThreadPoolExecutor(max_workers=min(workers, len(candidates)) or 1) as pool:
-        futures = {pool.submit(validate_stream, url, decode_seconds, connect_grace): name
+        futures = {pool.submit(validate_stream, name, url, decode_seconds, connect_grace,
+                               content_check_seconds, overrides): name
                    for name, url in candidates}
         for future in concurrent.futures.as_completed(futures):
             try:
-                url, valid, speed = future.result()
+                url, valid, speed, reason = future.result()
             except Exception as exc:
                 print(f"stream check failed: {exc}"); continue
-            if valid: stable[futures[future]].append((speed, url))
+            if valid:
+                stable[futures[future]].append((speed, url))
+            else:
+                print(f"quarantined {futures[future]} {url}: {reason}")
     return {name: [url for _, url in sorted(items, reverse=True)[:max_streams]]
             for name, items in stable.items() if items}
 
@@ -171,7 +232,8 @@ def collect(args):
     channels = parse_channels(texts)
     if not channels: raise RuntimeError("sources contained no selected streams; existing output was preserved")
     result = stable_channels(channels, args.max_candidates, args.max_streams, args.stream_workers,
-                             args.decode_seconds, args.connect_grace)
+                             args.decode_seconds, args.connect_grace,
+                             args.content_check_seconds, load_stream_overrides())
     if not result: raise RuntimeError("no stable selected streams found; existing output was preserved")
     return result
 
@@ -180,6 +242,8 @@ def main(argv=None):
     parser.add_argument("--source-timeout", type=float, default=10); parser.add_argument("--source-workers", type=int, default=12)
     parser.add_argument("--stream-workers", type=int, default=24); parser.add_argument("--decode-seconds", type=float, default=3)
     parser.add_argument("--connect-grace", type=float, default=3); parser.add_argument("--max-candidates", type=int, default=30)
+    parser.add_argument("--content-check-seconds", type=float, default=8,
+                        help="seconds sampled for black/frozen-picture detection; 0 disables it")
     parser.add_argument("--max-streams", type=int, default=10); parser.add_argument("--output-txt", type=Path, default=Path("merged_output.txt"))
     parser.add_argument("--output-m3u", type=Path, default=Path("merged_output.m3u")); args = parser.parse_args(argv)
     try:

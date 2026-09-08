@@ -2,6 +2,17 @@
 
 自动收集整理直播源
 
+收集器会先用 FFmpeg 验证直播流能否正常解码，再抽样检查长时间黑屏和
+画面定格；检测到异常的地址会被隔离，不写入发布列表。内容检查默认采样
+8 秒，可用 `--content-check-seconds` 调整，设为 `0` 可关闭：
+
+```bash
+python main.py --content-check-seconds 12
+```
+
+该检查用于发现无信号画面和停止更新的视频，不能可靠区分电视台正常广告，
+也不能单独确认台标与频道名称是否一致。
+
 | 类别  | 文件名  | 更新频率                                       | 备注   |
 |-------|-------|------------------------------------------------|------------|
 |直播源| （merged_output.txt） |  每日自动更新 | http://gg.gg/tv-live-txt   |
@@ -46,5 +57,4 @@ http://gg.gg/tv-live-m3u
 ## Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=kimwang1978/collect-tv-txt&type=Date)](https://star-history.com/#kimwang1978/collect-tv-txt&Date)
-
 

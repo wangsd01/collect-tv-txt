@@ -1,0 +1,43 @@
+<style>
+.review-toolbar{position:sticky;bottom:0;background:#fff;padding:16px;border:2px solid #267045;box-shadow:0 0 12px #ccc}
+.review-controls{display:flex;flex-wrap:wrap;gap:12px;margin-top:16px;align-items:center}
+select,button,input{font:inherit;padding:8px}input.review-note{flex:1;min-width:240px}.reviewed{border-color:#267045}
+</style>
+<div class="review-toolbar"><button id="export-review">导出审核结果</button>
+<label><input type="checkbox" id="only-pending">只看未审核</label>
+<span id="review-progress"></span><div id="save-state"></div>
+<small>选择只记录本次人工结论，不会自动修改播放列表。完成后导出 JSON 文件交给我应用。正常频道不会因此永久跳过检测。</small></div>
+<script>
+(() => {
+ const storageKey = 'collect-tv-review-v1:' + location.pathname;
+ let saved = {};
+ const state = document.getElementById('save-state');
+ try { saved = JSON.parse(localStorage.getItem(storageKey) || '{}'); } catch (_) { state.textContent = '浏览器无法读取本地记录，请及时导出。'; }
+ const choices = [['','待确认'],['correct','频道正确／正常广告'],['off_air','频道正确／停播测试卡，可发布'],['wrong_channel','错台／冒充频道的广告，剔除'],['mixed_content','同一 URL 内容会切换，暂时隔离'],['signal_lost','信号失效，暂时隔离'],['audio_only','只有声音无画面，剔除'],['uncertain','仍不确定，请复检']];
+ const cards = [...document.querySelectorAll('section.card')];
+ const entries = cards.map(card => {
+   const channel = card.querySelector('h2').textContent;
+   const url = card.querySelector('code').textContent;
+   const key = JSON.stringify([channel,url]);
+   const controls = document.createElement('div'); controls.className='review-controls';
+   const label = document.createElement('label'); label.textContent='审核结论：';
+   const select = document.createElement('select');
+   choices.forEach(([value,text]) => select.add(new Option(text,value)));
+   const note = document.createElement('input'); note.className='review-note'; note.placeholder='备注（可选）'; note.setAttribute('aria-label','审核备注');
+   if (saved[key]) {select.value=saved[key].verdict;note.value=saved[key].note || '';}
+   label.append(select);controls.append(label,note);card.append(controls);
+   const entry={card,channel,url,key,select,note};
+   const update=()=>{saved[key]={channel,url,verdict:select.value,note:note.value,reviewed_at:new Date().toISOString()};try{localStorage.setItem(storageKey,JSON.stringify(saved));state.textContent='已保存在此浏览器；关闭页面前建议导出备份。';}catch(_){state.textContent='本地保存失败，请点击导出保存审核结果。';}refresh();};
+   select.addEventListener('change',update);note.addEventListener('input',update);
+   return entry;
+ });
+ function refresh(){let done=0;entries.forEach(e=>{const reviewed=Boolean(e.select.value);done+=reviewed?1:0;e.card.classList.toggle('reviewed',reviewed);e.card.hidden=document.getElementById('only-pending').checked&&reviewed;});document.getElementById('review-progress').textContent=` 已审核 ${done} / ${entries.length}`;}
+ document.getElementById('only-pending').addEventListener('change',refresh);
+ document.getElementById('export-review').addEventListener('click',()=>{
+   const reviews=entries.filter(e=>e.select.value).map(e=>({channel:e.channel,url:e.url,verdict:e.select.value,note:e.note.value,reviewed_at:saved[e.key]?.reviewed_at || null}));
+   const blob=new Blob([JSON.stringify({schema_version:1,report:location.pathname,exported_at:new Date().toISOString(),reviews},null,2)],{type:'application/json'});
+   const link=document.createElement('a');link.href=URL.createObjectURL(blob);link.download='stream-review.json';link.click();setTimeout(()=>URL.revokeObjectURL(link.href),1000);
+ });
+ refresh();
+})();
+</script>

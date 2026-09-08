@@ -286,6 +286,7 @@ def standardize_channel_name(name):
     name = name.replace("CCTV4欧洲", "CCTV4")
     name = name.replace("CCTV4美洲", "CCTV4")
     name = name.replace("CCTV4亚洲", "CCTV4")
+    name = name.replace("CCTV4ASIA", "CCTV4")
     name = name.replace("CCTV4北美", "CCTV4")
     name = name.replace("CCTV4美", "CCTV4")
     name = name.replace("CCTV4欧", "CCTV4")
