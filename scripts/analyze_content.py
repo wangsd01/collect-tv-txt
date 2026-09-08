@@ -5,7 +5,13 @@ import subprocess
 import re
 from pathlib import Path
 from PIL import Image
-from scripts.review_stream_content import ReviewItem, card, page, read_overrides
+try:  # Supports both `python -m scripts...` and direct script execution.
+    from scripts.review_stream_content import ReviewItem, card, page, read_overrides
+except ModuleNotFoundError:
+    from review_stream_content import ReviewItem, card, page, read_overrides
+
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+LOCAL_TESSDATA = PROJECT_ROOT / "tools" / "tessdata"
 
 
 def fingerprint(path):
@@ -36,16 +42,42 @@ def text_flags(text):
     return lost, ads
 
 
+def available_ocr_languages():
+    system = subprocess.run(["tesseract", "--list-langs"], capture_output=True,
+                            text=True, check=True).stdout.splitlines()
+    local = [language for language in ("chi_sim", "chi_tra")
+             if (LOCAL_TESSDATA / f"{language}.traineddata").exists()]
+    return (["eng"] if "eng" in system else []) + local
+
+
+def ocr_image(path, languages):
+    texts = []
+    if "eng" in languages:
+        result = subprocess.run(["tesseract", str(path), "stdout", "-l", "eng", "--psm", "11"],
+                                capture_output=True, text=True, timeout=20)
+        if result.returncode == 0:
+            texts.append(result.stdout)
+    chinese = [language for language in languages if language.startswith("chi_")]
+    if chinese:
+        result = subprocess.run(
+            ["tesseract", str(path), "stdout", "--tessdata-dir", str(LOCAL_TESSDATA),
+             "-l", "+".join(chinese), "--psm", "11"],
+            capture_output=True, text=True, timeout=20,
+        )
+        if result.returncode == 0:
+            texts.append(result.stdout)
+    return "\n".join(texts), bool(texts)
+
+
 def analyze(source, output):
     output.mkdir(parents=True, exist_ok=False)
     import shutil
     shutil.copytree(source/'frames', output/'frames')
     manifest = json.loads((source/'manifest.json').read_text())
-    languages = subprocess.run(['tesseract', '--list-langs'], capture_output=True, text=True, check=True).stdout.splitlines()
-    lang = '+'.join(x for x in ('eng','chi_sim','chi_tra') if x in languages)
-    if not lang:
+    languages = available_ocr_languages()
+    if not languages:
         raise RuntimeError('No supported Tesseract language installed')
-    overrides = read_overrides(Path('config/stream_overrides.json'))
+    overrides = read_overrides(PROJECT_ROOT / 'config' / 'stream_overrides.json')
     items, records = [], []
     for entry in manifest['items']:
         item = ReviewItem(**entry)
@@ -55,9 +87,9 @@ def analyze(source, output):
         for frame in item.frames:
             path = output/'frames'/frame
             try:
-                result = subprocess.run(['tesseract', str(path), 'stdout', '-l',lang,'--psm','11'],capture_output=True,text=True,timeout=20)
-                lost, ads = text_flags(result.stdout) if result.returncode == 0 else ([], [])
-                evidence.append(dict(frame=frame, hash=fingerprint(path), text=result.stdout, lost=lost, ads=ads, ocr_ok=result.returncode==0))
+                text, ocr_ok = ocr_image(path, languages)
+                lost, ads = text_flags(text) if ocr_ok else ([], [])
+                evidence.append(dict(frame=frame, hash=fingerprint(path), text=text, lost=lost, ads=ads, ocr_ok=ocr_ok))
             except (OSError, subprocess.TimeoutExpired) as exc:
                 evidence.append(dict(frame=frame,error=str(exc)))
         items.append(item);records.append(evidence)
@@ -82,16 +114,16 @@ def analyze(source, output):
             if len(matched_rounds) >= 2:
                 peers.append(other.channel + " " + other.url + "（轮次 " + ", ".join(matched_rounds) + "）")
         if peers:
-            reasons.append('同一 URL 的至少两轮与其他频道同轮近似，且其余轮内容不同；疑似内容切换：'+'；'.join(peers))
+            reasons.append('至少两轮与其他频道同轮画面近似；可能是共用/错配内容，需人工核对：'+'；'.join(peers))
         if any(not f.get('ocr_ok',False) for f in frames):
             reasons.append('部分 OCR 未完成')
         if reasons:
             item.error='；'.join(filter(None,[item.error,*reasons]))
-    intro='仅为人工审核候选，不自动更改发布。OCR语言：'+lang+'。近似阈值为试验值；未识别台标，未证明来源独立。'
+    intro='仅为人工审核候选，不自动更改发布。OCR语言：'+'+'.join(languages)+'。近似阈值为试验值；未识别台标，未证明来源独立。'
     (output/'gallery.html').write_text(page('内容证据画廊',intro,items), encoding="utf-8")
     pending=[i for i in items if i.error]
     (output/'needs-review.html').write_text(page('待人工确认',intro,pending), encoding="utf-8")
-    (output/'evidence.json').write_text(json.dumps({'source':str(source),'ocr_languages':lang,'items':[{'channel':i.channel,'url':i.url,'reason':i.error,'frames':r} for i,r in zip(items,records)]},ensure_ascii=False,indent=2))
+    (output/'evidence.json').write_text(json.dumps({'source':str(source),'ocr_languages':languages,'items':[{'channel':i.channel,'url':i.url,'reason':i.error,'frames':r} for i,r in zip(items,records)]},ensure_ascii=False,indent=2))
     print(f'Review: {output}/needs-review.html ({len(pending)})')
 
 

@@ -13,6 +13,28 @@ python main.py --content-check-seconds 12
 该检查用于发现无信号画面和停止更新的视频，不能可靠区分电视台正常广告，
 也不能单独确认台标与频道名称是否一致。
 
+## 人工内容审核
+
+真实时间取样、截图及 OCR 仅产生候选，最后由 HTML 页面人工判断。首次使用可建立
+独立环境：
+
+```bash
+python -m venv .venv
+.venv/bin/python -m pip install -r requirements-audit.txt
+.venv/bin/python scripts/review_stream_content.py merged_output.txt audits/$(date +%F)-realtime
+```
+
+在生成的 `gallery.html` 中选择结论并导出 `stream-review.json` 后，应用结论：
+
+```bash
+.venv/bin/python scripts/apply_stream_review.py /path/to/stream-review.json
+python main.py
+```
+
+错台、只有声音、以及“同一 URL 会插播诈骗医疗广告”的 `mixed_content` 都会剔除；
+信号失效隔离；确认正确但停播的测试卡可发布。OCR 识别到“抢购热线”等只会提示人工
+审核，不会因为频道的正常广告自动删除。
+
 | 类别  | 文件名  | 更新频率                                       | 备注   |
 |-------|-------|------------------------------------------------|------------|
 |直播源| （merged_output.txt） |  每日自动更新 | http://gg.gg/tv-live-txt   |
@@ -57,4 +79,3 @@ http://gg.gg/tv-live-m3u
 ## Star History
 
 [![Star History Chart](https://api.star-history.com/svg?repos=kimwang1978/collect-tv-txt&type=Date)](https://star-history.com/#kimwang1978/collect-tv-txt&Date)
-

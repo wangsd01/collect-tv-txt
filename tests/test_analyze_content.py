@@ -1,6 +1,6 @@
 import unittest
 
-from scripts.analyze_content import frame_round, visually_similar
+from scripts.analyze_content import frame_round, text_flags, visually_similar
 
 
 class ContentEvidenceTests(unittest.TestCase):
@@ -13,6 +13,9 @@ class ContentEvidenceTests(unittest.TestCase):
         different_colour = {"hash": {"dhash": 11, "mean_rgb": [220, 20, 20]}}
         self.assertTrue(visually_similar(first, same))
         self.assertFalse(visually_similar(first, different_colour))
+
+    def test_chinese_sales_words_are_candidates_not_a_verdict(self):
+        self.assertEqual(text_flags("限时抢购，订购热线"), ([], ["抢购", "订购", "热线"]))
 
 
 if __name__ == "__main__":

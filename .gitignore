@@ -1,0 +1,7 @@
+.venv/
+tools/tessdata/
+audits/
+__pycache__/
+scripts/__pycache__/
+tests/__pycache__/
+my_tv_collect/__pycache__/
