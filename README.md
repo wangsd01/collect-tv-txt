@@ -24,7 +24,7 @@ python -m venv .venv
 .venv/bin/python scripts/review_stream_content.py merged_output.txt audits/$(date +%F)-realtime
 ```
 
-调试某个频道时可加 `--channel CCTV10`，避免重新抓取整份列表。
+调试某个频道时可加 `--channel CCTV10`；批量央视频道可加 `--channel-prefix CCTV`。
 
 为台标参考库选择可信样本：
 

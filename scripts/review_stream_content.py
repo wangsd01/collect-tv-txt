@@ -40,6 +40,14 @@ def read_entries(path):
     return found
 
 
+def filter_entries(entries, channels=None, channel_prefixes=None):
+    channels, channel_prefixes = set(channels or []), tuple(channel_prefixes or [])
+    if not channels and not channel_prefixes:
+        return entries
+    return [entry for entry in entries
+            if entry[0] in channels or entry[0].startswith(channel_prefixes)]
+
+
 def read_overrides(path):
     if not path.exists(): return {}
     return {(e["channel"], e["url"]): e for e in json.loads(path.read_text(encoding="utf-8"))}
@@ -123,13 +131,13 @@ def main():
     parser.add_argument("playlist", type=Path); parser.add_argument("output_dir", type=Path)
     parser.add_argument("--overrides", type=Path, default=Path("config/stream_overrides.json")); parser.add_argument("--workers", type=int, default=12)
     parser.add_argument("--channel", action="append", help="capture only this exact channel; repeatable")
+    parser.add_argument("--channel-prefix", action="append", help="capture channels with this prefix; repeatable")
     parser.add_argument("--round-delays", default="0,60,180"); parser.add_argument("--timeout", type=int, default=20)
     args = parser.parse_args(); delays = [int(value) for value in args.round_delays.split(",")]
     if delays != sorted(set(delays)) or not delays or delays[0] != 0: raise ValueError("round delays must be unique, ascending, and start with 0")
     if args.output_dir.exists(): raise ValueError(f"output directory exists: {args.output_dir}")
     frames = args.output_dir / "frames"; frames.mkdir(parents=True); logo_crops = args.output_dir / "logo-crops"; entries = read_entries(args.playlist); overrides = read_overrides(args.overrides)
-    if args.channel:
-        entries = [entry for entry in entries if entry[0] in set(args.channel)]
+    entries = filter_entries(entries, args.channel, args.channel_prefix)
     if not entries:
         raise ValueError("playlist has no matching stream entries")
     items = {entry: ReviewItem(*entry, decision=overrides.get(entry,{}).get("decision",""), reason=overrides.get(entry,{}).get("reason","")) for entry in entries}

@@ -5,7 +5,7 @@ from pathlib import Path
 from PIL import Image
 
 from scripts.analyze_content import frame_round, text_flags, visually_similar
-from scripts.review_stream_content import ReviewItem, card, extract_logo_crops, logo_crop_boxes
+from scripts.review_stream_content import ReviewItem, card, extract_logo_crops, filter_entries, logo_crop_boxes
 from my_tv_collect.logo_match import load_logo_library, match_logo_candidates, summarize_logo_matches
 
 
@@ -70,6 +70,10 @@ class ContentEvidenceTests(unittest.TestCase):
             frame.save(path)
             matches = match_logo_candidates(path, library)
         self.assertEqual(matches[0]["channel"], "CCTV10")
+
+    def test_capture_entries_can_be_selected_by_channel_prefix(self):
+        entries = [("CCTV1", "http://one"), ("湖南卫视", "http://two")]
+        self.assertEqual(filter_entries(entries, channel_prefixes=["CCTV"]), [entries[0]])
 
 
 if __name__ == "__main__":
