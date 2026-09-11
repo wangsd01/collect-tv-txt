@@ -1,0 +1,197 @@
+#EXTM3U
+#EXTINF:-1 group-title="央视频道",CCTV1
+https://cdn5.163189.xyz/live/cctv1/stream.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV1
+https://rthktv33-live.akamaized.net/hls/live/2101641/RTHKTV33/stream05/streamPlaylist.m3u8?
+#EXTINF:-1 group-title="央视频道",CCTV1
+http://221.219.183.63:9003//hls/1/index.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV第1剧场
+http://tvbox6.icu/tv/iptv2.php?id=31
+#EXTINF:-1 group-title="央视频道",CCTV第1剧场
+http://122.152.202.33/s/81a8a44f/index.m3u8?id=bak1_90
+#EXTINF:-1 group-title="央视频道",CCTV第1剧场
+http://home.sylaigym.top:8887/rtp/239.69.1.74:10084
+#EXTINF:-1 group-title="央视频道",CCTV2
+http://183.215.134.239:19901/tsfile/live/0002_1.m3u8?key=txiptv&playlive=1&authid=0http://114.252.236.205:8000/rtp/239.3.1.60:8084
+#EXTINF:-1 group-title="央视频道",CCTV3
+http://39.164.180.36:19901/tsfile/live/0001_1.m3u8?key=txiptv&playlive=0&authid=0
+#EXTINF:-1 group-title="央视频道",CCTV3
+http://112.27.145.212:9901/tsfile/live/1502_1.m3u8?key=txiptv&playlive=1&authid=0
+#EXTINF:-1 group-title="央视频道",CCTV4
+https://www.youtube.com/watch?v=twhG7_jvA8g
+#EXTINF:-1 group-title="央视频道",CCTV4
+http://222.134.245.16:9901/tsfile/live/0004_1.m3u8?key=txiptv&playlive=1&authid=0
+#EXTINF:-1 group-title="央视频道",CCTV4
+http://114.252.236.205:8000/rtp/239.3.1.105:8092
+#EXTINF:-1 group-title="央视频道",CCTV4
+http://ku9.3n.cc/smt.php?id=Cctv4
+#EXTINF:-1 group-title="央视频道",CCTV4
+http://111.9.163.109:9901/tsfile/live/0004_1.m3u8?key=txiptv&playlive=1&authid=0
+#EXTINF:-1 group-title="央视频道",CCTV4
+http://111.9.163.109:9901/tsfile/live/0004_1.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV5
+http://39.164.180.36:19901/tsfile/live/0005_1.m3u8?key=txiptv&playlive=0&authid=0
+#EXTINF:-1 group-title="央视频道",CCTV5+
+http://39.164.180.36:19901/tsfile/live/0016_1.m3u8?key=txiptv&playlive=0&authid=0
+#EXTINF:-1 group-title="央视频道",CCTV5+
+http://222.134.245.16:9901/tsfile/live/0016_1.m3u8?key=txiptv&playlive=1&authid=0
+#EXTINF:-1 group-title="央视频道",CCTV6
+http://39.164.180.36:19901/tsfile/live/0006_1.m3u8?key=txiptv&playlive=0&authid=0
+#EXTINF:-1 group-title="央视频道",CCTV6
+http://112.27.145.212:9901/tsfile/live/1505_1.m3u8?key=txiptv&playlive=1&authid=0
+#EXTINF:-1 group-title="央视频道",CCTV6
+http://222.134.19.31:352/tsfile/live/0006_1.m3u8?key=txiptv&playlive=1&authid=0
+#EXTINF:-1 group-title="央视频道",CCTV7
+http://39.164.180.36:19901/tsfile/live/0007_1.m3u8?key=txiptv&playlive=0&authid=0
+#EXTINF:-1 group-title="央视频道",CCTV7
+http://itv.iptv1688.top:2016/itv.php?id=CCTV7
+#EXTINF:-1 group-title="央视频道",CCTV7
+http://113.140.12.230:8888/newlive/live/hls/8/live.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV8
+http://itv.iptv1688.top:2016/itv.php?id=CCTV8
+#EXTINF:-1 group-title="央视频道",CCTV8
+http://39.164.180.36:19901/tsfile/live/0008_1.m3u8?key=txiptv&playlive=0&authid=0
+#EXTINF:-1 group-title="央视频道",CCTV9
+http://t.live.cntv.cn/m3u8/cctv400.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV10
+http://itv.iptv1688.top:2016/itv.php?id=CCTV10
+#EXTINF:-1 group-title="央视频道",CCTV10
+http://222.134.245.16:9901/tsfile/live/0010_1.m3u8?key=txiptv&playlive=1&authid=0
+#EXTINF:-1 group-title="央视频道",CCTV10
+http://111.43.126.240:9003/hls/23/index.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV11
+http://itv.iptv1688.top:2016/itv.php?id=CCTV11
+#EXTINF:-1 group-title="央视频道",CCTV11
+http://222.134.245.16:9901/tsfile/live/0011_1.m3u8?key=txiptv&playlive=1&authid=0
+#EXTINF:-1 group-title="央视频道",CCTV12
+http://itv.iptv1688.top:2016/itv.php?id=CCTV12
+#EXTINF:-1 group-title="央视频道",CCTV13
+http://cd-live-stream.news.cctvplus.com/live/smil:CHANNEL2.smil/chunklist_w1018196661_b1000000.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV13
+http://ali-m-l.cztv.com/channels/lantian/channel21/1080p.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV13
+http://itv.iptv1688.top:2016/itv.php?id=CCTV13
+#EXTINF:-1 group-title="央视频道",CCTV14
+http://itv.iptv1688.top:2016/itv.php?id=CCTV14
+#EXTINF:-1 group-title="央视频道",CCTV14
+https://event.pull.hebtv.com/jishi/cp2.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV14
+http://183.184.228.183:9003//hls/15/index.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV15
+http://itv.iptv1688.top:2016/itv.php?id=CCTV15
+#EXTINF:-1 group-title="央视频道",CCTV15
+http://183.184.228.183:9003//hls/16/index.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV15
+http://112.123.206.32:808/hls/16/index.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV16
+http://itv.iptv1688.top:2016/itv.php?id=CCTV16
+#EXTINF:-1 group-title="央视频道",CCTV16
+http://222.219.183.103:8089/hls/16/index.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV16
+http://www.jeremyoto.com:82/udp/233.50.201.192:5140
+#EXTINF:-1 group-title="央视频道",CCTV16
+http://114.252.236.205:8000/rtp/239.3.1.184:8001
+#EXTINF:-1 group-title="央视频道",CCTV16
+http://e2.woc.iiiya.cn:28888/rtp/239.61.4.135:1025
+#EXTINF:-1 group-title="央视频道",CCTV16
+http://8.138.7.223/tv/bst8m.php?id=17
+#EXTINF:-1 group-title="央视频道",CCTV16
+http://8.138.7.223/tv/cqyx2.php?id=cctv16HD
+#EXTINF:-1 group-title="央视频道",CCTV16
+http://www.jeremyoto.com:82/udp/233.50.201.63:5140
+#EXTINF:-1 group-title="央视频道",CCTV16
+http://113.109.250.108:9999/udp/239.77.0.165:5146
+#EXTINF:-1 group-title="央视频道",CCTV16
+http://www.8700956.top:18888/rtp/239.81.1.017:4056
+#EXTINF:-1 group-title="央视频道",CCTV16
+http://125.89.163.44:8888/udp/239.77.0.165:5146
+#EXTINF:-1 group-title="央视频道",CCTV16
+http://www.lizhinas.top:1009/rtp/239.252.220.237:5140
+#EXTINF:-1 group-title="央视频道",CCTV16
+http://nas.hssvm.com:8888/rtp/225.1.2.237:5002
+#EXTINF:-1 group-title="央视频道",CCTV16
+http://111.43.126.240:9003/hls/29/index.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV16
+http://home.sylaigym.top:8887/rtp/239.69.1.249:11136
+#EXTINF:-1 group-title="央视频道",CCTV17
+http://110.81.206.138:49231/tsfile/live/23017_1.m3u8?key=txiptv&playlive=1&authid=0
+#EXTINF:-1 group-title="央视频道",CCTV112
+http://218.13.14.6:60050/tsfile/live/1011_1.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV132
+http://218.13.14.6:60050/tsfile/live/1013_1.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV152
+http://218.13.14.6:60050/tsfile/live/1015_1.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV20241
+https://p2.bdstatic.com/rtmp.liveshow.lss-user.baidubce.com/live/stream_bduid_6488563992_8982723413/merged_1707497046297_88536_25144_41936.m3u8
+#EXTINF:-1 group-title="央视频道",CCTV台球
+http://home.yulei.online:9999/rtp/226.0.2.216:9640
+#EXTINF:-1 group-title="央视频道",CCTV台球
+http://www.lizhinas.top:1009/rtp/239.252.219.80:5140
+#EXTINF:-1 group-title="央视频道",CCTV台球
+http://home.sylaigym.top:8887/rtp/239.69.1.98:10224
+#EXTINF:-1 group-title="央视频道",CHC动作
+https://gdcucc.v1.mk/gdcucc/chcdzdy.m3u8
+#EXTINF:-1 group-title="央视频道",CHC动作
+http://183.237.95.108:9901/tsfile/live/1006_1.m3u8?key=txiptv&playlive=0&authid=0
+#EXTINF:-1 group-title="央视频道",CHC动作
+http://www.lizhinas.top:1009/rtp/239.252.219.85:5140
+#EXTINF:-1 group-title="央视频道",CHC动作
+http://e2.woc.iiiya.cn:28888/rtp/239.61.4.169:1025
+#EXTINF:-1 group-title="央视频道",CHC动作
+http://8.138.7.223/tv/xzbjhuz.php?id=49
+#EXTINF:-1 group-title="央视频道",CHC动作
+http://tvbox6.icu/tv/migu.php?id=dzdy
+#EXTINF:-1 group-title="央视频道",CHC动作
+http://nas.hssvm.com:8888/udp/225.1.1.215:5002
+#EXTINF:-1 group-title="央视频道",CHC影迷
+http://183.237.95.108:9901/tsfile/live/1008_1.m3u8?key=txiptv&playlive=0&authid=0
+#EXTINF:-1 group-title="央视频道",CHC影迷
+http://hzzzz530.com:4022/udp/239.69.1.241:11088
+#EXTINF:-1 group-title="央视频道",CHC影迷
+http://8.138.7.223/tv/xzbjhuz.php?id=48
+#EXTINF:-1 group-title="央视频道",CHC影迷
+http://ik6.iptv8.net:8888/udp/225.1.4.207:1260
+#EXTINF:-1 group-title="央视频道",CHC家庭
+http://60.223.72.63:8004/rtp/226.0.2.240:9820
+#EXTINF:-1 group-title="央视频道",CHC家庭
+http://tvbox6.icu/tv/migu.php?id=jtyy
+#EXTINF:-1 group-title="央视频道",CHC家庭
+http://8.138.7.223/tv/xzbjhuz.php?id=50
+#EXTINF:-1 group-title="央视频道",CHC家庭
+http://tvbox6.icu/tv/migu.php?id=chcjtdy
+#EXTINF:-1 group-title="央视频道",CHC家庭
+http://www.lizhinas.top:1009/rtp/239.252.219.84:5140
+#EXTINF:-1 group-title="央视频道",CHC家庭
+http://ik6.iptv8.net:8888/udp/225.1.4.209:1262
+#EXTINF:-1 group-title="央视频道",CHC家庭
+http://nas.hssvm.com:8888/udp/225.1.1.213:5002
+#EXTINF:-1 group-title="央视频道",CCTV兵器科技
+http://122.152.202.33/s/81a8a44f/index.m3u8?id=bak1_86
+#EXTINF:-1 group-title="央视频道",CCTV兵器科技
+http://home.sylaigym.top:8887/rtp/239.69.1.79:10114
+#EXTINF:-1 group-title="央视频道",CCTV风云足球
+http://202.102.201.244:40022/rtp/238.1.79.57:4592
+#EXTINF:-1 group-title="央视频道",CCTV风云足球
+http://home.sylaigym.top:8887/rtp/239.69.1.81:10126
+#EXTINF:-1 group-title="央视频道",CCTV风云足球
+http://122.152.202.33/s/81a8a44f/index.m3u8?id=bak1_94
+#EXTINF:-1 group-title="央视频道",CCTV风云足球
+http://nas.hssvm.com:8888/udp/225.1.1.181:5002
+#EXTINF:-1 group-title="央视频道",CCTV高尔夫网球
+http://home.sylaigym.top:8887/rtp/239.69.1.83:10138
+#EXTINF:-1 group-title="央视频道",CCTV女性时尚
+http://122.152.202.33/s/81a8a44f/index.m3u8?id=bak1_88
+#EXTINF:-1 group-title="央视频道",CCTV怀旧剧场
+http://122.152.202.33/s/81a8a44f/index.m3u8?id=bak1_89
+#EXTINF:-1 group-title="央视频道",CCTV风云剧场
+http://122.152.202.33/s/81a8a44f/index.m3u8?id=bak1_91
+#EXTINF:-1 group-title="央视频道",CCTV风云音乐
+http://8.138.7.223/tv/cqyx2.php?id=fyyyHD
+#EXTINF:-1 group-title="央视频道",CCTV俄语
+http://tvbox6.icu/tv/migu.php?id=cgtnr
+#EXTINF:-1 group-title="央视频道",CCTV发现之旅
+http://tvbox6.icu/tv/migu.php?id=fxzl
+#EXTINF:-1 group-title="央视频道",CCTV老故事
+http://nas.hssvm.com:8888/udp/225.1.1.188:5002
+#EXTINF:-1 group-title="央视频道",CCTV新影中学生
+http://8.138.7.223/tv/migu.php?id=zxs

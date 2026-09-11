@@ -1,4 +1,6 @@
 .venv/
+.idea/
+.vscode/
 tools/tessdata/
 audits/
 __pycache__/
