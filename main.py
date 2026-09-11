@@ -23,7 +23,7 @@ from my_tv_collect.stream_check import (
     check_stream_quality,
     check_stream_tracks,
 )
-from my_tv_collect.utils import convert_m3u_to_txt, standardize_channel_name
+from my_tv_collect.utils import convert_m3u_to_txt, is_vod_playlist, standardize_channel_name
 
 SOURCE_URLS = [
     "https://raw.githubusercontent.com/suxuang/myIPTV/refs/heads/main/ipv4.m3u",
@@ -161,6 +161,9 @@ def validate_stream(channel, url, decode_seconds, connect_grace,
     decision = override.get("decision")
     if decision in {"reject", "quarantine"}:
         return url, False, 0.0, f"MANUAL_{decision.upper()}"
+
+    if decision is None and is_vod_playlist(url):
+        return url, False, 0.0, "VOD_PLAYLIST"
 
     has_video, _has_audio, track_error = check_stream_tracks(
         url, connect_grace=connect_grace,

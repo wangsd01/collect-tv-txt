@@ -103,6 +103,26 @@ class MainTests(unittest.TestCase):
             )
             quality.assert_not_called()
 
+    def test_vod_playlist_is_rejected_before_decode(self):
+        with mock.patch.object(main, "is_vod_playlist", return_value=True), \
+                mock.patch.object(main, "check_stream_tracks") as tracks:
+            self.assertEqual(
+                main.validate_stream("东方卫视", "http://recorded.m3u8", 3, 3, 8),
+                ("http://recorded.m3u8", False, 0.0, "VOD_PLAYLIST"),
+            )
+            tracks.assert_not_called()
+
+    def test_manual_override_bypasses_vod_rejection(self):
+        overrides = {("CCTV10", "http://slate.m3u8"): {"decision": "allow_if_frame"}}
+        with mock.patch.object(main, "is_vod_playlist", return_value=True) as vod, \
+                mock.patch.object(main, "check_stream_tracks", return_value=(True, True, "OK")), \
+                mock.patch.object(main, "check_stream_quality", return_value=(True, 0.0, "DECODE_ERROR")), \
+                mock.patch.object(main, "check_stream_frame", return_value=(True, "OK")):
+            self.assertEqual(
+                main.validate_stream("CCTV10", "http://slate.m3u8", 3, 3, 8, overrides)[1], True,
+            )
+            vod.assert_not_called()
+
     def test_total_failure_does_not_overwrite_outputs(self):
         with tempfile.TemporaryDirectory() as directory:
             txt, m3u = Path(directory) / "a.txt", Path(directory) / "a.m3u"

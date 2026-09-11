@@ -76,6 +76,26 @@ def check_url(url, timeout=3, max_latency_ms=2000):
     return None, False, None
 
 
+def is_vod_playlist(url, timeout=5, max_bytes=2_000_000):
+    """Detect an HLS playlist that is a finite VOD/recording rather than a live feed.
+
+    A playlist is VOD when it declares ``#EXT-X-PLAYLIST-TYPE:VOD`` or ends with
+    ``#EXT-X-ENDLIST`` -- both mean the segment list is fixed instead of an
+    open-ended window that keeps advancing. Only .m3u8 URLs carry this signal;
+    other stream types (flv, rtmp, udp, dash) are left alone. Fetch failures
+    are treated as "can't tell, don't block" rather than VOD.
+    """
+    if ".m3u8" not in urlparse(url).path.lower():
+        return False
+    try:
+        req = urllib.request.Request(url, headers=headers)
+        with urllib.request.urlopen(req, timeout=timeout) as response:
+            text = response.read(max_bytes).decode("utf-8", errors="replace")
+    except Exception:
+        return False
+    return "#EXT-X-ENDLIST" in text or "PLAYLIST-TYPE:VOD" in text
+
+
 def is_url_accessible(url):
     try:
         print(url)
