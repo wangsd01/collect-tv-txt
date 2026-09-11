@@ -177,13 +177,12 @@ def standardize_channel_name(name):
     name = name.replace("12M", "")
     name = name.replace("5.5M", "")
     name = name.replace("咪咕", "")
-    name = name.replace("785", "")
-    name = name.replace("540", "")
-    name = name.replace("768", "")
-    name = name.replace("1280", "")
-    name = name.replace("720", "")
-    name = name.replace("1920", "")
-    name = name.replace("1080", "")
+    # Resolution tags (e.g. "720P", "1080P") are stripped as a single unit so a
+    # leftover "P" never lingers -- a bare "P" replace previously ate the letter
+    # out of real words too (ESPN -> ESN, "Fox Sports" -> "FOXSORTS").
+    for resolution in ("785", "540", "768", "1280", "720", "1920", "1080",
+                       "2160", "480", "270", "144"):
+        name = re.sub(resolution + r"P?", "", name)
     name = name.replace("DD5.1", "")
     name = name.replace(".", "")
     name = name.replace("CAVS", "")
@@ -201,13 +200,9 @@ def standardize_channel_name(name):
     name = name.replace("2060P", "")
     name = name.replace("1080P", "")
     name = name.replace("576P", "")
-    name = name.replace("576", "")
-    name = name.replace("75", "")
-    name = name.replace("68", "")
-    name = name.replace("25", "")
-    name = name.replace("55", "")
+    for resolution in ("576", "75", "68", "25", "55"):
+        name = re.sub(resolution + r"P?", "", name)
     name = name.replace("*", "")
-    name = name.replace("P", "")
     name = name.replace("中国", "")
     name = name.replace("IPTV", "")
     name = name.replace("國際", "")
@@ -361,6 +356,9 @@ def standardize_channel_name(name):
     name = name.replace("CHC家庭影院", "CHC家庭")
     name = name.replace("CHC动作电影", "CHC动作")
     name = name.replace("CHC影迷电影", "CHC影迷")
+    if not name.startswith("CCTV"):
+        name = name.replace("4K", "")
+
     l = len(name)
     if l%2 == 0 and name[0:l//2] == name[l//2:]:
         name = name[0:l//2]

@@ -26,6 +26,7 @@ from my_tv_collect.stream_check import (
 from my_tv_collect.utils import convert_m3u_to_txt, standardize_channel_name
 
 SOURCE_URLS = [
+    "https://raw.githubusercontent.com/suxuang/myIPTV/refs/heads/main/ipv4.m3u",
     "https://raw.githubusercontent.com/Supprise0901/TVBox_live/main/live.txt",
     "https://raw.githubusercontent.com/Guovin/iptv-api/gd/output/ipv4/result.m3u",
     "https://raw.githubusercontent.com/ssili126/tv/main/itvlist.txt",
@@ -48,9 +49,33 @@ SOURCE_URLS = [
     # 港澳台频道清单（公开 GitHub 源，内容为 M3U）
     "https://raw.githubusercontent.com/whherui/IPTV/main/%E5%8F%B0%E6%B9%BE%E9%A6%99%E6%B8%AF%E6%BE%B3%E9%97%A8.txt",
     "https://raw.githubusercontent.com/s14685/tv/main/iptvhk.txt",
+    # 英语频道清单（iptv-org 官方聚合，含 CNN/BBC/ABC/CBS/NBC/FOX/HBO/探索/国家地理等免费公开源）
+    "https://iptv-org.github.io/iptv/index.m3u",
 ]
 
 HKTW_CHANNELS = {"凤凰香港", "凤凰香港台", "凤凰中文", "凤凰资讯", "凤凰资讯台", "翡翠台", "TVB翡翠台", "无线新闻台", "TVB新闻", "TVB News"}
+
+# Public free-to-air/ad-supported English streams only; names go through
+# standardize_channel_name() (upper-cased, resolution tags and whitespace
+# stripped) before matching here. Deliberately excludes region-locked rebrands
+# (Latin America, en Espanol/Deportes, Asia/Europe local versions) and
+# unrecognized small broadcasters -- only well-known flagship feeds are kept.
+ENGLISH_CHANNELS = {
+    "CNN",
+    "BBCNEWS", "BBCWORLDNEWS", "BBCAMERICA", "BBCEARTH",
+    "ABC", "ABCNEWS", "ABCNEWSLIVE",
+    "CBS", "CBSNEWS24/7",
+    "NBC", "NBCNEWSNOW",
+    "FOX", "FOXNEWS", "FOXNEWSCHANNEL", "FOXBUSINESS", "FOXBUSINESSNETWORK",
+    "HBO", "HBO2", "HBO3", "HBOSIGNATURE", "HBOHITS", "HBOHITSEAST", "HBOMOVIES",
+    "DISCOVERY", "探索", "探索发现", "探索亚洲",
+    "NATIONALGEOGRAPHIC", "NATIONALGEOGRAPHICWILD", "国家地理", "国家地理野生",
+    "BLOOMBERGTV", "BLOOMBERGTVASIA",
+    "HISTORY", "HISTORYCHANNEL",
+    "AMC", "FX",
+    "FS1", "FS2", "FOXSPORTS1", "FOXSPORTS2",
+    "ESPN", "ESPNU", "ESPNEWS",
+}
 
 SATELLITE_CHANNELS = {
     "浙江卫视", "北京卫视", "东方卫视",
@@ -102,7 +127,7 @@ def parse_channels(texts, satellite_channels=SATELLITE_CHANNELS,
                 continue
             raw_name, url = (part.strip() for part in line.split(",", 1))
             name, url = standardize_channel_name(raw_name), url.split("$", 1)[0].strip()
-            if (name.startswith("CCTV") or name in HKTW_CHANNELS or
+            if (name.startswith("CCTV") or name in HKTW_CHANNELS or name in ENGLISH_CHANNELS or
                     name in satellite_channels or name in local_channels) and url and url not in seen[name]:
                 seen[name].add(url); channels[name].append(url)
     return quarantine_cross_channel_urls(channels)
@@ -192,9 +217,11 @@ def render_outputs(channels, timestamp=None):
     satellite = sorted(name for name in channels if name in SATELLITE_CHANNELS)
     shandong = sorted(name for name in channels if name in SHANDONG_CHANNELS)
     jinan = sorted(name for name in channels if name in JINAN_CHANNELS)
+    english = sorted(name for name in channels if name in ENGLISH_CHANNELS)
     grouped_names = [
         ("央视频道", cctv), ("卫视频道", satellite),
         ("山东频道", shandong), ("济南频道", jinan), ("港澳台", hktw),
+        ("英语频道", english),
     ]
     for group, names in grouped_names:
         if not names:
@@ -252,10 +279,6 @@ def main(argv=None):
         atomic_write(args.output_m3u, m3u)
         # Keep the historical consumer path in sync with the published result.
         atomic_write(Path("my_tv_collect") / "my_itvlist.m3u", m3u)
-        # Keep the dated collector playlist in sync for consumers of the
-        # my_tv_collect directory.  This path is intentionally the spelling
-        # requested by the project output contract.
-        atomic_write(Path("my_tv_collect") / "my_itelist.m3u", m3u)
     except (RuntimeError, ValueError) as exc:
         print(f"Collection failed: {exc}"); return 1
     print(f"Published {sum(map(len, channels.values()))} stable streams across {len(channels)} channels"); return 0
