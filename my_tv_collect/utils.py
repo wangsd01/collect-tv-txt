@@ -368,14 +368,32 @@ def standardize_channel_name(name):
     name = name.replace("CCTV高尔夫球", "CCTV高尔夫网球")
     if name == "CCTV高尔夫":
         name = "CCTV高尔夫网球"
+    # iptv-org's public index (added as an English-channel source) lists many
+    # CCTV specialty channels only in English, e.g. "CCTV-Storm Football
+    # (1080p)" or "CCTV-Women's Fashion". After the upper-casing and
+    # space/punctuation stripping above these collapse into ugly all-caps
+    # tokens like "CCTVSTORMFOOTBALL" instead of the channel's normal Chinese
+    # name -- translate the known ones back.
+    name = name.replace("CCTVGOLF&TENNIS", "CCTV高尔夫网球")
+    name = name.replace("CCTVNOSTALGIATHEATER", "CCTV怀旧剧场")
+    name = name.replace("CCTVSTORMFOOTBALL", "CCTV风云足球")
+    name = name.replace("CCTVSTORMMUSIC", "CCTV风云音乐")
+    name = name.replace("CCTVSTORMTHEATER", "CCTV风云剧场")
+    name = name.replace("CCTVTHEFIRSTTHEATER", "CCTV第一剧场")
+    name = name.replace("CCTVWEAPON&TECHNOLOGY", "CCTV兵器科技")
+    name = name.replace("CCTVWOMEN'SFASHION", "CCTV女性时尚")
+    name = name.replace("CCTVWORLDGEOGRAPHY", "CCTV世界地理")
+    name = name.replace("CCTVCULTUREOFQUALITY", "CCTV文化精品")
+    name = name.replace("CCTVHEALTH", "CCTV卫生健康")
+    name = name.replace("CCTV4EUROPE", "CCTV4")
+    name = name.replace("CCTV4AMERICA", "CCTV4")
+    name = re.sub(r"CCTV\+\d600PNOT24/7", "CCTV+", name)
     name = name.replace("TVGUIDE", "电视指南")
+    name = name.replace("CHC家庭影院B", "CHC家庭影院")
+    name = name.replace("CHC动作电影B", "CHC动作电影")
     name = name.replace("CHC电影B", "CHC电影")
-    name = name.replace("CHC电影", "CHC影迷电影")
-    name = name.replace("CHC家庭影院B", "CHC家庭")
-    name = name.replace("CHC动作电影B", "CHC动作")
-    name = name.replace("CHC家庭影院", "CHC家庭")
-    name = name.replace("CHC动作电影", "CHC动作")
-    name = name.replace("CHC影迷电影", "CHC影迷")
+    if name in ("CHC电影", "CHC影院"):
+        name = "CHC影迷电影"
     if not name.startswith("CCTV"):
         name = name.replace("4K", "")
 

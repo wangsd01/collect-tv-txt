@@ -82,6 +82,8 @@ SATELLITE_CHANNELS = {
     "江苏卫视", "湖南卫视", "山东卫视",
 }
 
+CHC_CHANNELS = {"CHC影迷电影", "CHC家庭影院", "CHC动作电影"}
+
 # Keep common current and legacy source names: public playlists are not
 # consistent about including the province/city prefix or the latest callsign.
 SHANDONG_CHANNELS = {
@@ -119,7 +121,7 @@ def source_lines(text):
     return [line.strip() for line in text.splitlines() if line.strip()]
 
 def parse_channels(texts, satellite_channels=SATELLITE_CHANNELS,
-                   local_channels=SELECTED_LOCAL_CHANNELS):
+                   local_channels=SELECTED_LOCAL_CHANNELS, chc_channels=CHC_CHANNELS):
     channels, seen = defaultdict(list), defaultdict(set)
     for text in texts:
         for line in source_lines(text):
@@ -128,7 +130,8 @@ def parse_channels(texts, satellite_channels=SATELLITE_CHANNELS,
             raw_name, url = (part.strip() for part in line.split(",", 1))
             name, url = standardize_channel_name(raw_name), url.split("$", 1)[0].strip()
             if (name.startswith("CCTV") or name in HKTW_CHANNELS or name in ENGLISH_CHANNELS or
-                    name in satellite_channels or name in local_channels) and url and url not in seen[name]:
+                    name in satellite_channels or name in local_channels or
+                    name in chc_channels) and url and url not in seen[name]:
                 seen[name].add(url); channels[name].append(url)
     return quarantine_cross_channel_urls(channels)
 
@@ -153,7 +156,7 @@ def quarantine_cross_channel_urls(channels):
 
 def parse_cctv_channels(texts):
     """Backward-compatible name for consumers of the original parser."""
-    return parse_channels(texts, satellite_channels=set(), local_channels=set())
+    return parse_channels(texts, satellite_channels=set(), local_channels=set(), chc_channels=set())
 
 def validate_stream(channel, url, decode_seconds, connect_grace,
                     content_check_seconds=8, overrides=None):
@@ -221,10 +224,11 @@ def render_outputs(channels, timestamp=None):
     shandong = sorted(name for name in channels if name in SHANDONG_CHANNELS)
     jinan = sorted(name for name in channels if name in JINAN_CHANNELS)
     english = sorted(name for name in channels if name in ENGLISH_CHANNELS)
+    chc = sorted(name for name in channels if name in CHC_CHANNELS)
     grouped_names = [
         ("央视频道", cctv), ("卫视频道", satellite),
         ("山东频道", shandong), ("济南频道", jinan), ("港澳台", hktw),
-        ("英语频道", english),
+        ("英语频道", english), ("CHC频道", chc),
     ]
     for group, names in grouped_names:
         if not names:
