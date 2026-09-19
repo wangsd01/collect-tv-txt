@@ -50,15 +50,23 @@ jobs:
           git add merged_output.txt
           git add merged_output.m3u
           git add others_output.txt
-          git commit -m ":tada:  AutoUpdate $(date +'%Y%m%d')"
+          if ! git diff --cached --quiet; then
+            git commit -m ":tada:  AutoUpdate $(date +'%Y%m%d')"
+          else
+            echo "No changes to generated outputs, skipping commit"
+          fi
 
           current_datetime=$(date +"%Y%m%d_%H%M%S")
           cp merged_output.txt history/"${current_datetime}_merged_output.txt"
           cp others_output.txt history/"${current_datetime}_others_output.txt"
           git add history/"${current_datetime}_merged_output.txt"
           git add history/"${current_datetime}_others_output.txt"
-          git commit -m "Archive file with timestamp"
-          
+          if ! git diff --cached --quiet; then
+            git commit -m "Archive file with timestamp"
+          else
+            echo "No changes to archive, skipping commit"
+          fi
+
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
